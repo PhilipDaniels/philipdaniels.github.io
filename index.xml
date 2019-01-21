@@ -24,6 +24,15 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Git
     
     <item>
       <title></title>
+      <link>http://philipdaniels.com/configzilla/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/configzilla/</guid>
+      <description>ConfigZilla Manual Page | ConfigZillaConfigZillaConfigZilla is a tool for streamlining the management of those pesky .config files in .Net projects. The key to the ConfigZilla approach is that it creates a project called &#34;ConfigZilla&#34; in your solution, and this project then becomes the central location in which you specify the values for your config settings and create classes to access those settings. ConfigZilla generates App.config files from App.template.configs which you create; this is done on a per-project basis whenever you compile your project.</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>http://philipdaniels.com/gitcheatsheet/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
