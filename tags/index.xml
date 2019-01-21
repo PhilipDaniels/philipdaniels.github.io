@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tags on Phil&#39;s Blog</title>
+    <link>http://philipdaniels.com/tags/</link>
+    <description>Recent content in Tags on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jan 2019 14:42:18 +0000</lastBuildDate>
+    
+	<atom:link href="http://philipdaniels.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo</title>
+      <link>http://philipdaniels.com/tags/hugo/</link>
+      <pubDate>Sun, 20 Jan 2019 14:42:18 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

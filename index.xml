@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Phil&#39;s Blog</title>
+    <link>http://philipdaniels.com/</link>
+    <description>Recent content on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 20 Jan 2019 14:42:18 +0000</lastBuildDate>
+    
+	<atom:link href="http://philipdaniels.com/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hugo Cheatsheet</title>
+      <link>http://philipdaniels.com/blog/2019/hugo-cheatsheet/</link>
+      <pubDate>Sun, 20 Jan 2019 14:42:18 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/blog/2019/hugo-cheatsheet/</guid>
+      <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+ *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>http://philipdaniels.com/gitcheatsheet/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/gitcheatsheet/</guid>
+      <description>Phil&#39;s Git Cheatsheet    You are using an outdated browser. Please upgrade your browser to improve your experience.
+           Getting Started Do this first!!! Setup .gitattributes correctly Setup .gitignore correctly Setup ~/.gitconfig correctly config [--global] --unset user.email config [--global] --edit config [--global] user.email Phil@foo.com config --list  Help verb --help man git-verb  Repository Creation and Cloning init clone url [mydir]  Using a Bare Repo as a Central Repo 1a.</description>
+    </item>
+    
+  </channel>
+</rss>
