@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vm on Phil&#39;s Blog</title>
+    <link>http://philipdaniels.com/tags/vm/</link>
+    <description>Recent content in Vm on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Dec 2016 20:19:45 +0000</lastBuildDate>
+    
+	<atom:link href="http://philipdaniels.com/tags/vm/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Network Setup in Hyper-V and Virtual Box</title>
+      <link>http://philipdaniels.com/blog/2016/vm-networking-overview/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/blog/2016/vm-networking-overview/</guid>
+      <description>Other Build Book Posts  Debian VM Setup Setup of SSH Windows VM Setup  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+In this article I describe the different types of switch available in Hyper-V and their equivalents in Virtual Box.</description>
+    </item>
+    
+    <item>
+      <title>Setup of Debian Virtual Machines</title>
+      <link>http://philipdaniels.com/blog/2016/debian-vm-setup/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/blog/2016/debian-vm-setup/</guid>
+      <description>Other Build Book Posts  Setup of SSH Windows VM Setup Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+Installation Steps Pick the type of Debian distribution you want. I usually go for Testing to keep up with the latest fixes - it is a rolling release.</description>
+    </item>
+    
+    <item>
+      <title>Setup of Windows Virtual Machines</title>
+      <link>http://philipdaniels.com/blog/2016/windows-vm-setup/</link>
+      <pubDate>Tue, 27 Dec 2016 20:14:13 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/blog/2016/windows-vm-setup/</guid>
+      <description>Other Build Book Posts  Debian VM Setup Setup of SSH Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+General  Do not use Windows Enterprise because this edition does not get patched and upgraded like normal Windows does.</description>
+    </item>
+    
+  </channel>
+</rss>

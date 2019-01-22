@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Networking on Phil&#39;s Blog</title>
+    <link>http://philipdaniels.com/tags/networking/</link>
+    <description>Recent content in Networking on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 27 Dec 2016 20:19:45 +0000</lastBuildDate>
+    
+	<atom:link href="http://philipdaniels.com/tags/networking/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Network Setup in Hyper-V and Virtual Box</title>
+      <link>http://philipdaniels.com/blog/2016/vm-networking-overview/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/blog/2016/vm-networking-overview/</guid>
+      <description>Other Build Book Posts  Debian VM Setup Setup of SSH Windows VM Setup  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+In this article I describe the different types of switch available in Hyper-V and their equivalents in Virtual Box.</description>
+    </item>
+    
+  </channel>
+</rss>

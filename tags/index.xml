@@ -6,10 +6,55 @@
     <description>Recent content in Tags on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 20 Jan 2019 14:42:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 06 Nov 2017 20:19:45 +0000</lastBuildDate>
     
 	<atom:link href="http://philipdaniels.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Async</title>
+      <link>http://philipdaniels.com/tags/async/</link>
+      <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/async/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>C#</title>
+      <link>http://philipdaniels.com/tags/c/</link>
+      <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/c/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Cygwin</title>
+      <link>http://philipdaniels.com/tags/cygwin/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/cygwin/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Debian</title>
+      <link>http://philipdaniels.com/tags/debian/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Emacs</title>
+      <link>http://philipdaniels.com/tags/emacs/</link>
+      <pubDate>Tue, 07 Feb 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/emacs/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>Hugo</title>
@@ -17,6 +62,114 @@
       <pubDate>Sun, 20 Jan 2019 14:42:18 +0000</pubDate>
       
       <guid>http://philipdaniels.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hyper V</title>
+      <link>http://philipdaniels.com/tags/hyper-v/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>http://philipdaniels.com/tags/linux/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Networking</title>
+      <link>http://philipdaniels.com/tags/networking/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/networking/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Parallelism</title>
+      <link>http://philipdaniels.com/tags/parallelism/</link>
+      <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/parallelism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Spacemacs</title>
+      <link>http://philipdaniels.com/tags/spacemacs/</link>
+      <pubDate>Tue, 07 Feb 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/spacemacs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Sqlite</title>
+      <link>http://philipdaniels.com/tags/sqlite/</link>
+      <pubDate>Mon, 27 Jun 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/sqlite/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Ssh</title>
+      <link>http://philipdaniels.com/tags/ssh/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Task</title>
+      <link>http://philipdaniels.com/tags/task/</link>
+      <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/task/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tpl</title>
+      <link>http://philipdaniels.com/tags/tpl/</link>
+      <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/tpl/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Virtual Box</title>
+      <link>http://philipdaniels.com/tags/virtual-box/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/virtual-box/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Vm</title>
+      <link>http://philipdaniels.com/tags/vm/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/vm/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Windows</title>
+      <link>http://philipdaniels.com/tags/windows/</link>
+      <pubDate>Tue, 27 Dec 2016 20:14:13 +0000</pubDate>
+      
+      <guid>http://philipdaniels.com/tags/windows/</guid>
       <description></description>
     </item>
     

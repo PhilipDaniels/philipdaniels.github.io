@@ -8,11 +8,57 @@
   </url>
   
   <url>
+    <loc>http://philipdaniels.com/blog/2017/tour-of-task/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2017/spacemacs-solarized/</loc>
+    <lastmod>2017-02-07T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2017/spacemacs-first-steps/</loc>
+    <lastmod>2017-02-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2016/vm-networking-overview/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2016/debian-vm-setup/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2016/setup-of-ssh/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2016/windows-vm-setup/</loc>
+    <lastmod>2016-12-27T20:14:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</loc>
+    <lastmod>2016-06-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>http://philipdaniels.com/configzilla/</loc>
   </url>
   
   <url>
     <loc>http://philipdaniels.com/gitcheatsheet/</loc>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/async/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
   </url>
   
   <url>
@@ -22,7 +68,31 @@
   </url>
   
   <url>
+    <loc>http://philipdaniels.com/tags/c/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://philipdaniels.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/cygwin/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/debian/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/emacs/</loc>
+    <lastmod>2017-02-07T20:19:45+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -33,14 +103,86 @@
   </url>
   
   <url>
+    <loc>http://philipdaniels.com/tags/hyper-v/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/linux/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/networking/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/parallelism/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://philipdaniels.com/</loc>
     <lastmod>2019-01-20T14:42:18+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>http://philipdaniels.com/tags/spacemacs/</loc>
+    <lastmod>2017-02-07T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/sqlite/</loc>
+    <lastmod>2016-06-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/ssh/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>http://philipdaniels.com/tags/</loc>
-    <lastmod>2019-01-20T14:42:18+00:00</lastmod>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/task/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/tpl/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/virtual-box/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/vm/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://philipdaniels.com/tags/windows/</loc>
+    <lastmod>2016-12-27T20:14:13+00:00</lastmod>
     <priority>0</priority>
   </url>
   
