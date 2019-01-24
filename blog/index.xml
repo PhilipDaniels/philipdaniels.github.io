@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blogs on Phil&#39;s Blog</title>
-    <link>http://philipdaniels.com/blog/</link>
+    <link>http://www.philipdaniels.com/blog/</link>
     <description>Recent content in Blogs on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 20 Jan 2019 14:42:18 +0000</lastBuildDate>
     
-	<atom:link href="http://philipdaniels.com/blog/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.philipdaniels.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hugo Cheatsheet</title>
-      <link>http://philipdaniels.com/blog/2019/hugo-cheatsheet/</link>
+      <link>http://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</link>
       <pubDate>Sun, 20 Jan 2019 14:42:18 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2019/hugo-cheatsheet/</guid>
+      <guid>http://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</guid>
       <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
 Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
  *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>
@@ -24,80 +24,80 @@ Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Git
     
     <item>
       <title>Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series</title>
-      <link>http://philipdaniels.com/blog/2017/tour-of-task/</link>
+      <link>http://www.philipdaniels.com/blog/2017/tour-of-task/</link>
       <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2017/tour-of-task/</guid>
+      <guid>http://www.philipdaniels.com/blog/2017/tour-of-task/</guid>
       <description>Summary of Stephen Cleary&amp;rsquo;s &amp;lsquo;A Tour of Task&amp;rsquo; articles The first article
  Task as used by TPL is completely different to Task as used by async. The vast majority of Task members have no place in async code. There are two types of Task ** Delegate tasks, which have code to run ** Promise tasks, which represent an event or signal (e.g. IO or timer based) Most TPL code uses Delegate tasks across multiple threads,, most async code uses Promise tasks which don&amp;rsquo;t tie up a thread.</description>
     </item>
     
     <item>
       <title>Spacemacs - Configuring the Solarized Theme</title>
-      <link>http://philipdaniels.com/blog/2017/spacemacs-solarized/</link>
+      <link>http://www.philipdaniels.com/blog/2017/spacemacs-solarized/</link>
       <pubDate>Tue, 07 Feb 2017 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2017/spacemacs-solarized/</guid>
+      <guid>http://www.philipdaniels.com/blog/2017/spacemacs-solarized/</guid>
       <description>Solarized, tredux There are at least 3 different Solarized theme packages for Emacs:
  BBatsov&amp;rsquo;s Solarized Greg Pfeil&amp;rsquo;s (aka Sellout) Solarized Steve Purcell&amp;rsquo;s (aka SanityInc) Solarized  Steve&amp;rsquo;s is based on Greg&amp;rsquo;s. Of the three, I have always used Greg&amp;rsquo;s in the past, finding it to have a comprehensive set of faces. So naturally I wanted to get it working in Spacemacs. That was a bit trickier than expected, because it uses a non-standard loading mechanism, however, I found an issue on Github that explained how to do it.</description>
     </item>
     
     <item>
       <title>Spacemacs - First Steps</title>
-      <link>http://philipdaniels.com/blog/2017/spacemacs-first-steps/</link>
+      <link>http://www.philipdaniels.com/blog/2017/spacemacs-first-steps/</link>
       <pubDate>Mon, 06 Feb 2017 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2017/spacemacs-first-steps/</guid>
+      <guid>http://www.philipdaniels.com/blog/2017/spacemacs-first-steps/</guid>
       <description>Moving to Spacemacs I recently declared, if not quite .emacs bankruptcy , then at least Chapter 11 status. After a long time keeping my .emacs as a single file, I refactored it into a set of self contained lisp files of the form:
 (require &#39;other-peoples-packages) ...my config... (provide &#39;my-package)  Then I just ensured the director with all these files was on my load-path and simply required my own little packages.</description>
     </item>
     
     <item>
       <title>Network Setup in Hyper-V and Virtual Box</title>
-      <link>http://philipdaniels.com/blog/2016/vm-networking-overview/</link>
+      <link>http://www.philipdaniels.com/blog/2016/vm-networking-overview/</link>
       <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2016/vm-networking-overview/</guid>
+      <guid>http://www.philipdaniels.com/blog/2016/vm-networking-overview/</guid>
       <description>Other Build Book Posts  Debian VM Setup Setup of SSH Windows VM Setup  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
 In this article I describe the different types of switch available in Hyper-V and their equivalents in Virtual Box.</description>
     </item>
     
     <item>
       <title>Setup of Debian Virtual Machines</title>
-      <link>http://philipdaniels.com/blog/2016/debian-vm-setup/</link>
+      <link>http://www.philipdaniels.com/blog/2016/debian-vm-setup/</link>
       <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2016/debian-vm-setup/</guid>
+      <guid>http://www.philipdaniels.com/blog/2016/debian-vm-setup/</guid>
       <description>Other Build Book Posts  Setup of SSH Windows VM Setup Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
 Installation Steps Pick the type of Debian distribution you want. I usually go for Testing to keep up with the latest fixes - it is a rolling release.</description>
     </item>
     
     <item>
       <title>Setup of ssh</title>
-      <link>http://philipdaniels.com/blog/2016/setup-of-ssh/</link>
+      <link>http://www.philipdaniels.com/blog/2016/setup-of-ssh/</link>
       <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2016/setup-of-ssh/</guid>
+      <guid>http://www.philipdaniels.com/blog/2016/setup-of-ssh/</guid>
       <description>Other Build Book Posts  Debian VM Setup Windows VM Setup Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
 How SSH Works SSH stands for &amp;ldquo;Secure Shell&amp;rdquo;. As its name implies it is a network protocol for secure communication between two computers, a server - your VM - and a client, e.</description>
     </item>
     
     <item>
       <title>Setup of Windows Virtual Machines</title>
-      <link>http://philipdaniels.com/blog/2016/windows-vm-setup/</link>
+      <link>http://www.philipdaniels.com/blog/2016/windows-vm-setup/</link>
       <pubDate>Tue, 27 Dec 2016 20:14:13 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2016/windows-vm-setup/</guid>
+      <guid>http://www.philipdaniels.com/blog/2016/windows-vm-setup/</guid>
       <description>Other Build Book Posts  Debian VM Setup Setup of SSH Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
 General  Do not use Windows Enterprise because this edition does not get patched and upgraded like normal Windows does.</description>
     </item>
     
     <item>
       <title>Comparing PersistentDictionary with SQLite as a Key-Value Store</title>
-      <link>http://philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</link>
+      <link>http://www.philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</link>
       <pubDate>Mon, 27 Jun 2016 20:19:45 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</guid>
+      <guid>http://www.philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</guid>
       <description>Few choices for in-process persistent data stores When it comes to data storage, developers traditionally have had two choices:
  A full-blown database, usually running as separate process. This includes SQL databases such as MS-SQL and PostGres, and NoSQL databases such as Mongo. Hold everything in RAM in standard .Net classes such as Dictionary.  The former has the drawback that some installation is usually required, and the latter doesn&amp;rsquo;t scale to very large datasets.</description>
     </item>

@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Phil&#39;s Blog</title>
-    <link>http://philipdaniels.com/tags/hugo/</link>
+    <link>http://www.philipdaniels.com/tags/hugo/</link>
     <description>Recent content in Hugo on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 20 Jan 2019 14:42:18 +0000</lastBuildDate>
     
-	<atom:link href="http://philipdaniels.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://www.philipdaniels.com/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Hugo Cheatsheet</title>
-      <link>http://philipdaniels.com/blog/2019/hugo-cheatsheet/</link>
+      <link>http://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</link>
       <pubDate>Sun, 20 Jan 2019 14:42:18 +0000</pubDate>
       
-      <guid>http://philipdaniels.com/blog/2019/hugo-cheatsheet/</guid>
+      <guid>http://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</guid>
       <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
 Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
  *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>
