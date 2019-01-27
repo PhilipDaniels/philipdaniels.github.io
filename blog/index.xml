@@ -64,17 +64,6 @@ The kill command is used to send signals to a program.
     </item>
     
     <item>
-      <title>Hugo Cheatsheet</title>
-      <link>https://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</link>
-      <pubDate>Sun, 20 Jan 2019 14:42:18 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</guid>
-      <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
-Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
- *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>
-    </item>
-    
-    <item>
       <title>Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series</title>
       <link>https://www.philipdaniels.com/blog/2017/tour-of-task/</link>
       <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
@@ -152,6 +141,17 @@ General  Do not use Windows Enterprise because this edition does not get patched
       <guid>https://www.philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</guid>
       <description>Few choices for in-process persistent data stores When it comes to data storage, developers traditionally have had two choices:
  A full-blown database, usually running as separate process. This includes SQL databases such as MS-SQL and PostGres, and NoSQL databases such as Mongo. Hold everything in RAM in standard .Net classes such as Dictionary.  The former has the drawback that some installation is usually required, and the latter doesn&amp;rsquo;t scale to very large datasets.</description>
+    </item>
+    
+    <item>
+      <title>Hugo Cheatsheet</title>
+      <link>https://www.philipdaniels.com/blog/2019/hugo-blogging-cheatsheet/</link>
+      <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/hugo-blogging-cheatsheet/</guid>
+      <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+ *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>
     </item>
     
   </channel>

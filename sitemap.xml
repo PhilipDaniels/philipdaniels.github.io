@@ -28,11 +28,6 @@
   </url>
   
   <url>
-    <loc>https://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</loc>
-    <lastmod>2019-01-20T14:42:18+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.philipdaniels.com/blog/2017/tour-of-task/</loc>
     <lastmod>2017-11-06T20:19:45+00:00</lastmod>
   </url>
@@ -70,6 +65,11 @@
   <url>
     <loc>https://www.philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</loc>
     <lastmod>2016-06-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/hugo-blogging-cheatsheet/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -141,7 +141,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/hugo/</loc>
-    <lastmod>2019-01-20T14:42:18+00:00</lastmod>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

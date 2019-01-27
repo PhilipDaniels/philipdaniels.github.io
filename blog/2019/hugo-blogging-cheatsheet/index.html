@@ -17,20 +17,22 @@
     
     
 
-<title>Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series • Phil&#39;s Blog</title>
+<title>Hugo Cheatsheet • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series"/>
-<meta name="twitter:description" content="Summary of Stephen Cleary&rsquo;s &lsquo;A Tour of Task&rsquo; articles The first article
- Task as used by TPL is completely different to Task as used by async. The vast majority of Task members have no place in async code. There are two types of Task ** Delegate tasks, which have code to run ** Promise tasks, which represent an event or signal (e.g. IO or timer based) Most TPL code uses Delegate tasks across multiple threads,, most async code uses Promise tasks which don&rsquo;t tie up a thread."/>
+<meta name="twitter:title" content="Hugo Cheatsheet"/>
+<meta name="twitter:description" content="A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+ *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github."/>
 
-<meta property="og:title" content="Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series" />
-<meta property="og:description" content="Summary of Stephen Cleary&rsquo;s &lsquo;A Tour of Task&rsquo; articles The first article
- Task as used by TPL is completely different to Task as used by async. The vast majority of Task members have no place in async code. There are two types of Task ** Delegate tasks, which have code to run ** Promise tasks, which represent an event or signal (e.g. IO or timer based) Most TPL code uses Delegate tasks across multiple threads,, most async code uses Promise tasks which don&rsquo;t tie up a thread." />
+<meta property="og:title" content="Hugo Cheatsheet" />
+<meta property="og:description" content="A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+ *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/tour-of-task/" /><meta property="article:published_time" content="2017-11-06T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2017-11-06T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/hugo-blogging-cheatsheet/" /><meta property="article:published_time" content="2016-03-01T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2016-03-01T00:00:00&#43;00:00"/>
 
 
     
@@ -175,13 +177,13 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series</h1>
+    <h1>Hugo Cheatsheet</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Nov 6, 2017
+      <i class="fas fa-calendar-alt"></i> Mar 1, 2016
     
     
     
@@ -192,19 +194,7 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/c">c#</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/task">task</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/async">async</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/tpl">tpl</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/parallelism">parallelism</a>
+          <a class="badge badge-tag" href="/tags/hugo">hugo</a>
           
       
     
@@ -220,136 +210,262 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h1 id="summary-of-stephen-cleary-s-a-tour-of-task-articles">Summary of Stephen Cleary&rsquo;s &lsquo;A Tour of Task&rsquo; articles</h1>
+<p>A test post to see if the new blog is working, also handy for checking out themes.
+You really want to look at the source for this page.</p>
 
-<p><a href="http://blog.stephencleary.com/2014/04/a-tour-of-task-part-0-overview.html">The first article</a></p>
+<h1 id="heading-1">Heading 1</h1>
 
-<ul>
-<li>Task as used by <a href="https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl">TPL</a>
-is completely different to Task as used by <code>async</code>.</li>
-<li>The vast majority of Task members have no place in async code.</li>
-<li>There are two types of Task
-** Delegate tasks, which have code to run
-** Promise tasks, which represent an event or signal (e.g. IO or timer based)</li>
-<li>Most TPL code uses Delegate tasks across multiple threads,, most async code uses Promise tasks
-which don&rsquo;t tie up a thread.</li>
-</ul>
+<h2 id="heading-2">Heading 2</h2>
 
-<h2 id="task-constructors">Task Constructors</h2>
+<h3 id="heading-3">Heading 3</h3>
 
-<p><a href="http://blog.stephencleary.com/2014/05/a-tour-of-task-part-1-constructors.html">Original Article</a></p>
+<h4 id="heading-4">Heading 4</h4>
 
-<ul>
-<li>These can only create Delegate tasks. Promise tasks are created using the <code>async</code> keyword.</li>
-<li>They create tasks that are not running. Don&rsquo;t use them.</li>
-<li>Use <a href="https://msdn.microsoft.com/en-us/library/system.threading.tasks.parallel">Parallel</a>
-or <a href="https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/parallel-linq-plinq">PLINQ</a>
-for parallel code.</li>
-<li>For dynamic task parallelism, you can use <code>Task.Run</code> or <code>Task.Factory.StartNew</code>.</li>
-</ul>
+<h5 id="heading-5">Heading 5</h5>
 
-<h2 id="task-status">Task Status</h2>
+<hr />
 
-<p><a href="http://blog.stephencleary.com/2014/06/a-tour-of-task-part-3-status.html">Original Article</a></p>
+<h1 id="basic-formatting">Basic Formatting</h1>
+
+<p>Hugo uses <a href="https://help.github.com/categories/writing-on-github/">Github Flavoured Markdown</a>.</p>
 
 <ul>
-<li>Rarely used except for debugging, normally wait for the task to complete and extract the
-results.</li>
+<li><code>*This is italic*</code> <em>This is italic</em></li>
+<li><code>**this is bold**</code> <strong>this is bold</strong></li>
+<li><code>***this is bold-italic***</code> <strong><em>this is bold-italic</em></strong></li>
+<li><code>~~this is strikethrough~~</code> <del>this is strikethrough</del></li>
 </ul>
 
-<h2 id="waiting">Waiting</h2>
+<p>You can do a <a href="https://github.com/philipdaniels">link</a> like this: <code>[link](https://github.com/philipdaniels)</code></p>
 
-<p><a href="http://blog.stephencleary.com/2014/10/a-tour-of-task-part-5-wait.html">Original Article</a></p>
+<p>You can comment stuff out like this (note you may have to separate the <code>{{</code> sigil:</p>
+
+<pre><code>&lt;!--
+[Link to another post]({ {&lt; ref &quot;post/2016/windows-vm-setup/index.md&quot; &gt;}})
+[Link to a heading]({ {&lt; relref &quot;#my-normalized-heading&quot; &gt;}}).
+--&gt;
+</code></pre>
+
+<p>The horizontal rule is made with 3 or more dashes.</p>
+
+<hr />
+
+<h1 id="images">Images</h1>
+
+<p>See <a href="https://gohugo.io/content-management/organization/">content organization</a>.</p>
+
+<h5 id="images-in-the-same-folder-as-the-post">Images in the same folder as the post</h5>
+
+<p>An image link is created by putting an exclamation mark before the link such
+as <code>![house](../house.gif)</code></p>
+
+<p><img src="../house.gif" alt="house" /></p>
+
+<p>The <code>..</code> is needed because in the final site, the post&rsquo;s <code>index.html</code> file is one
+folder below the images (this is due to &lsquo;.html&rsquo; elimination from the URLs).</p>
+
+<h5 id="images-for-a-post-in-their-own-subfolder">Images for a post in their own subfolder</h5>
+
+<p>The above observations lead us to a solution. Create a disk structure like this:</p>
+
+<pre><code>hugo-cheatsheet.md                  (the post)
+hugo-cheatsheet/                    (a directory with the same name as the post)
+hugo-cheatsheet/image1.gif          (one or more images)
+hugo-cheatsheet/celtic-knot.jpg
+</code></pre>
+
+<p>And then in the post file <code>hugo-cheatsheet.md</code> you can link to an image like this</p>
+
+<pre><code>![Celtic knot](celtic-knot.jpg)
+</code></pre>
+
+<p><img src="celtic-knot.jpg" alt="Celtic knot" /></p>
+
+<p>You will end up with this disk structure in your <code>public</code> folder:</p>
+
+<pre><code>blog\2019\hugo-cheatsheet                   (directory for the post)
+blog\2019\hugo-cheatsheet\index.html        (the body of the post)
+blog\2019\hugo-cheatsheet\image1.gif        (the images)
+blog\2019\hugo-cheatsheet\celtic-knot.jpg
+</code></pre>
+
+<p>Links in <code>index.html</code> will be relative:</p>
+
+<pre><code>&lt;img src=&quot;celtic-knot.jpg&quot; alt=&quot;Celtic knot&quot; /&gt;
+</code></pre>
+
+<p>Which means you can move the website around without any problems.</p>
+
+<p>You can also use the <a href="https://gohugo.io/content-management/shortcodes/">figure shortcode</a>,
+which allows you to set the caption and/or title.</p>
+
+<figure>
+    <img src="image1.jpg"
+         alt="A Celtic Knot"/> <figcaption>
+            <p>A Celtic Knot</p>
+        </figcaption>
+</figure>
+
+
+<hr />
+
+<h1 id="syntax-highlighting">Syntax Highlighting</h1>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() -&gt; Result<span style="color:#f92672">&lt;</span>(), io::Error<span style="color:#f92672">&gt;</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#75715e">// This is done with a &#39;highlight&#39; short code and includes highlights of lines 2 and 6-7.
+</span></span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Hello {}&#34;</span>, x);
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> vec<span style="color:#f92672">!</span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>];
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> max <span style="color:#f92672">=</span> x.iter().max();
+</span>}
+</code></pre></div>
+
+<pre><code class="language-rs">static Main() -&gt; Result&lt;(), io::Error&gt; {
+    // This is done with a code fence.
+    let x = 3;
+}
+</code></pre>
+
+<p>Both of these are done with highlight.js because Hugo&rsquo;s built in syntax highlighting
+doesn&rsquo;t seem to work reliably (wraps line when it shouldn&rsquo;t, doesn&rsquo;t select the
+correct theme&hellip;). See config.toml for some highlight.js parameters.</p>
+
+<hr />
+
+<h1 id="raw-html">Raw HTML</h1>
+
+<p>You can <b>just add raw</b> HTML markup straight into the markdown file.</p>
+
+<hr />
+
+<h1 id="more-formatting">More Formatting</h1>
+
+<blockquote>
+<p>This is a quote</p>
+
+<p>Can be on more than one line</p>
+</blockquote>
+
+<p>Use 4 spaces to create pre-formatted text:</p>
+
+<pre><code>$ some example text with &lt;b&gt; tags &lt;/b&gt;
+</code></pre>
+
+<hr />
+
+<h1 id="lists-and-tables">Lists and Tables</h1>
+
+<p>A list is created using asterisks or dashes</p>
 
 <ul>
-<li>All <code>Wait</code> operations block the calling thread until the task completes, so they are never
-used with Promise tasks. (Blocking on a Promise is a cause of deadlocks).</li>
-<li><code>Wait</code> is rather simple: it will block the calling thread until the task completes, a timeout
-occurs, or the wait is cancelled. If the wait is cancelled, then <code>Wait</code> raises an
-<code>OperationCanceledException</code>. If a timeout occurs, then <code>Wait</code> returns false. If the task completes
-in a failed or canceled state, then <code>Wait</code> wraps any exceptions into an <code>AggregateException</code>. Note
-that a canceled task will raise an <code>OperationCanceledException</code> wrapped in an <code>AggregateException</code>,
-whereas a canceled wait will raise an unwrapped <code>OperationCanceledException</code>.</li>
-<li><code>WaitAll</code> and <code>WaitAny</code> are similar, but for collections of <code>Task</code>.</li>
-<li>Use <code>await</code> instead of <code>Wait</code>.</li>
+<li>First</li>
+<li>Second</li>
+<li>Third</li>
 </ul>
 
-<h2 id="results">Results</h2>
+<p>Nested and numeric lists are possible</p>
 
-<p><a href="http://blog.stephencleary.com/2014/12/a-tour-of-task-part-6-results.html">Original Article</a></p>
+<ol>
+<li>First
 
 <ul>
-<li>Only exists on <code>Task&lt;T&gt;</code> type.</li>
-<li>Blocks like <code>Wait</code>, with the same drawbacks.</li>
-<li>Wraps any exceptions inside an <code>AggregateException</code>, which makes error handling complicated.</li>
-<li><code>GetAwaiter().GetResult</code> blocks like <code>Result</code>, but does not wrap any exceptions. This works
-for both <code>Task&lt;T&gt;</code> and <code>Task</code>. So if you have to block, this is better.</li>
-<li>The vast majority of time, <code>await</code> should be used to get the result of a Promise task.</li>
-</ul>
-
-<h2 id="continuations">Continuations</h2>
-
-<p><a href="http://blog.stephencleary.com/2015/01/a-tour-of-task-part-7-continuations.html">Original Article</a></p>
+<li>Sub 1</li>
+<li>Sub 2</li>
+</ul></li>
+<li>Second
 
 <ul>
-<li>Don&rsquo;t use <code>ContinueWith</code> - the defaults are all wrong. Just use <code>await</code>.</li>
-<li>Don&rsquo;t use <code>TaskFactory.ContinueWhenAny</code> - use <code>await Task.WhenAny(...)</code></li>
-<li>Don&rsquo;t use <code>TaskFactory.ContinueWhenAll</code> - use <code>await Task.WhenAll(...)</code></li>
-</ul>
+<li>Sub 1</li>
+<li>Sub 2</li>
+</ul></li>
+</ol>
 
-<h2 id="starting-delegate-tasks">Starting Delegate tasks</h2>
+<p>Another example</p>
 
-<p><a href="http://blog.stephencleary.com/2015/02/a-tour-of-task-part-8-starting.html">The obsolete way</a>
-and
-<a href="http://blog.stephencleary.com/2015/03/a-tour-of-task-part-9-delegate-tasks.html">The correct way</a></p>
+<ol>
+<li>Make my changes
 
-<ul>
-<li>Don&rsquo;t use <code>Start</code>.</li>
-<li>Don&rsquo;t use <code>RunSynchronously</code>. It runs on the current thread.</li>
-<li>Don&rsquo;t use <code>Task.Factory.StartNew</code> unless you are doing <a href="https://msdn.microsoft.com/en-us/library/ff963551.aspx">dynamic task parallelism</a> (which is very rare)</li>
-<li>DO USE <code>Task.Run</code>. Its <code>CancellationToken</code> is mostly useless, but the other overloads are good
-for queueing work to the thread pool.</li>
-</ul>
-
-<h2 id="starting-promise-tasks">Starting Promise tasks</h2>
-
-<p><a href="http://blog.stephencleary.com/2015/04/a-tour-of-task-part-10-promise-tasks.html">Original Article</a></p>
+<ol>
+<li>Fix bug</li>
+<li>Improve formatting
 
 <ul>
-<li><code>Task.Delay</code> is the async equivalent of <code>Thread.Sleep</code>, use it in preference. <code>Thread.Sleep</code>
-actually puts the current thread to sleep for a time (which means it is not doing any useful
-work). <code>Task.Delay</code> allows the thread to be used to do other work (perhaps for other tasks).</li>
-<li><code>Task.FromResult</code> can be used to create a completed task with a result value.</li>
-<li><code>Task.FromException</code> and <code>Task.FromCancelled</code> can be used to return completed tasks in those
-states (.Net 4.6 API).</li>
-</ul>
-
-<h1 id="summary-of-stephen-cleary-s-async-intro">Summary of Stephen Cleary&rsquo;s async intro</h1>
-
-<p><a href="http://blog.stephencleary.com/2012/02/async-and-await.html">Original Article</a></p>
+<li>Make the headings bigger</li>
+</ul></li>
+</ol></li>
+<li>Push my commits to GitHub</li>
+<li>Open a pull request
 
 <ul>
-<li>Avoid <code>async void</code> methods, except for event handlers. They can&rsquo;t be awaited.</li>
-<li>When you <code>await</code> a built-in awaitable, the current &ldquo;context&rdquo; is captured and later
-re-applied when the rest of the async method is executed. Context means UI context, ASP.Net
-request context, or thread-pool context.</li>
-<li>The context overhead can be avoided by doing <code>await FooAsync(parms).ConfigureAwait(false)</code>
-(you should do this by default unless you know you need the original context).</li>
+<li>Describe my changes</li>
+<li>Mention all the members of my team
+
+<ul>
+<li>Ask for feedback</li>
+</ul></li>
+</ul></li>
+</ol>
+
+<p>Tables work (note the escaping of the &lsquo;|&rsquo; character):</p>
+
+<table>
+<thead>
+<tr>
+<th>Column Header</th>
+<th>Another header</th>
+<th align="right">Right-aligned</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>Some text</td>
+<td>more <strong>text</strong></td>
+<td align="right">10</td>
+</tr>
+
+<tr>
+<td>something else</td>
+<td>more else | &lt; pipe</td>
+<td align="right">20</td>
+</tr>
+</tbody>
+</table>
+
+<hr />
+
+<h1 id="hugo-commands">Hugo Commands</h1>
+
+<ul>
+<li>New blog post (draft): <code>hugo new blog/2019/my-title.md</code></li>
+<li>Serve (with drafts): <code>hugo server -D</code></li>
+<li>Serve with particular theme: <code>hugo server --theme=my-theme</code></li>
+<li>Build it: <code>hugo</code></li>
 </ul>
+
+<hr />
+
+<h1 id="theme-customization">Theme Customization</h1>
+
+<p>(TODO: This is out of date)</p>
+
+<p><a href="https://gohugo.io/themes/customizing/">Theme customization</a> is achieved by
+dropping a custom file in a path in the main directory that corresponds to the
+path in the theme directory; typically the templates constituting the theme will
+have includes of the partial already. For example, I have customized Greyshade
+by creating files in <code>blog/layouts/partials/custom</code> that correspond to the files
+in <code>themes/hugo-greyshade/layouts/partials/custom</code>. I have achieved CSS
+customization by creating <code>static/css/pd.css</code> with some override styles.</p>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2017/spacemacs-solarized/" class="navigation-prev">
-      <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Spacemacs - Configuring the Solarized Theme</span>
-    </a>
     
-    
-    <a href="/blog/2019/unix-redirections/" class="navigation-next">
-      <span class="navigation-tittle">Unix Redirections</span>
+    <a href="/blog/2016/persistent-dictionary-vs-sqlite/" class="navigation-next">
+      <span class="navigation-tittle">Comparing PersistentDictionary with SQLite as a Key-Value Store</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
