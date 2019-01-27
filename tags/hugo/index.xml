@@ -13,10 +13,10 @@
     
     <item>
       <title>Hugo Cheatsheet</title>
-      <link>https://www.philipdaniels.com/blog/2019/hugo-blogging-cheatsheet/</link>
+      <link>https://www.philipdaniels.com/blog/2016/hugo-blogging-cheatsheet/</link>
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
-      <guid>https://www.philipdaniels.com/blog/2019/hugo-blogging-cheatsheet/</guid>
+      <guid>https://www.philipdaniels.com/blog/2016/hugo-blogging-cheatsheet/</guid>
       <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
 Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
  *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>

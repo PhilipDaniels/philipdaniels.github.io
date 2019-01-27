@@ -17,20 +17,22 @@
     
     
 
-<title>Comparing PersistentDictionary with SQLite as a Key-Value Store • Phil&#39;s Blog</title>
+<title>Hugo Cheatsheet • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Comparing PersistentDictionary with SQLite as a Key-Value Store"/>
-<meta name="twitter:description" content="Few choices for in-process persistent data stores When it comes to data storage, developers traditionally have had two choices:
- A full-blown database, usually running as separate process. This includes SQL databases such as MS-SQL and PostGres, and NoSQL databases such as Mongo. Hold everything in RAM in standard .Net classes such as Dictionary.  The former has the drawback that some installation is usually required, and the latter doesn&rsquo;t scale to very large datasets."/>
+<meta name="twitter:title" content="Hugo Cheatsheet"/>
+<meta name="twitter:description" content="A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+ *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github."/>
 
-<meta property="og:title" content="Comparing PersistentDictionary with SQLite as a Key-Value Store" />
-<meta property="og:description" content="Few choices for in-process persistent data stores When it comes to data storage, developers traditionally have had two choices:
- A full-blown database, usually running as separate process. This includes SQL databases such as MS-SQL and PostGres, and NoSQL databases such as Mongo. Hold everything in RAM in standard .Net classes such as Dictionary.  The former has the drawback that some installation is usually required, and the latter doesn&rsquo;t scale to very large datasets." />
+<meta property="og:title" content="Hugo Cheatsheet" />
+<meta property="og:description" content="A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+ *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/" /><meta property="article:published_time" content="2016-06-27T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2016-06-27T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2016/hugo-blogging-cheatsheet/" /><meta property="article:published_time" content="2016-03-01T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2016-03-01T00:00:00&#43;00:00"/>
 
 
     
@@ -175,13 +177,13 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Comparing PersistentDictionary with SQLite as a Key-Value Store</h1>
+    <h1>Hugo Cheatsheet</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Jun 27, 2016
+      <i class="fas fa-calendar-alt"></i> Mar 1, 2016
     
     
     
@@ -192,10 +194,7 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/c">c#</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/sqlite">sqlite</a>
+          <a class="badge badge-tag" href="/tags/hugo">hugo</a>
           
       
     
@@ -211,159 +210,262 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h2 id="few-choices-for-in-process-persistent-data-stores">Few choices for in-process persistent data stores</h2>
+<p>A test post to see if the new blog is working, also handy for checking out themes.
+You really want to look at the source for this page.</p>
 
-<p>When it comes to data storage, developers traditionally have had two
-choices:</p>
+<h1 id="heading-1">Heading 1</h1>
 
-<ol>
-<li>A full-blown database, usually running as separate process. This includes SQL
-databases such as MS-SQL and PostGres, and NoSQL databases such as Mongo.</li>
-<li>Hold everything in RAM in standard .Net classes such as Dictionary.</li>
-</ol>
+<h2 id="heading-2">Heading 2</h2>
 
-<p>The former has the drawback that some installation is usually required, and the
-latter doesn&rsquo;t scale to very large datasets.</p>
+<h3 id="heading-3">Heading 3</h3>
 
-<h2 id="the-problem">The Problem</h2>
+<h4 id="heading-4">Heading 4</h4>
 
-<p>I recently came across a problem which cried out for a middle ground - I had
-about 0.5GB of CSV data to load and iterate over, and I needed rapid access to
-any row using its key. And I wanted to wrap this up in a library and not require
-its users to install anything. It&rsquo;s surprisingly hard to find solutions to this
-problem.</p>
+<h5 id="heading-5">Heading 5</h5>
+
+<hr />
+
+<h1 id="basic-formatting">Basic Formatting</h1>
+
+<p>Hugo uses <a href="https://help.github.com/categories/writing-on-github/">Github Flavoured Markdown</a>.</p>
 
 <ul>
-<li>Load and parse a 0.5GB CSV file (approx 250k rows, 300 columns)</li>
-<li>Provide quick access to any row using the key.</li>
-<li>Iterate all rows.</li>
-<li>Iterate a subset of rows.</li>
-<li>Save the data back out to a CSV file</li>
+<li><code>*This is italic*</code> <em>This is italic</em></li>
+<li><code>**this is bold**</code> <strong>this is bold</strong></li>
+<li><code>***this is bold-italic***</code> <strong><em>this is bold-italic</em></strong></li>
+<li><code>~~this is strikethrough~~</code> <del>this is strikethrough</del></li>
 </ul>
 
-<p>There was no upper limit to the size of the input data set - which meant that it
-might be considerably more than 0.5GB. A solution where I had to hope I didn&rsquo;t
-run out of RAM was not good enough.</p>
+<p>You can do a <a href="https://github.com/philipdaniels">link</a> like this: <code>[link](https://github.com/philipdaniels)</code></p>
 
-<p>Here are two alternative techniques that I tried.</p>
+<p>You can comment stuff out like this (note you may have to separate the <code>{{</code> sigil:</p>
 
-<h2 id="1-persistentdictionary-string-string">1) PersistentDictionary<string, string></h2>
-
-<p>PersistentDictionary is an interesting class,
-<a href="https://www.nuget.org/packages/Microsoft.Database.Collections.Generic/">available as a NuGet package</a>
-which has an API very similar to the standard .Net <strong>Dictionary<K,V></strong> class.
-This makes it almost trivial to use, but there is one gotcha - you can&rsquo;t store
-any type, it has to be something trivially serializable, such as a <strong>string</strong>.
-Even <strong>string[]</strong> won&rsquo;t work. But since a CSV file is just a big list of
-strings, I simply stored each line in the PersistentDictionary after reading it
-in and extracting the key column.</p>
-
-<p>The backing store for the PersistentDictionary is a database called
-<a href="https://en.wikipedia.org/wiki/Extensible_Storage_Engine">ESENT</a>, or the
-Extensible Storage Engine. It&rsquo;s built in to Windows. If you&rsquo;re anything like me
-this will come as a surprise to you - I&rsquo;ve been developing on Windows for almost
-20 years and had never heard of it :-(</p>
-
-<p>The code to use it is trivial:</p>
-
-<pre><code class="language-cs">cases = new PersistentDictionary&lt;string, string&gt;(@&quot;C:\temp\mydb&quot;)
-cases[id] = lineFromCsvFile;
+<pre><code>&lt;!--
+[Link to another post]({ {&lt; ref &quot;post/2016/windows-vm-setup/index.md&quot; &gt;}})
+[Link to a heading]({ {&lt; relref &quot;#my-normalized-heading&quot; &gt;}}).
+--&gt;
 </code></pre>
 
-<h2 id="2-sqlite-one-database-column">2) SQLite - one database column</h2>
+<p>The horizontal rule is made with 3 or more dashes.</p>
 
-<p>It&rsquo;s possible, of course, to use any SQL database as a simple key-value store.
-For this problem, I just did:</p>
+<hr />
 
-<pre><code class="language-sql">CREATE TABLE cases (id char(8) primary key, data varchar(20000));
+<h1 id="images">Images</h1>
+
+<p>See <a href="https://gohugo.io/content-management/organization/">content organization</a>.</p>
+
+<h5 id="images-in-the-same-folder-as-the-post">Images in the same folder as the post</h5>
+
+<p>An image link is created by putting an exclamation mark before the link such
+as <code>![house](../house.gif)</code></p>
+
+<p><img src="../house.gif" alt="house" /></p>
+
+<p>The <code>..</code> is needed because in the final site, the post&rsquo;s <code>index.html</code> file is one
+folder below the images (this is due to &lsquo;.html&rsquo; elimination from the URLs).</p>
+
+<h5 id="images-for-a-post-in-their-own-subfolder">Images for a post in their own subfolder</h5>
+
+<p>The above observations lead us to a solution. Create a disk structure like this:</p>
+
+<pre><code>hugo-cheatsheet.md                  (the post)
+hugo-cheatsheet/                    (a directory with the same name as the post)
+hugo-cheatsheet/image1.gif          (one or more images)
+hugo-cheatsheet/celtic-knot.jpg
 </code></pre>
 
-<p>Where the <strong>data</strong> column is 1 row from the CSV file.</p>
+<p>And then in the post file <code>hugo-cheatsheet.md</code> you can link to an image like this</p>
 
-<h2 id="3-sqlite-many-database-columns">3) SQLite - many database columns</h2>
-
-<p>Alternatively, when I read in the CSV file I can do the parsing of each line
-into its constituent columns and then store each one in a corresponding column
-in the SQLLite table:</p>
-
-<pre><code class="language-sql">CREATE TABLE cases
-    (
-    id char(8) primary key,
-    h1 varchar(200),
-    h2 varchar(200),
-    h3 varchar(200),
-    etc. - approx 300 columns
-    );
+<pre><code>![Celtic knot](celtic-knot.jpg)
 </code></pre>
 
-<h2 id="results">Results</h2>
+<p><img src="celtic-knot.jpg" alt="Celtic knot" /></p>
 
-<p>Confession: when I found PersistentDictionary I thought it would be all I would
-need. However testing showed up a serious problem - memory consumption appears
-to be proportional to the size of the dataset. Just watch memory usage increase
-as the dictionary is populated:</p>
+<p>You will end up with this disk structure in your <code>public</code> folder:</p>
 
-<p><img src="pd-mem-usage-250k.png" alt="Persistent Dictionary Memory Usage" /></p>
+<pre><code>blog\2019\hugo-cheatsheet                   (directory for the post)
+blog\2019\hugo-cheatsheet\index.html        (the body of the post)
+blog\2019\hugo-cheatsheet\image1.gif        (the images)
+blog\2019\hugo-cheatsheet\celtic-knot.jpg
+</code></pre>
 
-<p>It goes up even more when you start iterating over the items. SQLite on the
-other hand has superb memory usage behaviour: it does not vary with the size of
-the input data set. Here are the results for using the 0.5GB dataset:</p>
+<p>Links in <code>index.html</code> will be relative:</p>
+
+<pre><code>&lt;img src=&quot;celtic-knot.jpg&quot; alt=&quot;Celtic knot&quot; /&gt;
+</code></pre>
+
+<p>Which means you can move the website around without any problems.</p>
+
+<p>You can also use the <a href="https://gohugo.io/content-management/shortcodes/">figure shortcode</a>,
+which allows you to set the caption and/or title.</p>
+
+<figure>
+    <img src="image1.jpg"
+         alt="A Celtic Knot"/> <figcaption>
+            <p>A Celtic Knot</p>
+        </figcaption>
+</figure>
+
+
+<hr />
+
+<h1 id="syntax-highlighting">Syntax Highlighting</h1>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() -&gt; Result<span style="color:#f92672">&lt;</span>(), io::Error<span style="color:#f92672">&gt;</span> {
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#75715e">// This is done with a &#39;highlight&#39; short code and includes highlights of lines 2 and 6-7.
+</span></span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Hello {}&#34;</span>, x);
+
+<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> vec<span style="color:#f92672">!</span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>];
+</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> max <span style="color:#f92672">=</span> x.iter().max();
+</span>}
+</code></pre></div>
+
+<pre><code class="language-rs">static Main() -&gt; Result&lt;(), io::Error&gt; {
+    // This is done with a code fence.
+    let x = 3;
+}
+</code></pre>
+
+<p>Both of these are done with highlight.js because Hugo&rsquo;s built in syntax highlighting
+doesn&rsquo;t seem to work reliably (wraps line when it shouldn&rsquo;t, doesn&rsquo;t select the
+correct theme&hellip;). See config.toml for some highlight.js parameters.</p>
+
+<hr />
+
+<h1 id="raw-html">Raw HTML</h1>
+
+<p>You can <b>just add raw</b> HTML markup straight into the markdown file.</p>
+
+<hr />
+
+<h1 id="more-formatting">More Formatting</h1>
+
+<blockquote>
+<p>This is a quote</p>
+
+<p>Can be on more than one line</p>
+</blockquote>
+
+<p>Use 4 spaces to create pre-formatted text:</p>
+
+<pre><code>$ some example text with &lt;b&gt; tags &lt;/b&gt;
+</code></pre>
+
+<hr />
+
+<h1 id="lists-and-tables">Lists and Tables</h1>
+
+<p>A list is created using asterisks or dashes</p>
+
+<ul>
+<li>First</li>
+<li>Second</li>
+<li>Third</li>
+</ul>
+
+<p>Nested and numeric lists are possible</p>
+
+<ol>
+<li>First
+
+<ul>
+<li>Sub 1</li>
+<li>Sub 2</li>
+</ul></li>
+<li>Second
+
+<ul>
+<li>Sub 1</li>
+<li>Sub 2</li>
+</ul></li>
+</ol>
+
+<p>Another example</p>
+
+<ol>
+<li>Make my changes
+
+<ol>
+<li>Fix bug</li>
+<li>Improve formatting
+
+<ul>
+<li>Make the headings bigger</li>
+</ul></li>
+</ol></li>
+<li>Push my commits to GitHub</li>
+<li>Open a pull request
+
+<ul>
+<li>Describe my changes</li>
+<li>Mention all the members of my team
+
+<ul>
+<li>Ask for feedback</li>
+</ul></li>
+</ul></li>
+</ol>
+
+<p>Tables work (note the escaping of the &lsquo;|&rsquo; character):</p>
 
 <table>
 <thead>
 <tr>
-<th>Solution</th>
-<th align="right">Read (secs)</th>
-<th align="right">Write (secs)</th>
-<th align="right">After Load (MB)</th>
-<th align="right">After Iterate (MB)</th>
+<th>Column Header</th>
+<th>Another header</th>
+<th align="right">Right-aligned</th>
 </tr>
 </thead>
 
 <tbody>
 <tr>
-<td>PersistentDictionary</td>
-<td align="right">154</td>
-<td align="right">7</td>
-<td align="right">464</td>
-<td align="right">702</td>
+<td>Some text</td>
+<td>more <strong>text</strong></td>
+<td align="right">10</td>
 </tr>
 
 <tr>
-<td>SQLite - 1 column</td>
-<td align="right">147</td>
-<td align="right">7</td>
-<td align="right">39</td>
-<td align="right">39</td>
-</tr>
-
-<tr>
-<td>SQLite - many columns</td>
-<td align="right">1500</td>
-<td align="right">5950</td>
-<td align="right">39</td>
-<td align="right">39</td>
+<td>something else</td>
+<td>more else | &lt; pipe</td>
+<td align="right">20</td>
 </tr>
 </tbody>
 </table>
 
-<p>So SQLite wins hands-down when memory usage is considered, and if you use the
-one-column approach, essentially turning it into a document store, then its
-performance matches that of PersistentDictionary.</p>
+<hr />
+
+<h1 id="hugo-commands">Hugo Commands</h1>
+
+<ul>
+<li>New blog post (draft): <code>hugo new blog/2019/my-title.md</code></li>
+<li>Serve (with drafts): <code>hugo server -D</code></li>
+<li>Serve with particular theme: <code>hugo server --theme=my-theme</code></li>
+<li>Build it: <code>hugo</code></li>
+</ul>
+
+<hr />
+
+<h1 id="theme-customization">Theme Customization</h1>
+
+<p>(TODO: This is out of date)</p>
+
+<p><a href="https://gohugo.io/themes/customizing/">Theme customization</a> is achieved by
+dropping a custom file in a path in the main directory that corresponds to the
+path in the theme directory; typically the templates constituting the theme will
+have includes of the partial already. For example, I have customized Greyshade
+by creating files in <code>blog/layouts/partials/custom</code> that correspond to the files
+in <code>themes/hugo-greyshade/layouts/partials/custom</code>. I have achieved CSS
+customization by creating <code>static/css/pd.css</code> with some override styles.</p>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2016/hugo-blogging-cheatsheet/" class="navigation-prev">
-      <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Hugo Cheatsheet</span>
-    </a>
     
-    
-    <a href="/blog/2016/windows-vm-setup/" class="navigation-next">
-      <span class="navigation-tittle">Setup of Windows Virtual Machines</span>
+    <a href="/blog/2016/persistent-dictionary-vs-sqlite/" class="navigation-next">
+      <span class="navigation-tittle">Comparing PersistentDictionary with SQLite as a Key-Value Store</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
