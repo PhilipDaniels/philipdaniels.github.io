@@ -17,22 +17,20 @@
     
     
 
-<title>Hugo Cheatsheet • Phil&#39;s Blog</title>
+<title>The tar command and managing archives • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Hugo Cheatsheet"/>
-<meta name="twitter:description" content="A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
-Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
- *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github."/>
+<meta name="twitter:title" content="The tar command and managing archives"/>
+<meta name="twitter:description" content="Compressing and archiving files For dealing with directories it is normal to use the tar command, see below.
+ .bz2 extension is managed by the commands bzip2, bzcat and bunzip2.  Deal with a single file bzip2 FILE1 FILE2…, bzcat FILEs, bzunzip2 FILEs (the file is replaced)  .gz extension is managed by the commands gzip, zcat and gunzip.  Usage is the same as bzip2. It can also uncompress ."/>
 
-<meta property="og:title" content="Hugo Cheatsheet" />
-<meta property="og:description" content="A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
-Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
- *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github." />
+<meta property="og:title" content="The tar command and managing archives" />
+<meta property="og:description" content="Compressing and archiving files For dealing with directories it is normal to use the tar command, see below.
+ .bz2 extension is managed by the commands bzip2, bzcat and bunzip2.  Deal with a single file bzip2 FILE1 FILE2…, bzcat FILEs, bzunzip2 FILEs (the file is replaced)  .gz extension is managed by the commands gzip, zcat and gunzip.  Usage is the same as bzip2. It can also uncompress ." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/hugo-cheatsheet/" /><meta property="article:published_time" content="2019-01-20T14:42:18&#43;00:00"/>
-<meta property="article:modified_time" content="2019-01-20T14:42:18&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/tar-and-archives/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-01-27T00:00:00&#43;00:00"/>
 
 
     
@@ -177,13 +175,13 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Hugo Cheatsheet</h1>
+    <h1>The tar command and managing archives</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Jan 20, 2019
+      <i class="fas fa-calendar-alt"></i> Jan 27, 2019
     
     
     
@@ -194,13 +192,22 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/hugo">hugo</a>
+          <a class="badge badge-tag" href="/tags/unix">unix</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/command-line">command line</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/tar">tar</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/archive">archive</a>
           
       
     
     
     <br/>
-    <i class="fas fa-clock"></i> 3 min read
+    <i class="fas fa-clock"></i> 1 min read
 </div>
 
 
@@ -210,267 +217,54 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<p>A test post to see if the new blog is working, also handy for checking out themes.
-You really want to look at the source for this page.</p>
+<h1 id="compressing-and-archiving-files">Compressing and archiving files</h1>
 
-<h1 id="heading-1">Heading 1</h1>
-
-<h2 id="heading-2">Heading 2</h2>
-
-<h3 id="heading-3">Heading 3</h3>
-
-<h4 id="heading-4">Heading 4</h4>
-
-<h5 id="heading-5">Heading 5</h5>
-
-<hr />
-
-<h1 id="basic-formatting">Basic Formatting</h1>
-
-<p>Hugo uses <a href="https://help.github.com/categories/writing-on-github/">Github Flavoured Markdown</a>.</p>
+<p>For dealing with directories it is normal to use the <code>tar</code> command, see below.</p>
 
 <ul>
-<li><code>*This is italic*</code> <em>This is italic</em></li>
-<li><code>**this is bold**</code> <strong>this is bold</strong></li>
-<li><code>***this is bold-italic***</code> <strong><em>this is bold-italic</em></strong></li>
-<li><code>~~this is strikethrough~~</code> <del>this is strikethrough</del></li>
+<li><code>.bz2</code> extension is managed by the commands <a href="https://linux.die.net/man/1/bzip2">bzip2</a>, bzcat and bunzip2.
+
+<ul>
+<li>Deal with a single file <code>bzip2 FILE1 FILE2…</code>, <code>bzcat FILEs</code>, <code>bzunzip2 FILEs</code> (the file is replaced)</li>
+</ul></li>
+<li><code>.gz</code> extension is managed by the commands <a href="https://linux.die.net/man/1/gzip">gzip</a>, zcat and gunzip.
+
+<ul>
+<li>Usage is the same as <code>bzip2</code>. It can also uncompress <code>.zip</code> files.</li>
+</ul></li>
+<li><code>.zip</code> extension is managed by the commands <a href="https://linux.die.net/man/1/zip">zip</a> and unzip.
+
+<ul>
+<li>Compress a directory <code>zip -r FILE.ZIP DIR</code></li>
+<li>Uncompress a zip, re-creating the recursive structure: <code>unzip FILE.ZIP</code></li>
+</ul></li>
 </ul>
 
-<p>You can do a <a href="https://github.com/philipdaniels">link</a> like this: <code>[link](https://github.com/philipdaniels)</code></p>
-
-<p>You can comment stuff out like this (note you may have to separate the <code>{{</code> sigil:</p>
-
-<pre><code>&lt;!--
-[Link to another post]({ {&lt; ref &quot;post/2016/windows-vm-setup/index.md&quot; &gt;}})
-[Link to a heading]({ {&lt; relref &quot;#my-normalized-heading&quot; &gt;}}).
---&gt;
-</code></pre>
-
-<p>The horizontal rule is made with 3 or more dashes.</p>
-
-<hr />
-
-<h1 id="images">Images</h1>
-
-<p>See <a href="https://gohugo.io/content-management/organization/">content organization</a>.</p>
-
-<h5 id="images-in-the-same-folder-as-the-post">Images in the same folder as the post</h5>
-
-<p>An image link is created by putting an exclamation mark before the link such
-as <code>![house](../house.gif)</code></p>
-
-<p><img src="../house.gif" alt="house" /></p>
-
-<p>The <code>..</code> is needed because in the final site, the post&rsquo;s <code>index.html</code> file is one
-folder below the images (this is due to &lsquo;.html&rsquo; elimination from the URLs).</p>
-
-<h5 id="images-for-a-post-in-their-own-subfolder">Images for a post in their own subfolder</h5>
-
-<p>The above observations lead us to a solution. Create a disk structure like this:</p>
-
-<pre><code>hugo-cheatsheet.md                  (the post)
-hugo-cheatsheet/                    (a directory with the same name as the post)
-hugo-cheatsheet/image1.gif          (one or more images)
-hugo-cheatsheet/celtic-knot.jpg
-</code></pre>
-
-<p>And then in the post file <code>hugo-cheatsheet.md</code> you can link to an image like this</p>
-
-<pre><code>![Celtic knot](celtic-knot.jpg)
-</code></pre>
-
-<p><img src="celtic-knot.jpg" alt="Celtic knot" /></p>
-
-<p>You will end up with this disk structure in your <code>public</code> folder:</p>
-
-<pre><code>blog\2019\hugo-cheatsheet                   (directory for the post)
-blog\2019\hugo-cheatsheet\index.html        (the body of the post)
-blog\2019\hugo-cheatsheet\image1.gif        (the images)
-blog\2019\hugo-cheatsheet\celtic-knot.jpg
-</code></pre>
-
-<p>Links in <code>index.html</code> will be relative:</p>
-
-<pre><code>&lt;img src=&quot;celtic-knot.jpg&quot; alt=&quot;Celtic knot&quot; /&gt;
-</code></pre>
-
-<p>Which means you can move the website around without any problems.</p>
-
-<p>You can also use the <a href="https://gohugo.io/content-management/shortcodes/">figure shortcode</a>,
-which allows you to set the caption and/or title.</p>
-
-<figure>
-    <img src="image1.jpg"
-         alt="A Celtic Knot"/> <figcaption>
-            <p>A Celtic Knot</p>
-        </figcaption>
-</figure>
-
-
-<hr />
-
-<h1 id="syntax-highlighting">Syntax Highlighting</h1>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() -&gt; Result<span style="color:#f92672">&lt;</span>(), io::Error<span style="color:#f92672">&gt;</span> {
-<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#75715e">// This is done with a &#39;highlight&#39; short code and includes highlights of lines 2 and 6-7.
-</span></span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>;
-    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Hello {}&#34;</span>, x);
-
-<span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> vec<span style="color:#f92672">!</span>[<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">3</span>];
-</span><span style="display:block;width:100%;background-color:#3c3d38">    <span style="color:#66d9ef">let</span> max <span style="color:#f92672">=</span> x.iter().max();
-</span>}
-</code></pre></div>
-
-<pre><code class="language-rs">static Main() -&gt; Result&lt;(), io::Error&gt; {
-    // This is done with a code fence.
-    let x = 3;
-}
-</code></pre>
-
-<p>Both of these are done with highlight.js because Hugo&rsquo;s built in syntax highlighting
-doesn&rsquo;t seem to work reliably (wraps line when it shouldn&rsquo;t, doesn&rsquo;t select the
-correct theme&hellip;). See config.toml for some highlight.js parameters.</p>
-
-<hr />
-
-<h1 id="raw-html">Raw HTML</h1>
-
-<p>You can <b>just add raw</b> HTML markup straight into the markdown file.</p>
-
-<hr />
-
-<h1 id="more-formatting">More Formatting</h1>
-
-<blockquote>
-<p>This is a quote</p>
-
-<p>Can be on more than one line</p>
-</blockquote>
-
-<p>Use 4 spaces to create pre-formatted text:</p>
-
-<pre><code>$ some example text with &lt;b&gt; tags &lt;/b&gt;
-</code></pre>
-
-<hr />
-
-<h1 id="lists-and-tables">Lists and Tables</h1>
-
-<p>A list is created using asterisks or dashes</p>
+<h1 id="the-tar-command">The tar command</h1>
 
 <ul>
-<li>First</li>
-<li>Second</li>
-<li>Third</li>
+<li>Create a tar archive <code>tar -cvf NEW.tar DIR1 DIR2 DIR3…</code></li>
+<li>Create a tar archive and zip it in one step <code>tar -czvf NEW.tar.gz DIR1 DIR2 DIR3…</code></li>
+<li>Create a tar archive and bzip2 it in one step <code>tar -cjvf NEW.tar.bz2 DIR1 DIR2 DIR3…</code></li>
+<li>List the contents of a tar archive without extracting <code>tar -tf FILE.tar (works for compressed tars too)</code></li>
+<li>Extract a tar archive into the current directory <code>tar -xvf FILE.tar</code></li>
+<li>Extract a tar archive into another directory (that must exist) <code>tar -xvf FILE.tar -C DIR</code> (that is a capital C)</li>
+<li>Extract only a certain path <code>tar -xvf FILE.tar home/phil/Documents/Cacti</code> i.e. without a leading slash. The final path is the last thing on the command line.</li>
 </ul>
-
-<p>Nested and numeric lists are possible</p>
-
-<ol>
-<li>First
-
-<ul>
-<li>Sub 1</li>
-<li>Sub 2</li>
-</ul></li>
-<li>Second
-
-<ul>
-<li>Sub 1</li>
-<li>Sub 2</li>
-</ul></li>
-</ol>
-
-<p>Another example</p>
-
-<ol>
-<li>Make my changes
-
-<ol>
-<li>Fix bug</li>
-<li>Improve formatting
-
-<ul>
-<li>Make the headings bigger</li>
-</ul></li>
-</ol></li>
-<li>Push my commits to GitHub</li>
-<li>Open a pull request
-
-<ul>
-<li>Describe my changes</li>
-<li>Mention all the members of my team
-
-<ul>
-<li>Ask for feedback</li>
-</ul></li>
-</ul></li>
-</ol>
-
-<p>Tables work (note the escaping of the &lsquo;|&rsquo; character):</p>
-
-<table>
-<thead>
-<tr>
-<th>Column Header</th>
-<th>Another header</th>
-<th align="right">Right-aligned</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>Some text</td>
-<td>more <strong>text</strong></td>
-<td align="right">10</td>
-</tr>
-
-<tr>
-<td>something else</td>
-<td>more else | &lt; pipe</td>
-<td align="right">20</td>
-</tr>
-</tbody>
-</table>
-
-<hr />
-
-<h1 id="hugo-commands">Hugo Commands</h1>
-
-<ul>
-<li>New blog post (draft): <code>hugo new blog/2019/my-title.md</code></li>
-<li>Serve (with drafts): <code>hugo server -D</code></li>
-<li>Serve with particular theme: <code>hugo server --theme=my-theme</code></li>
-<li>Build it: <code>hugo</code></li>
-</ul>
-
-<hr />
-
-<h1 id="theme-customization">Theme Customization</h1>
-
-<p>(TODO: This is out of date)</p>
-
-<p><a href="https://gohugo.io/themes/customizing/">Theme customization</a> is achieved by
-dropping a custom file in a path in the main directory that corresponds to the
-path in the theme directory; typically the templates constituting the theme will
-have includes of the partial already. For example, I have customized Greyshade
-by creating files in <code>blog/layouts/partials/custom</code> that correspond to the files
-in <code>themes/hugo-greyshade/layouts/partials/custom</code>. I have achieved CSS
-customization by creating <code>static/css/pd.css</code> with some override styles.</p>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2017/tour-of-task/" class="navigation-prev">
+    <a href="/blog/2019/unix-redirections/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Summary of Stephen Cleary&#39;s &#39;Tour of Task&#39; Series</span>
+      <span class="navigation-tittle">Unix Redirections</span>
     </a>
     
     
-    <a href="/blog/2019/unix-redirections/" class="navigation-next">
-      <span class="navigation-tittle">Unix Redirections</span>
+    <a href="/blog/2019/process-management-in-the-terminal/" class="navigation-next">
+      <span class="navigation-tittle">Process Management in the Terminal</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     

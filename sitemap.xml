@@ -3,6 +3,31 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2019/common-unicode-characters/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/terminal-file-management/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/process-management-in-the-terminal/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/tar-and-archives/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/unix-redirections/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/2019/hugo-cheatsheet/</loc>
     <lastmod>2019-01-20T14:42:18+00:00</lastmod>
   </url>
@@ -56,14 +81,26 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/archive/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/async/</loc>
     <lastmod>2017-11-06T20:19:45+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/bash/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2019-01-20T14:42:18+00:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -75,6 +112,12 @@
   
   <url>
     <loc>https://www.philipdaniels.com/categories/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/command-line/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -128,7 +171,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2019-01-20T14:42:18+00:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -152,7 +195,13 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/</loc>
-    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/tar/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -165,6 +214,18 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/tpl/</loc>
     <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/unicode/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/unix/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

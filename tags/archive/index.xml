@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Archive on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/archive/</link>
+    <description>Recent content in Archive on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/archive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>The tar command and managing archives</title>
+      <link>https://www.philipdaniels.com/blog/2019/tar-and-archives/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/tar-and-archives/</guid>
+      <description>Compressing and archiving files For dealing with directories it is normal to use the tar command, see below.
+ .bz2 extension is managed by the commands bzip2, bzcat and bunzip2.  Deal with a single file bzip2 FILE1 FILE2…, bzcat FILEs, bzunzip2 FILEs (the file is replaced)  .gz extension is managed by the commands gzip, zcat and gunzip.  Usage is the same as bzip2. It can also uncompress .</description>
+    </item>
+    
+  </channel>
+</rss>
