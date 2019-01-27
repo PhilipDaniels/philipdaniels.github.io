@@ -13,12 +13,37 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/libreofffice-with-python-scripting/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/linux-user-management/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/2019/process-management-in-the-terminal/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.philipdaniels.com/blog/2019/tar-and-archives/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
   </url>
   
@@ -152,14 +177,26 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/libreoffice/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/linux/</loc>
-    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.philipdaniels.com/tags/networking/</loc>
     <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/office/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -171,6 +208,36 @@
   
   <url>
     <loc>https://www.philipdaniels.com/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/python/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/quicken/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/samba/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/share/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/smbfs/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -212,8 +279,20 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/terminal/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/tpl/</loc>
     <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/truecolor/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -225,6 +304,18 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/unix/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/users/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/vim/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
@@ -243,7 +334,13 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/windows/</loc>
-    <lastmod>2016-12-27T20:14:13+00:00</lastmod>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/wine/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

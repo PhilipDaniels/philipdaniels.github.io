@@ -17,17 +17,21 @@
     
     
 
-<title>File Management in the Terminal • Phil&#39;s Blog</title>
+<title>Tmux and Vim true-color support • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="File Management in the Terminal"/>
-<meta name="twitter:description" content="Copying files and directories  cp manual Duplicate an entire directory including subfolders cp -r SRC DEST Create a symbolic link to a file cp -s FILE NEWLINK (equivalent to ln -s FILE NEWLINK) Create a hard link to a file cp -l FILE NEWLINK (equivalent to ln FILE NEWLINK)  Getting information  stat manual Print last access time, modify time etc. stat FILE du manualShow summary size of a directory in human language du -sh DIR  Exclude certain files --exclude=’*."/>
+<meta name="twitter:title" content="Tmux and Vim true-color support"/>
+<meta name="twitter:description" content="You will need to compile tmux from source, you need tmux v2.2 at least.
+Also need to compile Vim from source, see https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+Then you need to get tmux working with TrueColor. See https://deductivelabs.com/en/using-true-color-vim-tmux/, especially the comments about .tmux.conf. And https://github.com/tmux/tmux/wiki/FAQ"/>
 
-<meta property="og:title" content="File Management in the Terminal" />
-<meta property="og:description" content="Copying files and directories  cp manual Duplicate an entire directory including subfolders cp -r SRC DEST Create a symbolic link to a file cp -s FILE NEWLINK (equivalent to ln -s FILE NEWLINK) Create a hard link to a file cp -l FILE NEWLINK (equivalent to ln FILE NEWLINK)  Getting information  stat manual Print last access time, modify time etc. stat FILE du manualShow summary size of a directory in human language du -sh DIR  Exclude certain files --exclude=’*." />
+<meta property="og:title" content="Tmux and Vim true-color support" />
+<meta property="og:description" content="You will need to compile tmux from source, you need tmux v2.2 at least.
+Also need to compile Vim from source, see https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+Then you need to get tmux working with TrueColor. See https://deductivelabs.com/en/using-true-color-vim-tmux/, especially the comments about .tmux.conf. And https://github.com/tmux/tmux/wiki/FAQ" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/terminal-file-management/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2019-01-27T00:00:00&#43;00:00"/>
 
 
@@ -173,7 +177,7 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>File Management in the Terminal</h1>
+    <h1>Tmux and Vim true-color support</h1>
     
     
 <div class="post__meta">
@@ -190,10 +194,16 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/unix">unix</a>
+          <a class="badge badge-tag" href="/tags/linux">linux</a>
            
       
-          <a class="badge badge-tag" href="/tags/command-line">command line</a>
+          <a class="badge badge-tag" href="/tags/vim">vim</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/terminal">terminal</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/truecolor">truecolor</a>
           
       
     
@@ -207,68 +217,26 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
+    <p>You will need to compile tmux from source, you need tmux v2.2 at least.</p>
 
-<h1 id="copying-files-and-directories">Copying files and directories</h1>
+<p>Also need to compile Vim from source, see <a href="https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source">https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source</a></p>
 
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/cp.1.html">cp manual</a> Duplicate an entire directory including subfolders <code>cp -r SRC DEST</code></li>
-<li>Create a symbolic link to a file <code>cp -s FILE NEWLINK</code> (equivalent to <code>ln -s FILE NEWLINK</code>)</li>
-<li>Create a hard link to a file <code>cp -l FILE NEWLINK</code> (equivalent to <code>ln FILE NEWLINK</code>)</li>
-</ul>
-
-<h1 id="getting-information">Getting information</h1>
-
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/stat.1.html">stat manual</a> Print last access time, modify time etc. <code>stat FILE</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/du.1.html">du manual</a>Show summary size of a directory in human language <code>du -sh DIR</code>
-
-<ul>
-<li>Exclude certain files <code>--exclude=’*.o’</code> (pattern is a shell pattern)</li>
-</ul></li>
-<li><a href="http://man7.org/linux/man-pages/man1/find.1.html">find manual</a> Count files in a directory <code>find DIR -type f | wc -l</code> (or use ncdu)</li>
-</ul>
-
-<h1 id="looking-in-files">Looking in files</h1>
-
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/cat.1.html">cat manual</a> Number the lines in a file <code>cat -n FILE</code>
-
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/nl.1.html">nl manual</a> A more sophisticated version of the above <code>nl file</code></li>
-</ul></li>
-<li><a href="http://man7.org/linux/man-pages/man1/head.1.html">head manual</a> Show first N lines of a file <code>head -3 FILE</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/tail.1.html">tail manual</a> Show last N lines of a file <code>tail -3 FILE</code></li>
-<li>Follow modifications to a file and finish when the process terminates <code>tail –pid=PID -f FILE</code></li>
-</ul>
-
-<h1 id="manage-permissions-and-owners">Manage permissions and owners</h1>
-
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/chmod.1.html">chmod manual</a> Change permissions of a file <code>chmod</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/chown.1.html">chown manual</a> Change the owner of a file <code>chown</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/chgrp.1.html">chgrp manual</a> Change the group owner of a file <code>chgrp</code></li>
-</ul>
-
-<h1 id="misc">Misc</h1>
-
-<ul>
-<li><a href="https://linux.die.net/man/1/xdg-open">xdg-open manual</a> Open any file from the command line in its associated program <code>xdg-open FILE</code></li>
-</ul>
+<p>Then you need to get tmux working with TrueColor. See <a href="https://deductivelabs.com/en/using-true-color-vim-tmux/">https://deductivelabs.com/en/using-true-color-vim-tmux/</a>, especially the comments about <strong>.tmux.conf</strong>.
+And <a href="https://github.com/tmux/tmux/wiki/FAQ">https://github.com/tmux/tmux/wiki/FAQ</a></p>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2019/linux-windows-file-sharing/" class="navigation-prev">
+    <a href="/blog/2019/unix-redirections/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">File Sharing Between Linux and Windows</span>
+      <span class="navigation-tittle">Unix Redirections</span>
     </a>
     
     
-    <a href="/blog/2019/common-unicode-characters/" class="navigation-next">
-      <span class="navigation-tittle">Common Unicode Characters</span>
+    <a href="/blog/2019/tar-and-archives/" class="navigation-next">
+      <span class="navigation-tittle">The tar command and managing archives</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     

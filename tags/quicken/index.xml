@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Quicken on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/quicken/</link>
+    <description>Recent content in Quicken on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/quicken/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Installing Wine and Quicken 2000 on Linux Mint</title>
+      <link>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</guid>
+      <description>May need to install the latest Wine manually You may first need to get the latest and greatest version of Wine. Mint 18 shipped with Wine 1.6 which was ancient, I am not sure which version Mint 19 ships with since I did an upgrade. In any case, you can install the latest version of Wine by following these steps
+sudo dpkg --add-architecture i386 wget -nc https://dl.winehq.org/wine-builds/Release.key sudo apt-key add Release.</description>
+    </item>
+    
+  </channel>
+</rss>

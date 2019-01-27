@@ -204,7 +204,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 8 min read
+    <i class="fas fa-clock"></i> 9 min read
 </div>
 
 
@@ -323,6 +323,17 @@ double as shown, or you&rsquo;ll wipe out any keys you already have; and the quo
 must be as shown, or you won&rsquo;t get the desired result. Also be careful to cat
 the public file, not the private one, this is an easy mistake to make if you are
 using tab-completion to enter the filename.</p>
+
+<h2 id="using-multiple-key-files">Using multiple key files</h2>
+
+<p>My <a href="https://github.com/PhilipDaniels/dotfiles/blob/master/.bashrc">.bashrc</a>
+now looks like this:</p>
+
+<pre><code>KeyFiles=`find ~/.ssh -type f ! -name &quot;*.*&quot; -name &quot;id*&quot;`
+eval `keychain --quiet --eval &quot;$KeyFiles&quot;`
+</code></pre>
+
+<p>And hence runs keychain for both my personal and work ssh keys.</p>
 
 <h2 id="installing-a-key-on-unix-servers">Installing a key on Unix Servers</h2>
 
@@ -511,6 +522,17 @@ connection using PuTTY itself. Under the SSH, Auth section specify the PPK file:
 <p>You will be asked for your passphrase:</p>
 
 <p><img src="putty-pwd-prompt.png" alt="PuTTY SSH file" /></p>
+
+<h2 id="ssh-in-visual-studio">SSH in Visual Studio</h2>
+
+<p>I had to create an environment variable <strong>GIT_SSH</strong> in Windows to get Visual Studio to use SSH.
+Its value is</p>
+
+<pre><code>GIT_SSH=C:\Users\pdaniels\AppData\Local\SourceTree\app-2.6.10\tools\putty\plink.exe
+</code></pre>
+
+<p>This variable must NOT be set for Cygwin or WSL, otherwise it interferes with normal git remote
+operations on those systems.</p>
 
   </div>
   

@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Windows on Phil&#39;s Blog</title>
-    <link>https://www.philipdaniels.com/tags/windows/</link>
-    <description>Recent content in Windows on Phil&#39;s Blog</description>
+    <title>Smbfs on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/smbfs/</link>
+    <description>Recent content in Smbfs on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.philipdaniels.com/tags/windows/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.philipdaniels.com/tags/smbfs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,16 +19,6 @@
       <guid>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</guid>
       <description>Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
 [slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes  Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart.</description>
-    </item>
-    
-    <item>
-      <title>Setup of Windows Virtual Machines</title>
-      <link>https://www.philipdaniels.com/blog/2016/windows-vm-setup/</link>
-      <pubDate>Tue, 27 Dec 2016 20:14:13 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/blog/2016/windows-vm-setup/</guid>
-      <description>Other Build Book Posts  Debian VM Setup Setup of SSH Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
-General  Do not use Windows Enterprise because this edition does not get patched and upgraded like normal Windows does.</description>
     </item>
     
   </channel>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Vim on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/vim/</link>
+    <description>Recent content in Vim on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/vim/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Tmux and Vim true-color support</title>
+      <link>https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/</guid>
+      <description>You will need to compile tmux from source, you need tmux v2.2 at least.
+Also need to compile Vim from source, see https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+Then you need to get tmux working with TrueColor. See https://deductivelabs.com/en/using-true-color-vim-tmux/, especially the comments about .tmux.conf. And https://github.com/tmux/tmux/wiki/FAQ</description>
+    </item>
+    
+  </channel>
+</rss>

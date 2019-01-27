@@ -17,17 +17,19 @@
     
     
 
-<title>File Management in the Terminal • Phil&#39;s Blog</title>
+<title>File Sharing Between Linux and Windows • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="File Management in the Terminal"/>
-<meta name="twitter:description" content="Copying files and directories  cp manual Duplicate an entire directory including subfolders cp -r SRC DEST Create a symbolic link to a file cp -s FILE NEWLINK (equivalent to ln -s FILE NEWLINK) Create a hard link to a file cp -l FILE NEWLINK (equivalent to ln FILE NEWLINK)  Getting information  stat manual Print last access time, modify time etc. stat FILE du manualShow summary size of a directory in human language du -sh DIR  Exclude certain files --exclude=’*."/>
+<meta name="twitter:title" content="File Sharing Between Linux and Windows"/>
+<meta name="twitter:description" content="Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes  Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart."/>
 
-<meta property="og:title" content="File Management in the Terminal" />
-<meta property="og:description" content="Copying files and directories  cp manual Duplicate an entire directory including subfolders cp -r SRC DEST Create a symbolic link to a file cp -s FILE NEWLINK (equivalent to ln -s FILE NEWLINK) Create a hard link to a file cp -l FILE NEWLINK (equivalent to ln FILE NEWLINK)  Getting information  stat manual Print last access time, modify time etc. stat FILE du manualShow summary size of a directory in human language du -sh DIR  Exclude certain files --exclude=’*." />
+<meta property="og:title" content="File Sharing Between Linux and Windows" />
+<meta property="og:description" content="Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes  Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/terminal-file-management/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2019-01-27T00:00:00&#43;00:00"/>
 
 
@@ -173,7 +175,7 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>File Management in the Terminal</h1>
+    <h1>File Sharing Between Linux and Windows</h1>
     
     
 <div class="post__meta">
@@ -190,16 +192,25 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/unix">unix</a>
+          <a class="badge badge-tag" href="/tags/linux">linux</a>
            
       
-          <a class="badge badge-tag" href="/tags/command-line">command line</a>
+          <a class="badge badge-tag" href="/tags/windows">windows</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/samba">samba</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/smbfs">smbfs</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/share">share</a>
           
       
     
     
     <br/>
-    <i class="fas fa-clock"></i> 1 min read
+    <i class="fas fa-clock"></i> 2 min read
 </div>
 
 
@@ -209,66 +220,75 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h1 id="copying-files-and-directories">Copying files and directories</h1>
+<h1 id="creating-a-samba-share-on-linux">Creating a Samba Share on Linux</h1>
 
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/cp.1.html">cp manual</a> Duplicate an entire directory including subfolders <code>cp -r SRC DEST</code></li>
-<li>Create a symbolic link to a file <code>cp -s FILE NEWLINK</code> (equivalent to <code>ln -s FILE NEWLINK</code>)</li>
-<li>Create a hard link to a file <code>cp -l FILE NEWLINK</code> (equivalent to <code>ln FILE NEWLINK</code>)</li>
-</ul>
+<p>Edit <code>/etc/samba/smb.conf</code> adding a stanza at the bottom something like this (<code>[slow]</code> is the name the share
+will have). Notice the valid users.</p>
 
-<h1 id="getting-information">Getting information</h1>
+<pre><code>[slow]
+	path = /home/phil/slow
+	available = yes
+	valid users = phil
+	read only = no
+	browsable = yes
+	public = yes
+	writable = yes
+</code></pre>
 
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/stat.1.html">stat manual</a> Print last access time, modify time etc. <code>stat FILE</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/du.1.html">du manual</a>Show summary size of a directory in human language <code>du -sh DIR</code>
+<p>Then do <code>sudo smbpasswd -a USER</code> and enter a Samba password for the user, then restart Samba
+<code>sudo service smbd restart</code>. The share should now be mappable in Windows as <code>\\plato\slow</code>, use a
+username of <code>phil</code> (no prefixes such as plato\phil) and the relevant password.</p>
 
-<ul>
-<li>Exclude certain files <code>--exclude=’*.o’</code> (pattern is a shell pattern)</li>
-</ul></li>
-<li><a href="http://man7.org/linux/man-pages/man1/find.1.html">find manual</a> Count files in a directory <code>find DIR -type f | wc -l</code> (or use ncdu)</li>
-</ul>
+<p>You might have to adjust Security Policy on Windows 10 to be able to map the share. Do <code>run secpol</code>
+and navigate to <code>Local Policies → Security Options -&gt; Network Security: LAN Manager authentication level</code>.
+I set it to <code>Send NTMLv2 response only</code>, but that was while trying to connect to an improperly
+setup share. It might not actually be necessary.</p>
 
-<h1 id="looking-in-files">Looking in files</h1>
+<h1 id="permanently-mount-a-windows-share-in-linux-mint">Permanently Mount a Windows Share in Linux Mint</h1>
 
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/cat.1.html">cat manual</a> Number the lines in a file <code>cat -n FILE</code>
+<p>See <a href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">https://wiki.ubuntu.com/MountWindowsSharesPermanently</a>.
+I added these lines to <code>/etc/fstab</code>:</p>
 
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/nl.1.html">nl manual</a> A more sophisticated version of the above <code>nl file</code></li>
-</ul></li>
-<li><a href="http://man7.org/linux/man-pages/man1/head.1.html">head manual</a> Show first N lines of a file <code>head -3 FILE</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/tail.1.html">tail manual</a> Show last N lines of a file <code>tail -3 FILE</code></li>
-<li>Follow modifications to a file and finish when the process terminates <code>tail –pid=PID -f FILE</code></li>
-</ul>
+<pre><code>//192.168.0.202/data /home/phil/win-data cifs credentials=/home/phil/.smbcredentials,uid=1000,gid=1000,iocharset=utf8,sec=ntlm,vers=1.0,rw 0 0
+//192.168.0.202/backup /home/phil/win-backup cifs credentials=/home/phil/.smbcredentials,uid=1000,gid=1000,iocharset=utf8,sec=ntlm,vers=1.0,rw 0 0
+</code></pre>
 
-<h1 id="manage-permissions-and-owners">Manage permissions and owners</h1>
+<p>And <code>~/.smbcredentials</code> just contained:</p>
 
-<ul>
-<li><a href="http://man7.org/linux/man-pages/man1/chmod.1.html">chmod manual</a> Change permissions of a file <code>chmod</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/chown.1.html">chown manual</a> Change the owner of a file <code>chown</code></li>
-<li><a href="http://man7.org/linux/man-pages/man1/chgrp.1.html">chgrp manual</a> Change the group owner of a file <code>chgrp</code></li>
-</ul>
+<pre><code>username=phil
+password=the usual
+</code></pre>
 
-<h1 id="misc">Misc</h1>
+<h1 id="temporarily-access-a-windows-share-from-linux">Temporarily Access a Windows Share from Linux</h1>
 
-<ul>
-<li><a href="https://linux.die.net/man/1/xdg-open">xdg-open manual</a> Open any file from the command line in its associated program <code>xdg-open FILE</code></li>
-</ul>
+<p>In Nemo, do <strong>File → Connect to server</strong> then enter</p>
+
+<pre><code>Server = NAMMEOFWINDOWSMACHINE
+  Share = r
+  Folder = /
+  Domain Name = blank usually works (or maybe WORKGROUP)
+  User = phil
+  Password = THE USUAL
+</code></pre>
+
+<p>You may also need to edit <code>/etc/nsswitch.conf</code> to add this line (the wins is the important bit):</p>
+
+<pre><code>hosts: files wins dns
+</code></pre>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2019/linux-windows-file-sharing/" class="navigation-prev">
+    <a href="/blog/2019/libreofffice-with-python-scripting/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">File Sharing Between Linux and Windows</span>
+      <span class="navigation-tittle">Installing LibreOffice with Python Scripting Support</span>
     </a>
     
     
-    <a href="/blog/2019/common-unicode-characters/" class="navigation-next">
-      <span class="navigation-tittle">Common Unicode Characters</span>
+    <a href="/blog/2019/terminal-file-management/" class="navigation-next">
+      <span class="navigation-tittle">File Management in the Terminal</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
