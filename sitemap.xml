@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2019/defining-rust-error-types/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/2019/common-unicode-characters/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
   </url>
@@ -125,7 +130,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -161,6 +166,12 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/emacs/</loc>
     <lastmod>2017-02-07T20:19:45+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/errors/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -208,7 +219,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -221,6 +232,12 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/quicken/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/rust/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

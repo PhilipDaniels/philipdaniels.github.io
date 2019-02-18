@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Rust on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/rust/</link>
+    <description>Recent content in Rust on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 18 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Defining Rust Error Types</title>
+      <link>https://www.philipdaniels.com/blog/2019/defining-rust-error-types/</link>
+      <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/defining-rust-error-types/</guid>
+      <description>Defining your own error type When starting a new project, defining your own error type up-front is a good thing to do. It will result in more ergonomic code, as you can return the same error type from most functions and can get it to work with the ? operator. This is especially important if you use external crates and want to &amp;lsquo;amalgamate&amp;rsquo; their error types.
+The strategy defined here is the TL;DR summary of a blog post by Rustmeister BurntSushi.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -17,22 +17,20 @@
     
     
 
-<title>Common Unicode Characters • Phil&#39;s Blog</title>
+<title>Defining Rust Error Types • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Common Unicode Characters"/>
-<meta name="twitter:description" content="Typing Unicode characters on Linux Hold down CTRL-SHIFT, then type the Unicode sequence. For example, for a £ (GBP, British Pound sign) which is U&#43;00a3, type CTRL-SHIFT ua3 SPC - the space is to terminate the sequence.
-Typing Unicode characters on Windows Open MS Word or Wordpad and type the code point followed by ALT-x, for example to enter a Euro sign type 20acALT-X.
-Some handy characters See here for more."/>
+<meta name="twitter:title" content="Defining Rust Error Types"/>
+<meta name="twitter:description" content="Defining your own error type When starting a new project, defining your own error type up-front is a good thing to do. It will result in more ergonomic code, as you can return the same error type from most functions and can get it to work with the ? operator. This is especially important if you use external crates and want to &lsquo;amalgamate&rsquo; their error types.
+The strategy defined here is the TL;DR summary of a blog post by Rustmeister BurntSushi."/>
 
-<meta property="og:title" content="Common Unicode Characters" />
-<meta property="og:description" content="Typing Unicode characters on Linux Hold down CTRL-SHIFT, then type the Unicode sequence. For example, for a £ (GBP, British Pound sign) which is U&#43;00a3, type CTRL-SHIFT ua3 SPC - the space is to terminate the sequence.
-Typing Unicode characters on Windows Open MS Word or Wordpad and type the code point followed by ALT-x, for example to enter a Euro sign type 20acALT-X.
-Some handy characters See here for more." />
+<meta property="og:title" content="Defining Rust Error Types" />
+<meta property="og:description" content="Defining your own error type When starting a new project, defining your own error type up-front is a good thing to do. It will result in more ergonomic code, as you can return the same error type from most functions and can get it to work with the ? operator. This is especially important if you use external crates and want to &lsquo;amalgamate&rsquo; their error types.
+The strategy defined here is the TL;DR summary of a blog post by Rustmeister BurntSushi." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/common-unicode-characters/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-01-27T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/defining-rust-error-types/" /><meta property="article:published_time" content="2019-02-18T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-02-18T00:00:00&#43;00:00"/>
 
 
     
@@ -195,13 +193,13 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Common Unicode Characters</h1>
+    <h1>Defining Rust Error Types</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Jan 27, 2019
+      <i class="fas fa-calendar-alt"></i> Feb 18, 2019
     
     
     
@@ -212,13 +210,16 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/unicode">unicode</a>
+          <a class="badge badge-tag" href="/tags/rust">rust</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/errors">errors</a>
           
       
     
     
     <br/>
-    <i class="fas fa-clock"></i> 3 min read
+    <i class="fas fa-clock"></i> 2 min read
 </div>
 
 
@@ -228,657 +229,128 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h1 id="typing-unicode-characters-on-linux">Typing Unicode characters on Linux</h1>
-
-<p>Hold down <strong>CTRL-SHIFT</strong>, then type the Unicode sequence. For example, for a <strong>£</strong> (GBP, British Pound sign)
-which is <code>U+00a3</code>, type <code>CTRL-SHIFT ua3 SPC</code> - the space is to terminate the sequence.</p>
-
-<h1 id="typing-unicode-characters-on-windows">Typing Unicode characters on Windows</h1>
-
-<p>Open MS Word or Wordpad and type the code point followed by <code>ALT-x</code>, for example to enter a Euro sign type <code>20acALT-X</code>.</p>
-
-<h1 id="some-handy-characters">Some handy characters</h1>
-
-<p><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78">See here</a> for more.</p>
-
-<h3 id="currency-and-legal">Currency and legal</h3>
-
-<table>
-<thead>
-<tr>
-<th>Code Point</th>
-<th>Glyph</th>
-<th>Name</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>20ac</td>
-<td>€</td>
-<td>EURO SIGN</td>
-</tr>
-
-<tr>
-<td>00a2</td>
-<td>¢</td>
-<td>CENT SIGN</td>
-</tr>
-
-<tr>
-<td>00a3</td>
-<td>£</td>
-<td>POUND SIGN</td>
-</tr>
-
-<tr>
-<td>00a4</td>
-<td>¤</td>
-<td>CURRENCY SIGN</td>
-</tr>
-
-<tr>
-<td>00a5</td>
-<td>¥</td>
-<td>YEN SIGN</td>
-</tr>
-
-<tr>
-<td>00a9</td>
-<td>©</td>
-<td>COPYRIGHT SIGN</td>
-</tr>
-
-<tr>
-<td>00ae</td>
-<td>®</td>
-<td>REGISTERED SIGN</td>
-</tr>
-
-<tr>
-<td>2122</td>
-<td>™</td>
-<td>TRADE MARK SIGN</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="text">Text</h3>
-
-<ul>
-<li><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78#file-unicode-table-L354">Greek letters</a></li>
-<li><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78#file-unicode-table-L170">Accented Latin characters</a></li>
-</ul>
-
-<table>
-<thead>
-<tr>
-<th>Code Point</th>
-<th>Glyph</th>
-<th>Name</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>00a0</td>
-<td></td>
-<td>NO-BREAK SPACE</td>
-</tr>
-
-<tr>
-<td>00a1</td>
-<td>¡</td>
-<td>INVERTED EXCLAMATION MARK</td>
-</tr>
-
-<tr>
-<td>00a7</td>
-<td>§</td>
-<td>SECTION SIGN</td>
-</tr>
-
-<tr>
-<td>00a8</td>
-<td>¨</td>
-<td>DIAERESIS</td>
-</tr>
-
-<tr>
-<td>00ab</td>
-<td>«</td>
-<td>LEFT-POINTING DOUBLE ANGLE QUOTATION MARK</td>
-</tr>
-
-<tr>
-<td>00bb</td>
-<td>»</td>
-<td>RIGHT-POINTING DOUBLE ANGLE QUOTATION MARK</td>
-</tr>
-
-<tr>
-<td>00af</td>
-<td>¯</td>
-<td>MACRON = overline</td>
-</tr>
-
-<tr>
-<td>00b4</td>
-<td>´</td>
-<td>ACUTE ACCENT</td>
-</tr>
-
-<tr>
-<td>00b6</td>
-<td>¶</td>
-<td>PILCROW SIGN</td>
-</tr>
-
-<tr>
-<td>00bf</td>
-<td>¿</td>
-<td>INVERTED QUESTION MARK</td>
-</tr>
-
-<tr>
-<td>2010</td>
-<td>‐</td>
-<td>HYPHEN</td>
-</tr>
-
-<tr>
-<td>2011</td>
-<td>‑</td>
-<td>NON-BREAKING HYPHEN</td>
-</tr>
-
-<tr>
-<td>2012</td>
-<td>‒</td>
-<td>FIGURE DASH</td>
-</tr>
-
-<tr>
-<td>2013</td>
-<td>–</td>
-<td>EN DASH</td>
-</tr>
-
-<tr>
-<td>2014</td>
-<td>—</td>
-<td>EM DASH</td>
-</tr>
-
-<tr>
-<td>2015</td>
-<td>―</td>
-<td>HORIZONTAL BAR = quotation dash</td>
-</tr>
-
-<tr>
-<td>2018</td>
-<td>‘</td>
-<td>LEFT SINGLE QUOTATION MARK</td>
-</tr>
-
-<tr>
-<td>2019</td>
-<td>’</td>
-<td>RIGHT SINGLE QUOTATION MARK</td>
-</tr>
-
-<tr>
-<td>201c</td>
-<td>“</td>
-<td>LEFT DOUBLE QUOTATION MARK</td>
-</tr>
-
-<tr>
-<td>201d</td>
-<td>”</td>
-<td>RIGHT DOUBLE QUOTATION MARK</td>
-</tr>
-
-<tr>
-<td>2022</td>
-<td>•</td>
-<td>BULLET</td>
-</tr>
-
-<tr>
-<td>2026</td>
-<td>…</td>
-<td>HORIZONTAL ELLIPSIS</td>
-</tr>
-
-<tr>
-<td>2318</td>
-<td>⌘</td>
-<td>PLACE OF INTEREST SIGN</td>
-</tr>
-
-<tr>
-<td>25cb</td>
-<td>○</td>
-<td>WHITE CIRCLE</td>
-</tr>
-
-<tr>
-<td>fffd</td>
-<td>�</td>
-<td>REPLACEMENT CHARACTER</td>
-</tr>
-
-<tr>
-<td>2053</td>
-<td>⁓</td>
-<td>SWUNG DASH</td>
-</tr>
-
-<tr>
-<td>00e8</td>
-<td>è</td>
-<td>LATIN SMALL LETTER E WITH GRAVE</td>
-</tr>
-
-<tr>
-<td>00e9</td>
-<td>é</td>
-<td>LATIN SMALL LETTER E WITH ACUTE</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="symbols">Symbols</h3>
-
-<ul>
-<li><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78#file-unicode-table-L1344">Box drawing</a></li>
-<li><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78#file-unicode-table-L1492">Block drawing</a></li>
-<li><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78#file-unicode-table-L808">Arrows</a></li>
-</ul>
-
-<table>
-<thead>
-<tr>
-<th>Code Point</th>
-<th>Glyph</th>
-<th>Name</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>23f0</td>
-<td>⏰</td>
-<td>ALARM CLOCK</td>
-</tr>
-
-<tr>
-<td>23f1</td>
-<td>⏱</td>
-<td>STOPWATCH</td>
-</tr>
-
-<tr>
-<td>23f2</td>
-<td>⏲</td>
-<td>TIMER CLOCK</td>
-</tr>
-
-<tr>
-<td>23fe</td>
-<td>⏳</td>
-<td>HOURGLASS WITH FLOWING SAND</td>
-</tr>
-
-<tr>
-<td>2690</td>
-<td>⚐</td>
-<td>WHITE FLAG</td>
-</tr>
-
-<tr>
-<td>2691</td>
-<td>⚑</td>
-<td>BLACK FLAG</td>
-</tr>
-
-<tr>
-<td>2610</td>
-<td>☐</td>
-<td>BALLOT BOX</td>
-</tr>
-
-<tr>
-<td>2611</td>
-<td>☑</td>
-<td>BALLOT BOX WITH CHECK</td>
-</tr>
-
-<tr>
-<td>2612</td>
-<td>☒</td>
-<td>BALLOT BOX WITH X</td>
-</tr>
-
-<tr>
-<td>2713</td>
-<td>✓</td>
-<td>CHECK MARK</td>
-</tr>
-
-<tr>
-<td>274c</td>
-<td>❌</td>
-<td>CROSS MARK</td>
-</tr>
-
-<tr>
-<td>2622</td>
-<td>☢</td>
-<td>RADIOACTIVE SIGN</td>
-</tr>
-
-<tr>
-<td>2705</td>
-<td>✅</td>
-<td>WHITE HEAVY CHECK MARK - OK symbol (Accepted mark)</td>
-</tr>
-
-<tr>
-<td>274e</td>
-<td>❎</td>
-<td>NEGATIVE SQUARED CROSS MARK</td>
-</tr>
-</tbody>
-</table>
-
-<h3 id="numerics">Numerics</h3>
-
-<ul>
-<li><a href="https://gist.github.com/ivandrofly/0fe20773bd712b303f78#file-unicode-table-L950">Set operators</a></li>
-</ul>
-
-<table>
-<thead>
-<tr>
-<th>Code Point</th>
-<th>Glyph</th>
-<th>Name</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td>00ac</td>
-<td>¬</td>
-<td>NOT SIGN</td>
-</tr>
-
-<tr>
-<td>00b0</td>
-<td>°</td>
-<td>DEGREE SIGN</td>
-</tr>
-
-<tr>
-<td>00b1</td>
-<td>±</td>
-<td>PLUS-MINUS SIGN</td>
-</tr>
-
-<tr>
-<td>00b5</td>
-<td>µ</td>
-<td>MICRO SIGN</td>
-</tr>
-
-<tr>
-<td>00bc</td>
-<td>¼</td>
-<td>VULGAR FRACTION ONE QUARTER</td>
-</tr>
-
-<tr>
-<td>00bd</td>
-<td>½</td>
-<td>VULGAR FRACTION ONE HALF</td>
-</tr>
-
-<tr>
-<td>00be</td>
-<td>¾</td>
-<td>VULGAR FRACTION THREE QUARTERS</td>
-</tr>
-
-<tr>
-<td>00d7</td>
-<td>×</td>
-<td>MULTIPLICATION SIGN (Cartesian product)</td>
-</tr>
-
-<tr>
-<td>00f7</td>
-<td>÷</td>
-<td>DIVISION SIGN</td>
-</tr>
-
-<tr>
-<td>2205</td>
-<td>∅</td>
-<td>EMPTY SET</td>
-</tr>
-
-<tr>
-<td>223c</td>
-<td>∼</td>
-<td>TILDE OPERATOR</td>
-</tr>
-
-<tr>
-<td>2245</td>
-<td>≅</td>
-<td>APPROXIMATELY EQUAL TO</td>
-</tr>
-
-<tr>
-<td>2248</td>
-<td>≈</td>
-<td>ALMOST EQUAL TO</td>
-</tr>
-
-<tr>
-<td>2260</td>
-<td>≠</td>
-<td>NOT EQUAL TO</td>
-</tr>
-
-<tr>
-<td>2264</td>
-<td>≤</td>
-<td>LESS-THAN OR EQUAL TO</td>
-</tr>
-
-<tr>
-<td>2265</td>
-<td>≥</td>
-<td>GREATER-THAN OR EQUAL TO</td>
-</tr>
-
-<tr>
-<td>2032</td>
-<td>′</td>
-<td>PRIME = minutes, feet</td>
-</tr>
-
-<tr>
-<td>2033</td>
-<td>″</td>
-<td>DOUBLE PRIME = seconds, inches</td>
-</tr>
-
-<tr>
-<td>2070</td>
-<td>⁰</td>
-<td>SUPERSCRIPT ZERO</td>
-</tr>
-
-<tr>
-<td>00b9</td>
-<td>¹</td>
-<td>SUPERSCRIPT ONE</td>
-</tr>
-
-<tr>
-<td>00b2</td>
-<td>²</td>
-<td>SUPERSCRIPT TWO = squared</td>
-</tr>
-
-<tr>
-<td>00b3</td>
-<td>³</td>
-<td>SUPERSCRIPT THREE = cubed</td>
-</tr>
-
-<tr>
-<td>2074</td>
-<td>⁴</td>
-<td>SUPERSCRIPT FOUR</td>
-</tr>
-
-<tr>
-<td>2075</td>
-<td>⁵</td>
-<td>SUPERSCRIPT FIVE</td>
-</tr>
-
-<tr>
-<td>2076</td>
-<td>⁶</td>
-<td>SUPERSCRIPT SIX</td>
-</tr>
-
-<tr>
-<td>2077</td>
-<td>⁷</td>
-<td>SUPERSCRIPT SEVEN</td>
-</tr>
-
-<tr>
-<td>2078</td>
-<td>⁸</td>
-<td>SUPERSCRIPT EIGHT</td>
-</tr>
-
-<tr>
-<td>2079</td>
-<td>⁹</td>
-<td>SUPERSCRIPT NINE</td>
-</tr>
-
-<tr>
-<td>2080</td>
-<td>₀</td>
-<td>SUBSCRIPT ZERO</td>
-</tr>
-
-<tr>
-<td>2081</td>
-<td>₁</td>
-<td>SUBSCRIPT ONE</td>
-</tr>
-
-<tr>
-<td>2082</td>
-<td>₂</td>
-<td>SUBSCRIPT TWO</td>
-</tr>
-
-<tr>
-<td>2083</td>
-<td>₃</td>
-<td>SUBSCRIPT THREE</td>
-</tr>
-
-<tr>
-<td>2084</td>
-<td>₄</td>
-<td>SUBSCRIPT FOUR</td>
-</tr>
-
-<tr>
-<td>2085</td>
-<td>₅</td>
-<td>SUBSCRIPT FIVE</td>
-</tr>
-
-<tr>
-<td>2086</td>
-<td>₆</td>
-<td>SUBSCRIPT SIX</td>
-</tr>
-
-<tr>
-<td>2087</td>
-<td>₇</td>
-<td>SUBSCRIPT SEVEN</td>
-</tr>
-
-<tr>
-<td>2088</td>
-<td>₈</td>
-<td>SUBSCRIPT EIGHT</td>
-</tr>
-
-<tr>
-<td>2089</td>
-<td>₉</td>
-<td>SUBSCRIPT NINE</td>
-</tr>
-
-<tr>
-<td>2200</td>
-<td>∀</td>
-<td>FOR ALL = universal quantifier</td>
-</tr>
-
-<tr>
-<td>2203</td>
-<td>∃</td>
-<td>THERE EXISTS = existential quantifier</td>
-</tr>
-
-<tr>
-<td>221e</td>
-<td>∞</td>
-<td>INFINITY</td>
-</tr>
-
-<tr>
-<td>22a5</td>
-<td>⊥</td>
-<td>UP TACK = base, bottom</td>
-</tr>
-</tbody>
-</table>
+<h1 id="defining-your-own-error-type">Defining your own error type</h1>
+
+<p>When starting a new project, defining your own error type up-front is a good thing to do.
+It will result in more ergonomic code, as you can return the same error type from most
+functions and can get it to work with the <code>?</code> operator. This is especially important if
+you use external crates and want to &lsquo;amalgamate&rsquo; their error types.</p>
+
+<p>The strategy defined here is the <strong>TL;DR</strong> summary of a blog post by Rustmeister <a href="https://blog.burntsushi.net/rust-error-handling/">BurntSushi</a>.
+It doesn&rsquo;t use any external &lsquo;error helper&rsquo; crates.</p>
+
+<h2 id="step-1-define-a-custom-error-type">Step 1 - define a custom error type</h2>
+
+<p>This type is a union of all possible error types your program needs to handle:</p>
+
+<pre><code class="language-rs">#[derive(Debug)]
+pub enum MyErrorType {
+    // Errors from external libraries...
+    Io(io::Error),
+    Git(git2::Error),
+    // Errors raised by us...
+    Regular(ErrorKind),
+    Custom(String)
+}
+
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub enum ErrorKind {
+    NotFound,
+    NotAuthorized,
+    // etc
+
+impl ErrorKind {
+    fn as_str(&amp;self) -&gt; &amp;str {
+        match *self {
+            ErrorKind::NotFound =&gt; &quot;not found&quot;,
+            ErrorKind::NotAuthorized =&gt; &quot;not authorized&quot;
+        }
+    }
+}
+</code></pre>
+
+<p>This &lsquo;kind enum&rsquo; design is used by the <a href="https://doc.rust-lang.org/src/std/io/error.rs.html#66-68">Rust standard IO library</a>.
+The <code>as_str</code> will help in the next step.</p>
+
+<h2 id="step-2-implement-error-and-display-traits">Step 2 - Implement &lsquo;Error&rsquo; and &lsquo;Display&rsquo; traits</h2>
+
+<p>Unfortunately <code>Error</code> is limited to returning a static string constant:</p>
+
+<pre><code class="language-rs">impl Error for MyErrorType {
+    fn description(&amp;self) -&gt; &amp;str {
+        match *self {
+            MyErrorType::Io(ref err) =&gt; err.description(),
+            MyErrorType::Git(ref err) =&gt; err.description(),
+            MyErrorType::Regular(ref err) =&gt; err.as_str(),
+            MyErrorType::Custom(ref err) =&gt; err,
+        }
+    }
+}
+</code></pre>
+
+<p><code>fmt::Display</code> is more flexible:</p>
+
+<pre><code class="language-rs">impl fmt::Display for MyErrorType {
+    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
+        match *self {
+            MyErrorType::Io(ref err) =&gt; err.fmt(f),
+            MyErrorType::Git(ref err) =&gt; err.fmt(f),
+            MyErrorType::Regular(ref err) =&gt; write!(f, &quot;A regular error occurred {:?}&quot;, err),
+            MyErrorType::Custom(ref err) =&gt; write!(f, &quot;A custom error occurred {:?}&quot;, err),
+        }
+    }
+}
+</code></pre>
+
+<h2 id="step-3-implement-from-for-the-external-error-types">Step 3 - Implement &lsquo;From&rsquo; for the external error types</h2>
+
+<p>This enables the <code>?</code> operator:</p>
+
+<pre><code class="language-rs">impl From&lt;io::Error&gt; for MyErrorType {
+    fn from(err: io::Error) -&gt; MyErrorType {
+        MyErrorType::Io(err)
+    }
+}
+
+impl From&lt;git2::Error&gt; for MyErrorType {
+    fn from(err: git2::Error) -&gt; MyErrorType {
+        MyErrorType::Git(err)
+    }
+}
+</code></pre>
+
+<h2 id="step-4-optional-create-a-result-t-e-alias">Step 4 - Optional - Create a &lsquo;Result<T, E>&rsquo; alias</h2>
+
+<pre><code>pub type Result&lt;T&gt; = std::result::Result&lt;T, MyErrorType&gt;;
+</code></pre>
+
+<p>This does nothing other than simplify (some would say make more opaque)
+your function signatures.</p>
+
+<h2 id="step-5-use-it">Step 5 - Use it!</h2>
+
+<pre><code class="language-rs">fn some_func() -&gt; Result&lt;usize&gt; {
+    // Possible this will generate a std::io::Error.
+    let _f = std::fs::File::create(&quot;aa&quot;)?;
+
+    // Possible this will generate a git2::Error.
+    let _g = Repository::init(&quot;/path/to/a/repo&quot;)?;
+
+    // Return one of my one errors.
+    Err(MyErrorType::Regular(ErrorKind::NotAuthorized))
+}
+</code></pre>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2019/terminal-file-management/" class="navigation-prev">
+    <a href="/blog/2019/common-unicode-characters/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">File Management in the Terminal</span>
+      <span class="navigation-tittle">Common Unicode Characters</span>
     </a>
     
-    
-    <a href="/blog/2019/defining-rust-error-types/" class="navigation-next">
-      <span class="navigation-tittle">Defining Rust Error Types</span>
-      <i aria-hidden="true" class="fa fa-chevron-right"></i>
-    </a>
     
 </div>
 
