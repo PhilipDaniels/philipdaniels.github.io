@@ -371,7 +371,7 @@ typically take a <code>AsRef&lt;Path&gt;</code> to which you can pass a <code>Pa
 <code>Path</code>, <code>String</code>, <code>&amp;str</code>, <code>OsString</code> and <code>OsStr</code> among others.</li>
 <li><code>Into&lt;String&gt;</code> will take the usual string types plus <code>Box&lt;str&gt;</code>, <code>Rc&lt;String&gt;</code>,
 <code>Cow&lt;str&gt;</code> etc.</li>
-<li>There is little difference between <code>&amp;str</code> and <code>AsRef&lt;String&gt;</code>. <code>&amp;str</code> might be
+<li>There is little difference between <code>&amp;str</code> and <code>AsRef&lt;str&gt;</code>. <code>&amp;str</code> might be
 <a href="https://stevedonovan.github.io/rustifications/2018/09/08/common-rust-traits.html">more idiomatic</a> -
 see section &lsquo;Reference Conversions - AsRef&rsquo;.</li>
 <li>The above traits must not fail. Coming soon are
