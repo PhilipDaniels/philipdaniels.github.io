@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-api-design/</loc>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/2019/defining-rust-error-types/</loc>
     <lastmod>2019-02-18T00:00:00+00:00</lastmod>
   </url>
@@ -111,6 +116,12 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/api/</loc>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/archive/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -130,7 +141,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -148,6 +159,12 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/command-line/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/cow/</loc>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -219,7 +236,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -237,7 +254,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/rust/</loc>
-    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -279,7 +296,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/</loc>
-    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

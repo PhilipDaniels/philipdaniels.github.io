@@ -17,20 +17,26 @@
     
     
 
-<title>Defining Rust Error Types • Phil&#39;s Blog</title>
+<title>Design of Rust APIs (method signatures) • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Defining Rust Error Types"/>
-<meta name="twitter:description" content="Defining your own error type When starting a new project, defining your own error type up-front is a good thing to do. It will result in more ergonomic code, as you can return the same error type from most functions and can get it to work with the ? operator. This is especially important if you use external crates and want to &lsquo;amalgamate&rsquo; their error types.
-The strategy defined here is the TL;DR summary of a blog post by Rustmeister BurntSushi."/>
+<meta name="twitter:title" content="Design of Rust APIs (method signatures)"/>
+<meta name="twitter:description" content="Flexible Input Parameters There are two generic built-in traits you can use to make your function easy to call.
+They are AsRef and Into.
+AsRef (and AsMut) AsRef allows a function to be called with parameters of differing types - basically anything that allows a reference of the appropriate type to be created cheaply and without ever failing. AsMut is the same but for mutable references.
+Example:
+fn func1(p1: PathBuf); fn func2(p1: &amp;Path); fn func3&lt;S&gt;(p1: S) where S: AsRef&lt;Path&gt; { let p1 = p1."/>
 
-<meta property="og:title" content="Defining Rust Error Types" />
-<meta property="og:description" content="Defining your own error type When starting a new project, defining your own error type up-front is a good thing to do. It will result in more ergonomic code, as you can return the same error type from most functions and can get it to work with the ? operator. This is especially important if you use external crates and want to &lsquo;amalgamate&rsquo; their error types.
-The strategy defined here is the TL;DR summary of a blog post by Rustmeister BurntSushi." />
+<meta property="og:title" content="Design of Rust APIs (method signatures)" />
+<meta property="og:description" content="Flexible Input Parameters There are two generic built-in traits you can use to make your function easy to call.
+They are AsRef and Into.
+AsRef (and AsMut) AsRef allows a function to be called with parameters of differing types - basically anything that allows a reference of the appropriate type to be created cheaply and without ever failing. AsMut is the same but for mutable references.
+Example:
+fn func1(p1: PathBuf); fn func2(p1: &amp;Path); fn func3&lt;S&gt;(p1: S) where S: AsRef&lt;Path&gt; { let p1 = p1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/defining-rust-error-types/" /><meta property="article:published_time" content="2019-02-18T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-02-18T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-api-design/" /><meta property="article:published_time" content="2019-04-06T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-06T00:00:00&#43;00:00"/>
 
 
     
@@ -193,13 +199,13 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Defining Rust Error Types</h1>
+    <h1>Design of Rust APIs (method signatures)</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Feb 18, 2019
+      <i class="fas fa-calendar-alt"></i> Apr 6, 2019
     
     
     
@@ -213,13 +219,16 @@ if (!doNotTrack) {
           <a class="badge badge-tag" href="/tags/rust">rust</a>
            
       
-          <a class="badge badge-tag" href="/tags/errors">errors</a>
+          <a class="badge badge-tag" href="/tags/api">api</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/cow">cow</a>
           
       
     
     
     <br/>
-    <i class="fas fa-clock"></i> 2 min read
+    <i class="fas fa-clock"></i> 4 min read
 </div>
 
 
@@ -229,115 +238,187 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h1 id="defining-your-own-error-type">Defining your own error type</h1>
+<h1 id="flexible-input-parameters">Flexible Input Parameters</h1>
 
-<p>When starting a new project, defining your own error type up-front is a good thing to do.
-It will result in more ergonomic code, as you can return the same error type from most
-functions and can get it to work with the <code>?</code> operator. This is especially important if
-you use external crates and want to &lsquo;amalgamate&rsquo; their error types.</p>
+<p>There are two generic built-in traits you can use to make your function easy to call.</p>
 
-<p>The strategy defined here is the <strong>TL;DR</strong> summary of a blog post by Rustmeister <a href="https://blog.burntsushi.net/rust-error-handling/">BurntSushi</a>.
-It doesn&rsquo;t use any external &lsquo;error helper&rsquo; crates.</p>
+<p>They are <a href="https://doc.rust-lang.org/std/convert/trait.AsRef.html">AsRef</a>
+and <a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a>.</p>
 
-<h2 id="step-1-define-a-custom-error-type">Step 1 - define a custom error type</h2>
+<h2 id="asref-and-asmut">AsRef (and AsMut)</h2>
 
-<p>This type is a union of all possible error types your program needs to handle:</p>
+<p>AsRef allows a function to be called with parameters of differing types - basically anything
+that allows a reference of the appropriate type to be created cheaply and without ever
+failing. <a href="https://doc.rust-lang.org/std/convert/trait.AsMut.html">AsMut</a>
+is the same but for mutable references.</p>
 
-<pre><code class="language-rs">#[derive(Debug)]
-pub enum MyErrorType {
-    // Errors from external libraries...
-    Io(io::Error),
-    Git(git2::Error),
-    // Errors raised by us...
-    Regular(ErrorKind),
-    Custom(String)
+<p>Example:</p>
+
+<pre><code class="language-rs">fn func1(p1: PathBuf);
+fn func2(p1: &amp;Path);
+
+fn func3&lt;S&gt;(p1: S)
+where S: AsRef&lt;Path&gt;
+{
+    let p1 = p1.as_ref();
+    ...
 }
+</code></pre>
 
-#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
-pub enum ErrorKind {
-    NotFound,
-    NotAuthorized,
-    // etc
+<ul>
+<li><code>func1</code> can only be called with a <code>PathBuf</code>.</li>
+<li><code>func2</code> can be called with a <code>Path</code> or a <code>&amp;PathBuf</code>.</li>
+<li><code>func3</code> can be called with a <code>Path</code> or a <code>&amp;PathBuf</code> or anything else
+that allows a <code>Path</code> to be borrowed from it - including, handily, strings.</li>
+</ul>
 
-impl ErrorKind {
-    fn as_str(&amp;self) -&gt; &amp;str {
-        match *self {
-            ErrorKind::NotFound =&gt; &quot;not found&quot;,
-            ErrorKind::NotAuthorized =&gt; &quot;not authorized&quot;
+<p><code>func3</code> is therefore most flexible and the best approach.</p>
+
+<p>Consider <code>func4</code>:</p>
+
+<pre><code class="language-rs">fn func4&lt;S&gt;(p1: S, p2: S)
+where S: AsRef&lt;Path&gt; { ... }
+</code></pre>
+
+<p>This works, *but constraints <code>p1</code> and <code>p2</code> to be of the same type. You can be
+more flexible:</p>
+
+<pre><code class="language-rs">fn func4&lt;N, M&gt;(p1: N, p2: M)
+where N: AsRef&lt;Path&gt;,
+      S: AsRef&lt;Path&gt; { ... }
+</code></pre>
+
+<h3 id="asref-str">AsRef<code>&lt;str</code>&gt;</h3>
+
+<p>One very common case is converting things to (static) strings, for example
+enum values. Use the built-in trait for this, do not define your own:</p>
+
+<pre><code class="language-rs">impl AsRef&lt;str&gt; for XmlDoc {
+    fn as_ref(&amp;self) -&gt; &amp;str {
+        match self {
+            XmlDoc::Unknown =&gt; &quot;Unknown&quot;,
+            XmlDoc::None =&gt; &quot;None&quot;,
+            XmlDoc::Debug =&gt; &quot;Debug&quot;,
+            XmlDoc::Release =&gt; &quot;Release&quot;,
+            XmlDoc::Both =&gt; &quot;Both&quot;,
         }
     }
 }
 </code></pre>
 
-<p>This &lsquo;kind enum&rsquo; design is used by the <a href="https://doc.rust-lang.org/src/std/io/error.rs.html#66-68">Rust standard IO library</a>.
-The <code>as_str</code> will help in the next step.</p>
+<p><strong>An AsRef Anti-pattern</strong></p>
 
-<h2 id="step-2-implement-error-and-display-traits">Step 2 - Implement &lsquo;Error&rsquo; and &lsquo;Display&rsquo; traits</h2>
+<p>AsRef is useful where you only need to borrow the input parameter. If you find yourself
+doing</p>
 
-<p>Unfortunately <code>Error</code> is limited to returning a static string constant:</p>
+<pre><code class="language-rs">let x = param.as_ref().to_owned();
+</code></pre>
 
-<pre><code class="language-rs">impl Error for MyErrorType {
-    fn description(&amp;self) -&gt; &amp;str {
-        match *self {
-            MyErrorType::Io(ref err) =&gt; err.description(),
-            MyErrorType::Git(ref err) =&gt; err.description(),
-            MyErrorType::Regular(ref err) =&gt; err.as_str(),
-            MyErrorType::Custom(ref err) =&gt; err,
+<p>You&rsquo;re doing it wrong. Use <a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a> instead.</p>
+
+<h2 id="into">Into</h2>
+
+<p><a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a>
+has a similar effect to AsRef, in that it makes function APIs more flexible. The difference
+is that Into is used when you want to <strong>take ownership</strong> of the parameter. This is often used in
+constructors, for example:</p>
+
+<pre><code>fn new&lt;S&gt;(model: S) -&gt; Self
+where S: Into&lt;String&gt;
+{
+    ...
+}
+</code></pre>
+
+<p>You can mix AsRef and Into as required.</p>
+
+<ul>
+<li>For AsRef<T>, T is the borrowed type (str, Path)</li>
+<li>For Into<T>, T is the owning type (String, PathBuf)</li>
+</ul>
+
+<h3 id="getting-into-working-for-your-own-types">Getting &lsquo;Into&rsquo; working for your own types</h3>
+
+<p><strong>Do not</strong> implement <code>Into</code> for your types. Implement
+<a href="https://doc.rust-lang.org/std/convert/trait.From.html">From</a>
+instead. The standard library has a blanket implementation of <code>Into</code> which you will get &lsquo;for free&rsquo;.</p>
+
+<p><strong>If your type has a constructor taking a single parameter of type T</strong>, strongly consider
+removing the ctor and implementing <code>From&lt;T&gt;</code> instead. Example follows - note that you can still use
+<code>Into</code> in the implementation for maximum flexibility but you seem to have to use a <code>where</code> constraint
+to get it to compile:</p>
+
+<pre><code class="language-rs">impl&lt;P&gt; From&lt;P&gt; for SolutionDirectory
+where P: Into&lt;PathBuf&gt;
+{
+    fn from(sln_directory: P) -&gt; Self {
+        SolutionDirectory {
+            directory: sln_directory.into(),
+            solutions: vec![]
         }
     }
 }
+
+
+let s: SolutionDirectory = &quot;somepath&quot;.into();
 </code></pre>
 
-<p><code>fmt::Display</code> is more flexible:</p>
+<h1 id="misc-observations">Misc Observations</h1>
 
-<pre><code class="language-rs">impl fmt::Display for MyErrorType {
-    fn fmt(&amp;self, f: &amp;mut fmt::Formatter) -&gt; fmt::Result {
-        match *self {
-            MyErrorType::Io(ref err) =&gt; err.fmt(f),
-            MyErrorType::Git(ref err) =&gt; err.fmt(f),
-            MyErrorType::Regular(ref err) =&gt; write!(f, &quot;A regular error occurred {:?}&quot;, err),
-            MyErrorType::Custom(ref err) =&gt; write!(f, &quot;A custom error occurred {:?}&quot;, err),
-        }
-    }
+<ul>
+<li>Functions in <a href="https://doc.rust-lang.org/1.29.1/std/fs/struct.File.html">std::fs</a>
+typically take a <code>AsRef&lt;Path&gt;</code> to which you can pass a <code>PathBuf</code>,
+<code>Path</code>, <code>String</code>, <code>&amp;str</code>, <code>OsString</code> and <code>OsStr</code> among others.</li>
+<li><code>Into&lt;String&gt;</code> will take the usual string types plus <code>Box&lt;str&gt;</code>, <code>Rc&lt;String&gt;</code>,
+<code>Cow&lt;str&gt;</code> etc.</li>
+<li>There is little difference between <code>&amp;str</code> and <code>AsRef&lt;String&gt;</code>. <code>&amp;str</code> might be
+<a href="https://stevedonovan.github.io/rustifications/2018/09/08/common-rust-traits.html">more idiomatic</a> -
+see section &lsquo;Reference Conversions - AsRef&rsquo;.</li>
+<li>The above traits must not fail. Coming soon are
+<a href="https://doc.rust-lang.org/std/convert/trait.TryFrom.html">TryFrom</a>
+and
+<a href="https://doc.rust-lang.org/std/convert/trait.TryInto.html">TryInfo</a>.</li>
+</ul>
+
+<h1 id="cow-for-out-parameters">Cow for Out Parameters</h1>
+
+<p><a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html">Cow</a>
+allows you to put off allocation unless it is absolutely necessary.
+It often appears in the return position (because it implements DeRef coercion
+so there is no need for it in the input parameter list).</p>
+
+<p>A few examples. The <code>.into()</code> call is a call to Cow&rsquo;s into method -
+basically an easy and ergonomic way of creating Cows without having to
+specify <code>Cow::Borrowed(data)</code> or <code>Cow::Owned(data)</code> everywhere.</p>
+
+<pre><code class="language-rs">use std::borrow::Cow;
+
+/// Returns a Cow::Borrowed with static lifetime
+fn func5() -&gt; Cow&lt;'static, str&gt; {
+    &quot;&quot;.into()
 }
-</code></pre>
 
-<h2 id="step-3-implement-from-for-the-external-error-types">Step 3 - Implement &lsquo;From&rsquo; for the external error types</h2>
-
-<p>This enables the <code>?</code> operator:</p>
-
-<pre><code class="language-rs">impl From&lt;io::Error&gt; for MyErrorType {
-    fn from(err: io::Error) -&gt; MyErrorType {
-        MyErrorType::Io(err)
-    }
+/// Returns a Cow::Owned with static lifetime
+fn func6() -&gt; Cow&lt;'static, str&gt; {
+    let s = &quot;s&quot;.to_owned();
+    s.into()
 }
 
-impl From&lt;git2::Error&gt; for MyErrorType {
-    fn from(err: git2::Error) -&gt; MyErrorType {
-        MyErrorType::Git(err)
-    }
+/// Returns a Cow::Borrowed with lifetime the same as 'data'.
+fn func7(data: &amp;str) -&gt; Cow&lt;str&gt; {
+    Cow::Borrowed(&amp;data[0..1])
 }
-</code></pre>
 
-<h2 id="step-4-optional-create-a-result-t-e-alias">Step 4 - Optional - Create a &lsquo;Result<T, E>&rsquo; alias</h2>
+// Ditto.
+fn func8(data: &amp;str) -&gt; Cow&lt;str&gt; {
+    data[0..1].into()
+}
 
-<pre><code>pub type Result&lt;T&gt; = std::result::Result&lt;T, MyErrorType&gt;;
-</code></pre>
-
-<p>This does nothing other than simplify (some would say make more opaque)
-your function signatures.</p>
-
-<h2 id="step-5-use-it">Step 5 - Use it!</h2>
-
-<pre><code class="language-rs">fn some_func() -&gt; Result&lt;usize&gt; {
-    // Possible this will generate a std::io::Error.
-    let _f = std::fs::File::create(&quot;aa&quot;)?;
-
-    // Possible this will generate a git2::Error.
-    let _g = Repository::init(&quot;/path/to/a/repo&quot;)?;
-
-    // Return one of my one errors.
-    Err(MyErrorType::Regular(ErrorKind::NotAuthorized))
+fn main() {
+    match func8(&quot;hello&quot;) {
+        Cow::Borrowed(_) =&gt; println!(&quot;It's borrowed&quot;),
+        Cow::Owned(_) =&gt; println!(&quot;Owned!&quot;),
+    }
 }
 </code></pre>
 
@@ -346,16 +427,11 @@ your function signatures.</p>
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2019/common-unicode-characters/" class="navigation-prev">
+    <a href="/blog/2019/defining-rust-error-types/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Common Unicode Characters</span>
+      <span class="navigation-tittle">Defining Rust Error Types</span>
     </a>
     
-    
-    <a href="/blog/2019/rust-api-design/" class="navigation-next">
-      <span class="navigation-tittle">Design of Rust APIs (method signatures)</span>
-      <i aria-hidden="true" class="fa fa-chevron-right"></i>
-    </a>
     
 </div>
 

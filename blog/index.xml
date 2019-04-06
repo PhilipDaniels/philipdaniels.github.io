@@ -6,10 +6,23 @@
     <description>Recent content in Blogs on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 18 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 06 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Design of Rust APIs (method signatures)</title>
+      <link>https://www.philipdaniels.com/blog/2019/rust-api-design/</link>
+      <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/rust-api-design/</guid>
+      <description>Flexible Input Parameters There are two generic built-in traits you can use to make your function easy to call.
+They are AsRef and Into.
+AsRef (and AsMut) AsRef allows a function to be called with parameters of differing types - basically anything that allows a reference of the appropriate type to be created cheaply and without ever failing. AsMut is the same but for mutable references.
+Example:
+fn func1(p1: PathBuf); fn func2(p1: &amp;amp;Path); fn func3&amp;lt;S&amp;gt;(p1: S) where S: AsRef&amp;lt;Path&amp;gt; { let p1 = p1.</description>
+    </item>
     
     <item>
       <title>Defining Rust Error Types</title>
