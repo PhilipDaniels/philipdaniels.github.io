@@ -12,7 +12,7 @@
     
     
     <item>
-      <title>Design of Rust APIs (method signatures)</title>
+      <title>Design of Rust APIs (AsRef, Into, Cow)</title>
       <link>https://www.philipdaniels.com/blog/2019/rust-api-design/</link>
       <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
       

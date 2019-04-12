@@ -17,18 +17,18 @@
     
     
 
-<title>Design of Rust APIs (method signatures) • Phil&#39;s Blog</title>
+<title>Design of Rust APIs (AsRef, Into, Cow) • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Design of Rust APIs (method signatures)"/>
+<meta name="twitter:title" content="Design of Rust APIs (AsRef, Into, Cow)"/>
 <meta name="twitter:description" content="Flexible Input Parameters There are two generic built-in traits you can use to make your function easy to call.
 They are AsRef and Into.
 AsRef (and AsMut) AsRef allows a function to be called with parameters of differing types - basically anything that allows a reference of the appropriate type to be created cheaply and without ever failing. AsMut is the same but for mutable references.
 Example:
 fn func1(p1: PathBuf); fn func2(p1: &amp;Path); fn func3&lt;S&gt;(p1: S) where S: AsRef&lt;Path&gt; { let p1 = p1."/>
 
-<meta property="og:title" content="Design of Rust APIs (method signatures)" />
+<meta property="og:title" content="Design of Rust APIs (AsRef, Into, Cow)" />
 <meta property="og:description" content="Flexible Input Parameters There are two generic built-in traits you can use to make your function easy to call.
 They are AsRef and Into.
 AsRef (and AsMut) AsRef allows a function to be called with parameters of differing types - basically anything that allows a reference of the appropriate type to be created cheaply and without ever failing. AsMut is the same but for mutable references.
@@ -199,7 +199,7 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Design of Rust APIs (method signatures)</h1>
+    <h1>Design of Rust APIs (AsRef, Into, Cow)</h1>
     
     
 <div class="post__meta">
@@ -421,6 +421,15 @@ fn main() {
     }
 }
 </code></pre>
+
+<h1 id="see-also">See Also</h1>
+
+<ul>
+<li><a href="https://rust-lang-nursery.github.io/api-guidelines/about.html">The Official Rust API Guidelines</a></li>
+<li><a href="https://deterministic.space/elegant-apis-in-rust.html">Elegant Rust APIs</a></li>
+<li><a href="https://hermanradtke.com/2015/05/29/creating-a-rust-function-that-returns-string-or-str.html">Herman Radtke on Cow</a></li>
+<li><a href="https://jwilm.io/blog/from-str-to-cow/">Combining Into and Cow</a></li>
+</ul>
 
   </div>
   
