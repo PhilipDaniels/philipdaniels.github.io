@@ -6,10 +6,22 @@
     <description>Recent content in Rust on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Design of Rust APIs (Collections and Iteration)</title>
+      <link>https://www.philipdaniels.com/blog/2019/rust-api-design2/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/rust-api-design2/</guid>
+      <description>Iterators as Input Parameters This is reasonable:
+fn func1(data: &amp;amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&amp;lt;C&amp;gt;(data: C) where C: IntoIterator&amp;lt;Item = i32&amp;gt;  (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.</description>
+    </item>
     
     <item>
       <title>Design of Rust APIs (AsRef, Into, Cow)</title>

@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 06 Apr 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 12 Apr 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>Api</title>
       <link>https://www.philipdaniels.com/tags/api/</link>
-      <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/api/</guid>
       <description></description>
@@ -129,6 +129,15 @@
     </item>
     
     <item>
+      <title>Iterators</title>
+      <link>https://www.philipdaniels.com/tags/iterators/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/iterators/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Libreoffice</title>
       <link>https://www.philipdaniels.com/tags/libreoffice/</link>
       <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
@@ -194,7 +203,7 @@
     <item>
       <title>Rust</title>
       <link>https://www.philipdaniels.com/tags/rust/</link>
-      <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/rust/</guid>
       <description></description>

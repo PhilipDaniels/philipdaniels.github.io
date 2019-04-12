@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.53" />
+
+    
+    
+    
+
+<title>Design of Rust APIs (Collections and Iteration) • Phil&#39;s Blog</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Design of Rust APIs (Collections and Iteration)"/>
+<meta name="twitter:description" content="Iterators as Input Parameters This is reasonable:
+fn func1(data: &amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&lt;C&gt;(data: C) where C: IntoIterator&lt;Item = i32&gt;  (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits."/>
+
+<meta property="og:title" content="Design of Rust APIs (Collections and Iteration)" />
+<meta property="og:description" content="Iterators as Input Parameters This is reasonable:
+fn func1(data: &amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&lt;C&gt;(data: C) where C: IntoIterator&lt;Item = i32&gt;  (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-api-design2/" /><meta property="article:published_time" content="2019-04-12T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-12T00:00:00&#43;00:00"/>
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/gruvbox-dark.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+
+    
+
+    
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-51573023-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.philipdaniels.com/">Phil&#39;s Blog</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/5f3e5fe7d6a4062ad188336e06f1cb78?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Phil&#39;s Blog</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/blog">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/gitcheatsheet">
+						<span>My Git CheatSheet</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/PhilipDaniels" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://stackoverflow.com/users/1313057/philip-daniels" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	<a href="mailto:philip.daniels1971@gmail.com" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2019 Philip Daniels
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Design of Rust APIs (Collections and Iteration)</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Apr 12, 2019
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/rust">rust</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/api">api</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/iterators">iterators</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 6 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    
+
+<h1 id="iterators-as-input-parameters">Iterators as Input Parameters</h1>
+
+<p>This is reasonable:</p>
+
+<pre><code class="language-rs">fn func1(data: &amp;[i32]) {}
+</code></pre>
+
+<p>But if a function only needs to iterate over its data you can use the
+<a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html">IntoIterator</a> trait
+to make it more generic:</p>
+
+<pre><code class="language-rs">fn func2&lt;C&gt;(data: C)
+where C: IntoIterator&lt;Item = i32&gt;
+</code></pre>
+
+<p>(Ref: <a href="https://rust-lang-nursery.github.io/api-guidelines/flexibility.html">API Guidelines</a>)</p>
+
+<h1 id="constructing-and-extending-collections">Constructing and Extending Collections</h1>
+
+<p>If you have a type that is a collection type, you should consider implementing the
+<a href="https://doc.rust-lang.org/std/iter/trait.FromIterator.html">FromIterator</a>
+and
+<a href="https://doc.rust-lang.org/std/iter/trait.Extend.html">Extend</a> traits.</p>
+
+<p><code>FromIterator</code> allows instances of your collection to be constructed using
+<a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect">collect</a>
+and
+<code>Extend</code> allows you to easily add the contents of an iterator to a collection
+via the <a href="https://doc.rust-lang.org/std/iter/trait.Extend.html#tymethod.extend">extend</a>
+method.</p>
+
+<p>See links above for example implementations, they are simple and obvious.
+In particular, <code>FromIterator</code> can be implemented by creating an empty collection
+and calling <code>extend</code> on it.</p>
+
+<p>If a collection type implements <code>FromIterator&lt;A&gt;</code> then its static method
+<code>from_iter</code> builds a value of that type from an iterable producing items
+of type <code>A</code>.</p>
+
+<h1 id="providing-iterators-for-your-collection-types">Providing Iterators for your collection types</h1>
+
+<p>If you have a type which is a collection of items, you should consider
+providing the ability to iterate over instances of that type. We then say that
+the type is an <em>iterable</em>.</p>
+
+<ul>
+<li>An <em>iterator</em> is any type that implements <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html">Iterator</a></li>
+<li>An <em>iterable</em> is any type that implements <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html">IntoIterator</a></li>
+<li>An <em>iterator</em> produces <em>items</em></li>
+<li>The code that receives the items is the <em>consumer</em></li>
+</ul>
+
+<p>(Definitions from <em>Programming Rust</em> by Blandy &amp; Orendorff)</p>
+
+<h2 id="the-3-types-of-iteration">The 3 types of iteration</h2>
+
+<p>There are basically 3 ways that you can iterate over something - by move,
+by shared reference, and by mutable reference. In the for loop idiom, these
+are expressed as follows:</p>
+
+<pre><code class="language-rs">for item in collection      // move
+for item in &amp;collection     // shared reference
+for item in &amp;mut collection // mutable reference
+</code></pre>
+
+<p>Note that iterating using moves consumes the original collection.</p>
+
+<p>Under the hood, these calls de-sugar into something like this</p>
+
+<pre><code class="language-rs">// By move.
+let mut iterator = collection.into_iter();
+while let Some(item) = iterator.next() {
+    // Use the item.
+}
+
+// Shared reference.
+let mut iterator = (&amp;collection).into_iter();
+while let Some(item) = iterator.next() {
+    // Use the item.
+}
+
+// Mutable reference.
+let mut iterator = (&amp;mut collection).into_iter();
+while let Some(item) = iterator.next() {
+    // Use the item.
+}
+</code></pre>
+
+<p><strong>Note 1</strong> Many collections also implement <code>iter()</code> and <code>iter_mut()</code> methods which
+return iterators. They correspond to the shared and mutable reference examples above,
+respectively. The method-equivalent of the move example is handled
+by the <code>into_iter()</code> method, which is part of the <code>IntoIterator</code> trait and described
+below. These methods provide a convenient way of getting an iterator when you&rsquo;re
+not using the for-loop syntax. You&rsquo;ll often see them used when
+<a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.map">mapping</a>
+and
+<a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter">filtering</a>
+in a functional style.</p>
+
+<p><strong>Note 2</strong> Not all collections implement all 3 types of iteration. In particular, iterating by
+mutable reference doesn&rsquo;t always make sense, for example you can&rsquo;t iterate over
+a <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.keys">HashMap&rsquo;s</a> keys
+by mutable reference because changing a key would destory the integrity of the
+HashMap&rsquo;s internal data structures. But you can iterate over the key-value
+pairs, the items returned are tuples with immutable keys but mutable values!
+See <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.iter_mut">HashMap.iter_mut</a>.</p>
+
+<h2 id="how-to-implement-intoiterator">How to implement IntoIterator</h2>
+
+<p>Let&rsquo;s imagine we have a very simple collection type called <code>Solution</code>, which contains a
+vec of <code>Projects</code>:</p>
+
+<pre><code class="language-rs">pub struct Solution {
+    projects: Vec&lt;Project&gt;
+}
+
+pub struct Project {
+    name: String
+}
+</code></pre>
+
+<p>If we try to iterate over this</p>
+
+<pre><code class="language-rs">for proj in sln {
+}
+</code></pre>
+
+<p>We will get an error which helpfully reminds us we need to implement <code>IntoIterator</code>:</p>
+
+<pre><code>22 |     for proj in sln {
+   |                 ^^^^ `Solution` is not an iterator
+   |
+   = help: the trait `std::iter::Iterator` is not implemented for `&amp;Solution`
+   = note: required by `std::iter::IntoIterator::into_iter`
+</code></pre>
+
+<p>Here is how to implement the <strong>move</strong> form:</p>
+
+<pre><code class="language-rs">impl IntoIterator for Solution {
+    type Item = Project;
+    type IntoIter = ::std::vec::IntoIter&lt;Project&gt;;
+
+    fn into_iter(self) -&gt; Self::IntoIter {
+        self.projects.into_iter()
+    }
+}
+</code></pre>
+
+<p>The line <code>type Item = Project</code> says what types of items the iterator will yield.</p>
+
+<p>The next line, <code>type IntoIter = ::std::vec::IntoIter&lt;Project&gt;</code> says what type is
+produced by the call to <code>into_iter</code> - in other words it is naming the <strong>Iterator</strong> type (see terminology above) that <code>Solution</code> can produce. <code>Solution</code> itself is now an <strong>Iterable</strong>
+type thanks to this simple trait implementation.</p>
+
+<p>In this example I don&rsquo;t need to create my own iterator type, I can simply
+leverage the vector&rsquo;s already-existing type. But if I couldn&rsquo;t, say my
+iteration needs were more complex, this line is the one I would need to target. I
+would create a type <code>SolutionIterator</code> (say) and specify <code>type IntoIter = SolutionIterator&lt;Project&gt;</code>
+and then return an instance of <code>SolutionIterator</code> from <code>into_iter</code>.</p>
+
+<p>With the above in place, for loops of the <strong>move</strong> form now work:</p>
+
+<pre><code class="language-rs">for proj in sln {
+    println!(&quot;Project = {}&quot;, proj.name);
+}
+</code></pre>
+
+<p>Prints</p>
+
+<pre><code>Project = Project1
+Project = Project2
+Project = Project3
+</code></pre>
+
+<p>But unfortunately it destroys the collection. For loops of <strong>shared</strong> or <strong>mutable</strong>
+references still do not work:</p>
+
+<pre><code>31 |     for proj in &amp;sln {
+   |                 ^^^^ `&amp;Solution` is not an iterator
+</code></pre>
+
+<p>We need to add another implementation:</p>
+
+<pre><code class="language-rs">impl&lt;'s&gt; IntoIterator for &amp;'s Solution {
+    type Item = &amp;'s Project;
+    type IntoIter = ::std::slice::Iter&lt;'s, Project&gt;;
+
+    fn into_iter(self) -&gt; Self::IntoIter {
+        self.projects.iter()
+    }
+}
+</code></pre>
+
+<p>Note that we need a lifetime specification. This says that the references returned
+by the iterator are tied to the lifetime of the <code>Solution</code>. This makes sense because the
+Projects are owned by the <code>Solution</code>.</p>
+
+<p>With this in place we can iterate by <strong>shared reference</strong>, preserving our precious <code>Solution</code>
+object:</p>
+
+<pre><code class="language-rs">for proj in &amp;sln {
+    println!(&quot;Project = {}&quot;, proj.name);
+}
+
+for proj in &amp;sln {
+    println!(&quot;Project = {}&quot;, proj.name);
+}
+</code></pre>
+
+<p>Lastly, as you would expect, iterating by mutable reference requires another
+implemention:</p>
+
+<pre><code class="language-rs">impl&lt;'s&gt; IntoIterator for &amp;'s mut Solution {
+    type Item = &amp;'s mut Project;
+    type IntoIter = ::std::slice::IterMut&lt;'s, Project&gt;;
+
+    fn into_iter(self) -&gt; Self::IntoIter {
+        self.projects.iter_mut()
+    }
+}
+</code></pre>
+
+<p>The only difference here is that we inserted &lsquo;mut&rsquo; in the references and the
+<code>type</code> changed from <code>slice::Iter</code> to <code>slice::IterMut</code>.</p>
+
+<p>Mutable iteration is now possible:</p>
+
+<pre><code class="language-rs">for proj in &amp;mut sln {
+    proj.name = proj.name.to_ascii_uppercase();
+    println!(&quot;Project = {}&quot;, proj.name);
+}
+</code></pre>
+
+<p>Prints</p>
+
+<pre><code>Project = PROJECT1
+Project = PROJECT2
+Project = PROJECT3
+</code></pre>
+
+<h2 id="implementations-in-the-standard-library">Implementations in the standard library</h2>
+
+<p>The implementations shown above exactly mimic, and were worked out by
+copying, the implementations for <code>Vec</code> in the standard library.</p>
+
+<p>In the <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html">IntoIterator</a>
+documentation you can see the following implementations (some scrolling
+and searching required)</p>
+
+<pre><code class="language-rs">impl&lt;T&gt; IntoIterator for Vec&lt;T&gt;
+impl&lt;'a, T&gt; IntoIterator for &amp;'a Vec&lt;T&gt;
+impl&lt;'a, T&gt; IntoIterator for &amp;'a mut Vec&lt;T&gt;
+</code></pre>
+
+<p>Click through to their source to see how they work.</p>
+
+<h2 id="complete-source-code">Complete source code</h2>
+
+<pre><code class="language-rs">pub struct Solution {
+    projects: Vec&lt;Project&gt;
+}
+
+pub struct Project {
+    name: String
+}
+
+fn make_example_solution() -&gt; Solution {
+    let mut sln = Solution { projects: vec![] };
+    sln.projects.push(Project { name: &quot;Project1&quot;.to_owned() });
+    sln.projects.push(Project { name: &quot;Project2&quot;.to_owned() });
+    sln.projects.push(Project { name: &quot;Project3&quot;.to_owned() });
+    sln
+}
+
+impl IntoIterator for Solution {
+    type Item = Project;
+    type IntoIter = ::std::vec::IntoIter&lt;Project&gt;;
+
+    fn into_iter(self) -&gt; Self::IntoIter {
+        self.projects.into_iter()
+    }
+}
+
+impl&lt;'s&gt; IntoIterator for &amp;'s Solution {
+    type Item = &amp;'s Project;
+    type IntoIter = ::std::slice::Iter&lt;'s, Project&gt;;
+
+    fn into_iter(self) -&gt; Self::IntoIter {
+        self.projects.iter()
+    }
+}
+
+impl&lt;'s&gt; IntoIterator for &amp;'s mut Solution {
+    type Item = &amp;'s mut Project;
+    type IntoIter = ::std::slice::IterMut&lt;'s, Project&gt;;
+
+    fn into_iter(self) -&gt; Self::IntoIter {
+        self.projects.iter_mut()
+    }
+}
+
+fn main() {
+    let mut sln = make_example_solution();
+
+    for proj in &amp;mut sln {
+        proj.name = proj.name.to_ascii_uppercase();
+        println!(&quot;Project = {}&quot;, proj.name);
+    }
+}
+</code></pre>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/blog/2019/rust-api-design/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Design of Rust APIs (AsRef, Into, Cow)</span>
+    </a>
+    
+    
+</div>
+
+
+  
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'philipdanielscomblog';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-51573023-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/rust.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/cs.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/bash.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/python.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/css.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/http.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/ini.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/javascript.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/json.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/markdown.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/sql.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/html.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/xml.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/dockerfile.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/scss.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/r.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/typescript.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/go.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/cpp.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/dos.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/plaintext.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/powershell.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/diff.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/makefile.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/lisp.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["rust, cs, bash, python, css, http, ini, javascript, json, markdown, sql, html, xml, dockerfile, scss, r, typescript, go, cpp, dos, plaintext, powershell, diff, makefile, lisp"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>
