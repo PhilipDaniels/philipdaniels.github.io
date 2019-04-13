@@ -17,24 +17,18 @@
     
     
 
-<title>An Ergonomic Approach to Configuration in Rust • Phil&#39;s Blog</title>
+<title>Top VS Code Extensions • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="An Ergonomic Approach to Configuration in Rust"/>
-<meta name="twitter:description" content="Ergonomic Configuration In most of the programs I have written so far the configuration consists of a combination of defaults, optional settings from configuration files, and command line options, in that order of precedence.
-And once established, it is usually immutable.
-Setting this up is not difficult, but it helps to have a worked example, as otherwise it is easy to get lost in what to call things.
-I have created a worked example which has the following features:"/>
+<meta name="twitter:title" content="Top VS Code Extensions"/>
+<meta name="twitter:description" content="Extensions  Git Lens More git power! Git Graph Nice SourceTree-like git graphs TODO Tree Scans code for TODO, FIXME etc and presents in the sidebar Better TOML For editing TOML files such as Cargo.toml RLS The Rust language server Code LLDB For debugging Rust. See Windows caveats. C# by Omnisharp  Debugging in Rust Install the above tools (RLS, LLDB) then follow this guidance"/>
 
-<meta property="og:title" content="An Ergonomic Approach to Configuration in Rust" />
-<meta property="og:description" content="Ergonomic Configuration In most of the programs I have written so far the configuration consists of a combination of defaults, optional settings from configuration files, and command line options, in that order of precedence.
-And once established, it is usually immutable.
-Setting this up is not difficult, but it helps to have a worked example, as otherwise it is easy to get lost in what to call things.
-I have created a worked example which has the following features:" />
+<meta property="og:title" content="Top VS Code Extensions" />
+<meta property="og:description" content="Extensions  Git Lens More git power! Git Graph Nice SourceTree-like git graphs TODO Tree Scans code for TODO, FIXME etc and presents in the sidebar Better TOML For editing TOML files such as Cargo.toml RLS The Rust language server Code LLDB For debugging Rust. See Windows caveats. C# by Omnisharp  Debugging in Rust Install the above tools (RLS, LLDB) then follow this guidance" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-configuration-example/" /><meta property="article:published_time" content="2019-04-12T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-04-12T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/vscode-extensions/" /><meta property="article:published_time" content="2019-04-13T00:00:00&#43;00:00"/>
+<meta property="article:modified_time" content="2019-04-13T00:00:00&#43;00:00"/>
 
 
     
@@ -197,13 +191,13 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>An Ergonomic Approach to Configuration in Rust</h1>
+    <h1>Top VS Code Extensions</h1>
     
     
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Apr 12, 2019
+      <i class="fas fa-calendar-alt"></i> Apr 13, 2019
     
     
     
@@ -214,25 +208,16 @@ if (!doNotTrack) {
           <br/>
            <i class="fas fa-tags"></i>
           
-          <a class="badge badge-tag" href="/tags/rust">rust</a>
+          <a class="badge badge-tag" href="/tags/vscode">vscode</a>
            
       
-          <a class="badge badge-tag" href="/tags/configuration">configuration</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/clap">clap</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/options">options</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/lazy_static">lazy_static</a>
+          <a class="badge badge-tag" href="/tags/dev">dev</a>
           
       
     
     
     <br/>
-    <i class="fas fa-clock"></i> 2 min read
+    <i class="fas fa-clock"></i> 1 min read
 </div>
 
 
@@ -242,67 +227,35 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h1 id="ergonomic-configuration">Ergonomic Configuration</h1>
-
-<p>In most of the programs I have written so far the configuration consists of a combination of defaults,
-optional settings from configuration files, and command line options, in that order of precedence.</p>
-
-<p>And once established, it is usually immutable.</p>
-
-<p>Setting this up is not difficult, but it helps to have a worked example, as otherwise it
-is easy to get lost in what to call things.</p>
-
-<p>I have created a <a href="https://github.com/PhilipDaniels/rust-config-example">worked example</a>
-which has the following features:</p>
+<h1 id="extensions">Extensions</h1>
 
 <ul>
-<li>Uses <a href="https://crates.io/crates/lazy_static">lazy_static</a> to create a global, singleton
-<code>Configuration</code> struct which is initialized with the merging of all the different
-possible sources of configuration.</li>
-<li>Because it is global, you don&rsquo;t need to pass it down through method chains.</li>
-<li>If the command line options are bad, the program terminates, thanks to
-<a href="https://crates.io/crates/clap">clap</a>.</li>
-<li>The <code>Configuration</code> in this example is immutable, which makes for a safe singleton.
-This works for most of my programs. If you want some mutability, consider interior
-mutability.</li>
-<li>This approach lends itself to decomposition - there is no need to have just
-one big <code>Configuration</code> struct, you could not have several dealing with different
-concerns.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens">Git Lens</a> More git power!</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph">Git Graph</a> Nice SourceTree-like git graphs</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree">TODO Tree</a> Scans code for TODO, FIXME etc and presents in the sidebar</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=bungcip.better-toml">Better TOML</a> For editing TOML files such as <code>Cargo.toml</code></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=rust-lang.rust">RLS</a> The Rust language server</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=vadimcn.vscode-lldb">Code LLDB</a> For debugging Rust. See Windows caveats.</li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.csharp">C# by Omnisharp</a></li>
 </ul>
 
-<h2 id="the-downside-of-ease-of-use">The downside of ease-of-use</h2>
+<h1 id="debugging-in-rust">Debugging in Rust</h1>
 
-<p>I call it ergonomic because it removes the need to pollute your method signatures with
-<code>&amp;Configuration</code>  parameters. The downside to this is that your methods now depend on
-<em>ambient context</em> which you can&rsquo;t tell just from looking at your method
-signatures, you need to inspect the code inside to discover this (according to the
-principles of Dependency Injection this is a <strong>bad thing</strong> and your method signatures
-or constructors should always make your dependencies apparent). However for some kinds
-of programs it is a reasonable trade-off.</p>
-
-<p>If this bothers you, you can still use the worked example as a starting point. Just
-remove the <code>lazy_static</code> and return the <code>Configuration</code> object and bind it to
-a local variable at the beginning of main:</p>
-
-<pre><code class="language-rs">fn main() {
-    let config = Configuration::new();
-    /// Now pass &amp;config, or sub-parts of config, into the methods that need them.
-}
-</code></pre>
+<p>Install the above tools (RLS, LLDB) then <a href="https://www.forrestthewoods.com/blog/how-to-debug-rust-with-visual-studio-code/">follow this guidance</a></p>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2019/rust-api-design2/" class="navigation-prev">
+    <a href="/blog/2019/rust-configuration-example/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Design of Rust APIs (Collections and Iteration)</span>
+      <span class="navigation-tittle">An Ergonomic Approach to Configuration in Rust</span>
     </a>
     
     
-    <a href="/blog/2019/vscode-extensions/" class="navigation-next">
-      <span class="navigation-tittle">Top VS Code Extensions</span>
+    <a href="/blog/2019/rust-equality-and-ordering/" class="navigation-next">
+      <span class="navigation-tittle">Hand-Implementing PartialEq, Eq, Hash, PartialOrd and Ord in Rust</span>
       <i aria-hidden="true" class="fa fa-chevron-right"></i>
     </a>
     
