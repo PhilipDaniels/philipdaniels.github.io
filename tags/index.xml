@@ -120,11 +120,38 @@
     </item>
     
     <item>
+      <title>Eq</title>
+      <link>https://www.philipdaniels.com/tags/eq/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/eq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Equality</title>
+      <link>https://www.philipdaniels.com/tags/equality/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/equality/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Errors</title>
       <link>https://www.philipdaniels.com/tags/errors/</link>
       <pubDate>Mon, 18 Feb 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/errors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Hash</title>
+      <link>https://www.philipdaniels.com/tags/hash/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/hash/</guid>
       <description></description>
     </item>
     
@@ -143,6 +170,15 @@
       <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/hyper-v/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Identity</title>
+      <link>https://www.philipdaniels.com/tags/identity/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/identity/</guid>
       <description></description>
     </item>
     
@@ -210,11 +246,38 @@
     </item>
     
     <item>
+      <title>Ord</title>
+      <link>https://www.philipdaniels.com/tags/ord/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/ord/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Parallelism</title>
       <link>https://www.philipdaniels.com/tags/parallelism/</link>
       <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/parallelism/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Partialeq</title>
+      <link>https://www.philipdaniels.com/tags/partialeq/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/partialeq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Partialord</title>
+      <link>https://www.philipdaniels.com/tags/partialord/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/partialord/</guid>
       <description></description>
     </item>
     
@@ -239,7 +302,7 @@
     <item>
       <title>Rust</title>
       <link>https://www.philipdaniels.com/tags/rust/</link>
-      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/rust/</guid>
       <description></description>
