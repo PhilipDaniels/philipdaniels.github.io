@@ -17,7 +17,7 @@
       <pubDate>Sun, 14 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/blog/2019/ripgrep-cheatsheet/</guid>
-      <description>Ripgrep    Syntax Description     rg &amp;ndash;help &amp;#124; more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README.md Search only in specified file(s)   rg -c &amp;ndash;sort path&amp;#124;modified&amp;#124;accessed&amp;#124;created NEEDLE Sort the results (-sortr to reverse)   rg -g &#39;*.</description>
+      <description>Ripgrep    Syntax Description     rg &amp;ndash;help &amp;#124; more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&amp;rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README.</description>
     </item>
     
     <item>

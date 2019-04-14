@@ -17,17 +17,19 @@
     
     
 
-<title>Ripgrep Cheatsheet • Phil&#39;s Blog</title>
+<title>Turbo-Charging Rust Release Mode Builds • Phil&#39;s Blog</title>
 
 
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Ripgrep Cheatsheet"/>
-<meta name="twitter:description" content="Ripgrep    Syntax Description     rg &ndash;help &#124; more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README."/>
+<meta name="twitter:title" content="Turbo-Charging Rust Release Mode Builds"/>
+<meta name="twitter:description" content="Configuring the release profile Here are some settings you can specify in Cargo.toml for fastest possible Release mode builds. Expect these changes to make marginal differences (5-10%? YMMV). If you are using a workspace you should specify this in the top-level Cargo.toml only.
+[profile.release] # Enable link-time optimization, eliminates more code and inlines across crate boundaries. # Default: false lto = true # codegen-units of 1 gives best optimization, but disables parallel building."/>
 
-<meta property="og:title" content="Ripgrep Cheatsheet" />
-<meta property="og:description" content="Ripgrep    Syntax Description     rg &ndash;help &#124; more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README." />
+<meta property="og:title" content="Turbo-Charging Rust Release Mode Builds" />
+<meta property="og:description" content="Configuring the release profile Here are some settings you can specify in Cargo.toml for fastest possible Release mode builds. Expect these changes to make marginal differences (5-10%? YMMV). If you are using a workspace you should specify this in the top-level Cargo.toml only.
+[profile.release] # Enable link-time optimization, eliminates more code and inlines across crate boundaries. # Default: false lto = true # codegen-units of 1 gives best optimization, but disables parallel building." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/ripgrep-cheatsheet/" /><meta property="article:published_time" content="2019-04-14T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-release-mode-builds/" /><meta property="article:published_time" content="2019-04-14T00:00:00&#43;00:00"/>
 <meta property="article:modified_time" content="2019-04-14T00:00:00&#43;00:00"/>
 
 
@@ -191,7 +193,7 @@ if (!doNotTrack) {
             
     <article>
   <header>
-    <h1>Ripgrep Cheatsheet</h1>
+    <h1>Turbo-Charging Rust Release Mode Builds</h1>
     
     
 <div class="post__meta">
@@ -201,19 +203,6 @@ if (!doNotTrack) {
     
     
     
-    
-    
-      
-      
-          <br/>
-           <i class="fas fa-tags"></i>
-          
-          <a class="badge badge-tag" href="/tags/unix">unix</a>
-           
-      
-          <a class="badge badge-tag" href="/tags/ripgrep">ripgrep</a>
-          
-      
     
     
     <br/>
@@ -227,131 +216,97 @@ if (!doNotTrack) {
   <div class="post">
     
 
-<h1 id="ripgrep">Ripgrep</h1>
+<h1 id="configuring-the-release-profile">Configuring the release profile</h1>
 
-<table>
-<thead>
-<tr>
-<th>Syntax</th>
-<th>Description</th>
-</tr>
-</thead>
+<p>Here are some settings you can specify in <code>Cargo.toml</code> for fastest possible Release mode builds.
+Expect these changes to make marginal differences (5-10%? YMMV).
+If you are using a workspace you should specify this in the top-level <code>Cargo.toml</code> only.</p>
 
-<tbody>
-<tr>
-<td><code>rg &ndash;help &#124; more</code></td>
-<td>Make help useful on Windows</td>
-</tr>
-
-<tr>
-<td><code>rg -l NEEDLE</code></td>
-<td>List matching files only</td>
-</tr>
-
-<tr>
-<td><code>rg -c NEEDLE</code></td>
-<td>List matching files, including a count</td>
-</tr>
-
-<tr>
-<td><code>rg -i NEEDLE</code></td>
-<td>Search case-insensitively</td>
-</tr>
-
-<tr>
-<td><code>rg --no-filename NEEDLE</code></td>
-<td>Don&rsquo;t print filenames, handy when you care about the match more than the file</td>
-</tr>
-
-<tr>
-<td><code>rg -v NEEDLE</code></td>
-<td>Invert matching: show lines that do not match</td>
-</tr>
-
-<tr>
-<td><code>rg NEEDLE README.md</code></td>
-<td>Search only in specified file(s)</td>
-</tr>
-
-<tr>
-<td><code>rg -c &ndash;sort path&#124;modified&#124;accessed&#124;created NEEDLE<code></td>
-<td>Sort the results (<code>-sortr</code> to reverse)</td>
-</tr>
-
-<tr>
-<td><code>rg -g '*.nuspec' NEEDLE</code></td>
-<td>Only search in <code>*.nuspec</code> files (can use multiple <code>-g</code>)</td>
-</tr>
-
-<tr>
-<td><code>rg -g '!*.nuspec' NEEDLE</code></td>
-<td>Search in everything but <code>*.nuspec</code> files</td>
-</tr>
-
-<tr>
-<td><code>rg -p NEEDLE &#124; less -R</code></td>
-<td>Force pretty printed output even in pipes</td>
-</tr>
-
-<tr>
-<td><code>rg -e NEEDLE1 -e NEEDLE2</code></td>
-<td>Search for multiple patterns</td>
-</tr>
-
-<tr>
-<td><code>rg -z NEEDLE</code></td>
-<td>Search in gzip, bzip2, xz, LZ4, LZMA, Brotli and Zstd compressed files</td>
-</tr>
-
-<tr>
-<td><code>rg --type-list</code></td>
-<td>Displays built-in available types and their corresponding globs</td>
-</tr>
-
-<tr>
-<td><code>rg -tcs -tconfig</code></td>
-<td>Search in file types <code>cs</code> and <code>config</code></td>
-</tr>
-
-<tr>
-<td><code>rg -Tconfig</code></td>
-<td><strong>Don&rsquo;t</strong> search in file type <code>config</code></td>
-</tr>
-</tbody>
-</table>
-
-<p><strong>Note 1</strong> If <code>NEEDLE</code> or <code>-g</code> patterns contain any special characters then place them in <strong>single</strong>
-quotes. Double quotes will work in some circumstances, but negative <code>-g</code> patterns in double
-quotes seem to confuse the shell, on Linux at least.</p>
-
-<p><strong>Note 2</strong> Remember that <code>NEEDLE</code> is a Regex, hence characters such as <code>.</code> (dot) have special meaning
-even when placed in single quotes. To match a literal <code>.</code> you need to use a Regex-escape: <code>\.</code></p>
-
-<h2 id="powershell">PowerShell</h2>
-
-<p>On Windows, you can pipe results to PowerShell like this:</p>
-
-<pre><code class="language-bash">rg -i --no-filename '&lt;PackageReference' | foreach { $_.Trim() } | Sort-Object -unique
+<pre><code class="language-toml">[profile.release]
+# Enable link-time optimization, eliminates more code and inlines across crate boundaries.
+# Default: false
+lto = true
+# codegen-units of 1 gives best optimization, but disables parallel building.
+# Default: 16
+codegen-units = 1
+# Includes debug information in release builds. Necessary for profiling. Does not
+# slow down the executable.
+debug = true
+# The default optimization level is 3 for release mode builds.
+# &quot;s&quot; means optimize for size, &quot;z&quot; reduces size even more.
+opt-level = 3
 </code></pre>
 
-<h2 id="links">Links</h2>
+<p>In addition, if you only care about running on your PC, you can instruct Cargo and rustc to
+produce a native binary. The easiest way to do this on a &lsquo;one-off&rsquo; basis is</p>
 
-<p><a href="https://github.com/BurntSushi/ripgrep">Ripgrep repository</a></p>
+<pre><code class="language-bash">RUSTFLAGS=&quot;-C target-cpu=native&quot; cargo build --release
+</code></pre>
 
-<p><a href="https://github.com/BurntSushi/ripgrep/blob/master/GUIDE.md">User guide</a></p>
+<p>To check that it&rsquo;s working add a <code>--verbose</code> flag to the cargo command.</p>
 
-<p><a href="https://docs.rs/regex/1/regex/#syntax">Regex syntax Guide</a></p>
+<p>You may want to set RUSTFLAGS in your <code>~/.profile</code>.</p>
+
+<p>On Windows, in PowerShell you set an environment variable in two steps (use
+<code>echo $env:RUSTFLAGS</code> to check it&rsquo;s set):</p>
+
+<pre><code class="language-powershell">$env:RUSTFLAGS=&quot;-C target-cpu=native&quot;
+cargo build --release
+</code></pre>
+
+<p>This will set RUSTLFAGS temporarily, for that PowerShell session only: if you start
+a new PowerShell window you will need to set it again. You can use the
+<code>System Properties -&gt; Environment Variables</code> window to set it permanently.</p>
+
+<p>Alternatively you can set RUSTFLAGS in <code>.cargo/config</code>, see below for an example.</p>
+
+<p><a href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo manifest format</a></p>
+
+<p><a href="https://rust-embedded.github.io/book/unsorted/speed-vs-size.html">Speed vs size</a></p>
+
+<h1 id="creating-a-config-file-for-cargo">Creating a config file for Cargo</h1>
+
+<p>You can create a <code>config</code> file for Cargo to specify defaults for these settings.</p>
+
+<p>This file can reside either in your crate&rsquo;s directory, or any parent thereof. In
+particular, if your source code is under your home directory, you can create
+a &lsquo;global&rsquo; default in <code>~/.cargo/config</code>. <a href="https://doc.rust-lang.org/cargo/reference/config.html">See here</a>
+for the actual directory search order.</p>
+
+<p>Typical contents might be:</p>
+
+<pre><code class="language-toml">[target.'cfg(any(windows, unix))']
+rustflags = [&quot;-C target-cpu=native&quot;]
+
+[profile.release]
+lto = true
+codegen-units = 1
+debug = true
+opt-level = 3
+</code></pre>
+
+<p>However, at the time of writing there is a significant downside. You&rsquo;ll soon
+discover that <code>cargo build --release</code> won&rsquo;t work, and you are told to use
+<code>cargo build --release -Z config-profile</code> but that won&rsquo;t work either unless you
+are on the nightly channel of cargo! Annoying.</p>
+
+<p>Probably best to stick to pasting it into your <code>Cargo.toml</code>.</p>
 
   </div>
   
 
 <div class="navigation navigation-single">
     
-    <a href="/blog/2019/rust-release-mode-builds/" class="navigation-prev">
+    <a href="/blog/2019/rust-equality-and-ordering/" class="navigation-prev">
       <i aria-hidden="true" class="fa fa-chevron-left"></i>
-      <span class="navigation-tittle">Turbo-Charging Rust Release Mode Builds</span>
+      <span class="navigation-tittle">Hand-Implementing PartialEq, Eq, Hash, PartialOrd and Ord in Rust</span>
     </a>
     
+    
+    <a href="/blog/2019/ripgrep-cheatsheet/" class="navigation-next">
+      <span class="navigation-tittle">Ripgrep Cheatsheet</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
     
 </div>
 
