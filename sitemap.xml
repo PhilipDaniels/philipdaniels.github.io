@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-file-io/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/2019/ripgrep-cheatsheet/</loc>
     <lastmod>2019-04-14T00:00:00+00:00</lastmod>
   </url>
@@ -171,7 +176,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2019-04-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -253,6 +258,12 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/file/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/hash/</loc>
     <lastmod>2019-04-13T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -273,6 +284,12 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/identity/</loc>
     <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/io/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -344,7 +361,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2019-04-14T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -368,7 +385,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/rust/</loc>
-    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>File on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/file/</link>
+    <description>Recent content in File on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 23 May 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/file/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rust File IO</title>
+      <link>https://www.philipdaniels.com/blog/2019/rust-file-io/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/rust-file-io/</guid>
+      <description>See std::io for more details.
+For dealing with the filesystem, such as opening or deleting files, see std::fs.
+For manipulating paths, see std::path.
+For low-level network IO, see std::net.
+One Liners for Reading the Entire File Use read_to_string and read.
+These are both fast as they allocate a buffer of the required size to start with.
+let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;quot;/some/file&amp;quot;)?;  One Liners for Writing the Entire File Use write.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -156,6 +156,15 @@
     </item>
     
     <item>
+      <title>File</title>
+      <link>https://www.philipdaniels.com/tags/file/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/file/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Hash</title>
       <link>https://www.philipdaniels.com/tags/hash/</link>
       <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
@@ -188,6 +197,15 @@
       <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/identity/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Io</title>
+      <link>https://www.philipdaniels.com/tags/io/</link>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/io/</guid>
       <description></description>
     </item>
     
@@ -320,7 +338,7 @@
     <item>
       <title>Rust</title>
       <link>https://www.philipdaniels.com/tags/rust/</link>
-      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/rust/</guid>
       <description></description>
