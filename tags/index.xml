@@ -32,9 +32,27 @@
     <item>
       <title>Async</title>
       <link>https://www.philipdaniels.com/tags/async/</link>
-      <pubDate>Mon, 06 Nov 2017 20:19:45 +0000</pubDate>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/async/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Async Std</title>
+      <link>https://www.philipdaniels.com/tags/async-std/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/async-std/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Await</title>
+      <link>https://www.philipdaniels.com/tags/await/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/await/</guid>
       <description></description>
     </item>
     
@@ -170,6 +188,15 @@
       <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/hash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Http</title>
+      <link>https://www.philipdaniels.com/tags/http/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/http/</guid>
       <description></description>
     </item>
     
@@ -338,7 +365,7 @@
     <item>
       <title>Rust</title>
       <link>https://www.philipdaniels.com/tags/rust/</link>
-      <pubDate>Thu, 23 May 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/rust/</guid>
       <description></description>
@@ -395,6 +422,15 @@
       <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/ssh/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Surf</title>
+      <link>https://www.philipdaniels.com/tags/surf/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/surf/</guid>
       <description></description>
     </item>
     

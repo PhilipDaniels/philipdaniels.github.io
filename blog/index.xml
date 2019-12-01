@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 23 May 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Some simple Rust async-std examples</title>
+      <link>https://www.philipdaniels.com/blog/2019/async-std-demo1/</link>
+      <pubDate>Sun, 01 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/async-std-demo1/</guid>
+      <description>Introduction As everyone knows, Rust recently stabilized the async/await feature. My first attempt to convert a little program I had to use it was a dismal failure, (reasons are at the bottom of this post), so I thought I would step back and write some simple - and I do mean very simple - examples of how to use await. The final step in this post shows how to download multiple URLs, in parallel, which was the business problem I was trying to solve in the first place.</description>
+    </item>
     
     <item>
       <title>Rust File IO</title>
