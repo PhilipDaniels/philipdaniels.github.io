@@ -229,7 +229,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 13 min read
+    <i class="fas fa-clock"></i> 14 min read
 </div>
 
 
@@ -396,6 +396,12 @@ the sum of their individual times.</p>
 want to run <code>N</code>. The easiest way to do this seems to be to use the
 <a href="https://docs.rs/futures/0.3.1/futures/stream/futures_unordered/struct.FuturesUnordered.html">FuturesUnordered</a>
 collection type from the <code>futures</code> crate.</p>
+
+<blockquote>
+<p>Update 14 Dec 2019: Actually, an easier way is to spawn individual
+tasks, a technique that also means we benefit from running on all
+available cores. See Step 7 of this post.</p>
+</blockquote>
 
 <p>Let&rsquo;s add a new function:</p>
 
@@ -689,6 +695,55 @@ Program finished in 6622 ms
 
 <p>And that&rsquo;s it! I hope this proves useful to others; comments and improvements
 are welcome.</p>
+
+<h1 id="step-7">Step 7</h1>
+
+<p>A couple of weeks after writing the first version of this post I figured out a way
+to run multiple futures on multiple cores. We don&rsquo;t need <code>FuturesUnordered</code>, we can
+just spawn as many tasks as we need then wait for them all to complete. <code>async-std's</code>
+executor will distribute the tasks across all available cores. Here is a simple
+example, based on downloading URLs again:</p>
+
+<pre><code class="language-rs">fn demo_downloading_urls_on_multiple_threads() {
+    let mut tasks = Vec::with_capacity(URLS.len());
+
+    for url in URLS.iter() {
+        let url = url.to_string();
+        tasks.push(task::spawn(async move {
+            match download_url(&amp;url).await {
+                Ok(body) =&gt; { // Possibly do something useful with the body of the request here.
+                },
+                Err(e) =&gt; println!(&quot;    Got error {:?}&quot;, e),
+            }
+        }))
+    }
+
+    task::block_on(async {
+        for t in tasks {
+            t.await;
+        }
+    });
+}
+</code></pre>
+
+<p>When we run this program we get something like this (note the different ThreadIds):</p>
+
+<pre><code>Downloading https://www.sharecast.com/equity/Anglo_American on thread ThreadId(9)
+Downloading https://www.sharecast.com/equity/Associated_British_Foods on thread ThreadId(4)
+Downloading https://www.sharecast.com/equity/Admiral_Group on thread ThreadId(7)
+Downloading https://www.sharecast.com/equity/Ashtead_Group on thread ThreadId(5)
+Downloading https://www.sharecast.com/equity/Aviva on thread ThreadId(6)
+Downloading https://www.sharecast.com/equity/BAE_Systems on thread ThreadId(2)
+Downloading https://www.sharecast.com/equity/Barratt_Developments on thread ThreadId(3)
+Downloading https://www.sharecast.com/equity/Aggreko on thread ThreadId(8)
+Downloading https://www.sharecast.com/equity/Babcock_International_Group on thread ThreadId(2)
+Downloading https://www.sharecast.com/equity/BP on thread ThreadId(4)
+...
+</code></pre>
+
+<p>The total execution time is similar to the single-threaded version, but that&rsquo;s only
+because we don&rsquo;t have a lot of work to do. In a heavily loaded server this technique
+is obviously preferable.</p>
 
 <h3 id="gotchas">Gotchas</h3>
 
