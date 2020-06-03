@@ -180,7 +180,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2019 Philip Daniels
+  &copy; 2020 Philip Daniels
   
 </div>
 
@@ -268,6 +268,29 @@ a new PowerShell window you will need to set it again. You can use the
 <p><a href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo manifest format</a></p>
 
 <p><a href="https://rust-embedded.github.io/book/unsorted/speed-vs-size.html">Speed vs size</a></p>
+
+<h1 id="getting-better-performance-from-development-mode-builds">Getting better performance from Development mode builds</h1>
+
+<p>There is a neat trick you can use to get Cargo make your Development mode
+builds run faster, potentially giving you faster run times while keeping
+compilation times reasonable. If you add the following to your <code>Cargo.toml</code>,
+it will make Cargo <em>compile all your crate dependencies with full optimisations</em>
+(like in Release mode) but
+compile your own code with fewer optimisations (like in Development mode).
+Best of both worlds? Maybe.
+As the <a href="https://doc.rust-lang.org/cargo/reference/profiles.html#overrides-and-generics">Cargo profiles</a> page shows, if you make heavy use of generics from 3rd party crates then you
+won&rsquo;t get the full benefit, but in most cases I would not be surprised if
+90% of the Rust code in your program is actually from crates. It certainly
+worked fantastically well on a game I was writing.</p>
+
+<pre><code class="language-toml"># Set the default for dependencies.
+[profile.dev.package.&quot;*&quot;]
+opt-level = 3
+
+[profile.dev]
+# Turn on a small amount of optimisation in development mode.
+opt-level = 1
+</code></pre>
 
 <h1 id="creating-a-config-file-for-cargo">Creating a config file for Cargo</h1>
 
