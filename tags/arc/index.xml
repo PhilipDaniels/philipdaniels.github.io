@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arc on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/arc/</link>
+    <description>Recent content in Arc on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 07 Jul 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/arc/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Cloning yourself - a refactoring for thread-spawning Rust types</title>
+      <link>https://www.philipdaniels.com/blog/2020/self-cloning-for-multiple-threads-in-rust/</link>
+      <pubDate>Tue, 07 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2020/self-cloning-for-multiple-threads-in-rust/</guid>
+      <description>I recently discovered for myself a very nice Rust refactoring (or pattern?) which produced a very significant simplification in some code I am working on.
+I would like to share it with you. I&amp;rsquo;d say this is an intermediate-level article, since the Rust compiler won&amp;rsquo;t lead you towards this design, good as its error messages are.
+The Problem I wanted to create a Rust type - let&amp;rsquo;s call it JobEngine - that would be used in many places in my program, and from multiple threads.</description>
+    </item>
+    
+  </channel>
+</rss>

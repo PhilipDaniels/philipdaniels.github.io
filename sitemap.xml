@@ -3,6 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2020/self-cloning-for-multiple-threads-in-rust/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/2019/async-std-demo1/</loc>
     <lastmod>2019-12-01T00:00:00+00:00</lastmod>
   </url>
@@ -162,6 +167,12 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/arc/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/archive/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -193,7 +204,7 @@
   
   <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -211,6 +222,18 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/clap/</loc>
     <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/clone/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/closure/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -341,6 +364,12 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/mutex/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/networking/</loc>
     <lastmod>2016-12-27T20:19:45+00:00</lastmod>
     <priority>0</priority>
@@ -383,8 +412,14 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/pattern/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -401,6 +436,12 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/refactor/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/ripgrep/</loc>
     <lastmod>2019-04-14T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -408,13 +449,19 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/rust/</loc>
-    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://www.philipdaniels.com/tags/samba/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/self/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -449,6 +496,12 @@
   </url>
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/struct/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/surf/</loc>
     <lastmod>2019-12-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
@@ -475,6 +528,12 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/terminal/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/thread/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   

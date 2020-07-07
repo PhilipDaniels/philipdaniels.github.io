@@ -6,10 +6,21 @@
     <description>Recent content in Rust on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 01 Dec 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 07 Jul 2020 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cloning yourself - a refactoring for thread-spawning Rust types</title>
+      <link>https://www.philipdaniels.com/blog/2020/self-cloning-for-multiple-threads-in-rust/</link>
+      <pubDate>Tue, 07 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2020/self-cloning-for-multiple-threads-in-rust/</guid>
+      <description>I recently discovered for myself a very nice Rust refactoring (or pattern?) which produced a very significant simplification in some code I am working on.
+I would like to share it with you. I&amp;rsquo;d say this is an intermediate-level article, since the Rust compiler won&amp;rsquo;t lead you towards this design, good as its error messages are.
+The Problem I wanted to create a Rust type - let&amp;rsquo;s call it JobEngine - that would be used in many places in my program, and from multiple threads.</description>
+    </item>
     
     <item>
       <title>Some simple Rust async-std examples</title>
