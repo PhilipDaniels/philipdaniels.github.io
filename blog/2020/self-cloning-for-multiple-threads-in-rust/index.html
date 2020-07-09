@@ -245,7 +245,7 @@ if (!doNotTrack) {
     
     
     <br/>
-    <i class="fas fa-clock"></i> 5 min read
+    <i class="fas fa-clock"></i> 6 min read
 </div>
 
 
@@ -394,7 +394,7 @@ here:</p>
 
 <pre><code class="language-rs">/// Creates a new job engine that is running and ready to process jobs.
 pub fn new(dest_dir: ShadowCopyDestination) -&gt; Self {
-    let me = Self {
+    let this = Self {
         dest_dir,
         pending_jobs: Default::default(),
         completed_jobs: Default::default(),
@@ -408,30 +408,31 @@ pub fn new(dest_dir: ShadowCopyDestination) -&gt; Self {
 
     // Create the JOB_EXECUTOR thread.
     let builder = thread::Builder::new().name(&quot;JOB_EXECUTOR&quot;.into());
-    let this = me.clone();
+
     builder
-        .spawn(move || {
-            this.run_job_executor_thread(job_exec_internal_receiver, job_exec_internal_sender);
+        .spawn({
+            let this = this.clone();
+            move || this.run_job_executor_thread(job_exec_internal_receiver, job_exec_internal_sender)
         })
         .expect(&quot;Cannot create JOB_EXECUTOR thread&quot;);
 
     // Create the JOB_STARTER thread.
     let builder = thread::Builder::new().name(&quot;JOB_STARTER&quot;.into());
-    let this = me.clone();
     builder
-        .spawn(move || {
-            this.run_job_starter_thread(job_exec_sender);
+        .spawn({
+            let this = this.clone();
+            move || this.run_job_starter_thread(job_exec_sender)
         })
         .expect(&quot;Cannot create JOB_STARTER thread&quot;);
 
     // Create the JOB_COMPLETED thread.
     let builder = thread::Builder::new().name(&quot;JOB_COMPLETED&quot;.into());
-    let this = me.clone();
-    builder.spawn(move || {
-        this.run_job_completed_thread(job_exec_receiver);
+    builder.spawn({
+        let this = this.clone();
+        move || this.run_job_completed_thread(job_exec_receiver)
     }).expect(&quot;Cannot create JOB_COMPLETED thread&quot;);
 
-    me
+    this
 }
 </code></pre>
 
@@ -440,13 +441,16 @@ and the reduced number of functions and vastly reduced number of <code>clones</c
 And the ability to have my worker threads execute methods on my struct fits better
 with my mental model of the job engine. I don&rsquo;t like massive inline closures.</p>
 
-<p>Apart from the horrifying synonymity of <code>Self</code>, <code>this</code>, <code>me</code><sup>*</sup> I was
-really pleased with how this turned out. It&rsquo;s always satisfying when you discover a
-relatively simple refactoring that allows you to bring a codebase that was getting out
+<p>Note how the <code>spawn</code> methods use a &lsquo;closure returning block&rsquo; - this allows the
+cloning of <code>this</code> to be done in a more limited scope than doing it before the call
+to <code>spawn</code>. (Credit to <a href="https://www.reddit.com/user/matklad">/u/matklad</a> for this nice little hack.)</p>
+
+<p>I was really pleased with how this turned out. It&rsquo;s always satisfying when you discover
+a relatively simple refactoring that allows you to bring a codebase that was getting out
 of control back into line.</p>
 
 <p>(*) <code>self</code> is a reserved word, so although it looks like you could unambiguously
-use a variable called <code>self</code> in the <code>new</code> function instead of <code>me</code>, it turns out
+use a variable called <code>self</code> in the <code>new</code> function instead of <code>this</code>, it turns out
 to be forbidden - I guess it keeps the compiler writers&rsquo; lives simple(ish).</p>
 
   </div>
