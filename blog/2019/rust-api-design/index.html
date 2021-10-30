@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -35,8 +35,9 @@ AsRef (and AsMut) AsRef allows a function to be called with parameters of differ
 Example:
 fn func1(p1: PathBuf); fn func2(p1: &amp;Path); fn func3&lt;S&gt;(p1: S) where S: AsRef&lt;Path&gt; { let p1 = p1." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-api-design/" /><meta property="article:published_time" content="2019-04-06T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-04-06T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-api-design/" />
+<meta property="article:published_time" content="2019-04-06T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-04-06T00:00:00+00:00" />
 
 
     
@@ -51,7 +52,7 @@ fn func1(p1: PathBuf); fn func2(p1: &amp;Path); fn func3&lt;S&gt;(p1: S) where S
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -186,7 +187,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -236,135 +237,96 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="flexible-input-parameters">Flexible Input Parameters</h1>
-
+    <h1 id="flexible-input-parameters">Flexible Input Parameters</h1>
 <p>There are two generic built-in traits you can use to make your function easy to call.</p>
-
 <p>They are <a href="https://doc.rust-lang.org/std/convert/trait.AsRef.html">AsRef</a>
 and <a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a>.</p>
-
 <h2 id="asref-and-asmut">AsRef (and AsMut)</h2>
-
 <p>AsRef allows a function to be called with parameters of differing types - basically anything
 that allows a reference of the appropriate type to be created cheaply and without ever
 failing. <a href="https://doc.rust-lang.org/std/convert/trait.AsMut.html">AsMut</a>
 is the same but for mutable references.</p>
-
 <p>Example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func1</span>(p1: <span style="color:#a6e22e">PathBuf</span>);
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func2</span>(p1: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">Path</span>);
 
-<pre><code class="language-rs">fn func1(p1: PathBuf);
-fn func2(p1: &amp;Path);
-
-fn func3&lt;S&gt;(p1: S)
-where S: AsRef&lt;Path&gt;
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func3</span><span style="color:#f92672">&lt;</span>S<span style="color:#f92672">&gt;</span>(p1: <span style="color:#a6e22e">S</span>)
+<span style="color:#66d9ef">where</span> S: AsRef<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span>
 {
-    let p1 = p1.as_ref();
+    <span style="color:#66d9ef">let</span> p1 <span style="color:#f92672">=</span> p1.as_ref();
     ...
 }
-</code></pre>
-
-<ul>
+</code></pre></div><ul>
 <li><code>func1</code> can only be called with a <code>PathBuf</code>.</li>
 <li><code>func2</code> can be called with a <code>Path</code> or a <code>&amp;PathBuf</code>.</li>
 <li><code>func3</code> can be called with a <code>Path</code> or a <code>&amp;PathBuf</code> or anything else
 that allows a <code>Path</code> to be borrowed from it - including, handily, strings.</li>
 </ul>
-
 <p><code>func3</code> is therefore most flexible and the best approach.</p>
-
 <p>Consider <code>func4</code>:</p>
-
-<pre><code class="language-rs">fn func4&lt;S&gt;(p1: S, p2: S)
-where S: AsRef&lt;Path&gt; { ... }
-</code></pre>
-
-<p>This works, *but constraints <code>p1</code> and <code>p2</code> to be of the same type. You can be
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func4</span><span style="color:#f92672">&lt;</span>S<span style="color:#f92672">&gt;</span>(p1: <span style="color:#a6e22e">S</span>, p2: <span style="color:#a6e22e">S</span>)
+<span style="color:#66d9ef">where</span> S: AsRef<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> { ... }
+</code></pre></div><p>This works, *but constraints <code>p1</code> and <code>p2</code> to be of the same type. You can be
 more flexible:</p>
-
-<pre><code class="language-rs">fn func4&lt;N, M&gt;(p1: N, p2: M)
-where N: AsRef&lt;Path&gt;,
-      S: AsRef&lt;Path&gt; { ... }
-</code></pre>
-
-<h3 id="asref-str">AsRef<code>&lt;str</code>&gt;</h3>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func4</span><span style="color:#f92672">&lt;</span>N, M<span style="color:#f92672">&gt;</span>(p1: <span style="color:#a6e22e">N</span>, p2: <span style="color:#a6e22e">M</span>)
+<span style="color:#66d9ef">where</span> N: AsRef<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span>,
+      S: AsRef<span style="color:#f92672">&lt;</span>Path<span style="color:#f92672">&gt;</span> { ... }
+</code></pre></div><h3 id="asrefstr">AsRef<code>&lt;str</code>&gt;</h3>
 <p>One very common case is converting things to (static) strings, for example
 enum values. Use the built-in trait for this, do not define your own:</p>
-
-<pre><code class="language-rs">impl AsRef&lt;str&gt; for XmlDoc {
-    fn as_ref(&amp;self) -&gt; &amp;str {
-        match self {
-            XmlDoc::Unknown =&gt; &quot;Unknown&quot;,
-            XmlDoc::None =&gt; &quot;None&quot;,
-            XmlDoc::Debug =&gt; &quot;Debug&quot;,
-            XmlDoc::Release =&gt; &quot;Release&quot;,
-            XmlDoc::Both =&gt; &quot;Both&quot;,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">impl</span> AsRef<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">str</span><span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> XmlDoc {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">as_ref</span>(<span style="color:#f92672">&amp;</span>self) -&gt; <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">str</span> {
+        <span style="color:#66d9ef">match</span> self {
+            XmlDoc::Unknown <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Unknown&#34;</span>,
+            XmlDoc::None <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;None&#34;</span>,
+            XmlDoc::Debug <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Debug&#34;</span>,
+            XmlDoc::Release <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Release&#34;</span>,
+            XmlDoc::Both <span style="color:#f92672">=&gt;</span> <span style="color:#e6db74">&#34;Both&#34;</span>,
         }
     }
 }
-</code></pre>
-
-<p><strong>An AsRef Anti-pattern</strong></p>
-
+</code></pre></div><p><strong>An AsRef Anti-pattern</strong></p>
 <p>AsRef is useful where you only need to borrow the input parameter. If you find yourself
 doing</p>
-
-<pre><code class="language-rs">let x = param.as_ref().to_owned();
-</code></pre>
-
-<p>You&rsquo;re doing it wrong. Use <a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a> instead.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">let</span> x <span style="color:#f92672">=</span> param.as_ref().to_owned();
+</code></pre></div><p>You&rsquo;re doing it wrong. Use <a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a> instead.</p>
 <h2 id="into">Into</h2>
-
 <p><a href="https://doc.rust-lang.org/std/convert/trait.Into.html">Into</a>
 has a similar effect to AsRef, in that it makes function APIs more flexible. The difference
 is that Into is used when you want to <strong>take ownership</strong> of the parameter. This is often used in
 constructors, for example:</p>
-
 <pre><code>fn new&lt;S&gt;(model: S) -&gt; Self
 where S: Into&lt;String&gt;
 {
     ...
 }
-</code></pre>
-
-<p>You can mix AsRef and Into as required.</p>
-
+</code></pre><p>You can mix AsRef and Into as required.</p>
 <ul>
-<li>For AsRef<T>, T is the borrowed type (str, Path)</li>
-<li>For Into<T>, T is the owning type (String, PathBuf)</li>
+<li>For AsRef<!-- raw HTML omitted -->, T is the borrowed type (str, Path)</li>
+<li>For Into<!-- raw HTML omitted -->, T is the owning type (String, PathBuf)</li>
 </ul>
-
 <h3 id="getting-into-working-for-your-own-types">Getting &lsquo;Into&rsquo; working for your own types</h3>
-
 <p><strong>Do not</strong> implement <code>Into</code> for your types. Implement
 <a href="https://doc.rust-lang.org/std/convert/trait.From.html">From</a>
 instead. The standard library has a blanket implementation of <code>Into</code> which you will get &lsquo;for free&rsquo;.</p>
-
 <p><strong>If your type has a constructor taking a single parameter of type T</strong>, strongly consider
 removing the ctor and implementing <code>From&lt;T&gt;</code> instead. Example follows - note that you can still use
 <code>Into</code> in the implementation for maximum flexibility but you seem to have to use a <code>where</code> constraint
 to get it to compile:</p>
-
-<pre><code class="language-rs">impl&lt;P&gt; From&lt;P&gt; for SolutionDirectory
-where P: Into&lt;PathBuf&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span>P<span style="color:#f92672">&gt;</span> From<span style="color:#f92672">&lt;</span>P<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">for</span> SolutionDirectory
+<span style="color:#66d9ef">where</span> P: Into<span style="color:#f92672">&lt;</span>PathBuf<span style="color:#f92672">&gt;</span>
 {
-    fn from(sln_directory: P) -&gt; Self {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">from</span>(sln_directory: <span style="color:#a6e22e">P</span>) -&gt; <span style="color:#a6e22e">Self</span> {
         SolutionDirectory {
-            directory: sln_directory.into(),
-            solutions: vec![]
+            directory: <span style="color:#a6e22e">sln_directory</span>.into(),
+            solutions: <span style="color:#a6e22e">vec</span><span style="color:#f92672">!</span>[]
         }
     }
 }
 
 
-let s: SolutionDirectory = &quot;somepath&quot;.into();
-</code></pre>
-
-<h1 id="misc-observations">Misc Observations</h1>
-
+<span style="color:#66d9ef">let</span> s: <span style="color:#a6e22e">SolutionDirectory</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;somepath&#34;</span>.into();
+</code></pre></div><h1 id="misc-observations">Misc Observations</h1>
 <ul>
 <li>Functions in <a href="https://doc.rust-lang.org/1.29.1/std/fs/struct.File.html">std::fs</a>
 typically take a <code>AsRef&lt;Path&gt;</code> to which you can pass a <code>PathBuf</code>,
@@ -377,53 +339,46 @@ see section &lsquo;Reference Conversions - AsRef&rsquo;.</li>
 <li>The above traits must not fail. Coming soon are
 <a href="https://doc.rust-lang.org/std/convert/trait.TryFrom.html">TryFrom</a>
 and
-<a href="https://doc.rust-lang.org/std/convert/trait.TryInto.html">TryInfo</a>.</li>
+<a href="https://doc.rust-lang.org/std/convert/trait.TryInto.html">TryInto</a>.</li>
 </ul>
-
 <h1 id="cow-for-out-parameters">Cow for Out Parameters</h1>
-
 <p><a href="https://doc.rust-lang.org/std/borrow/enum.Cow.html">Cow</a>
 allows you to put off allocation unless it is absolutely necessary.
 It often appears in the return position (because it implements DeRef coercion
 so there is no need for it in the input parameter list).</p>
-
 <p>A few examples. The <code>.into()</code> call is a call to Cow&rsquo;s into method -
 basically an easy and ergonomic way of creating Cows without having to
 specify <code>Cow::Borrowed(data)</code> or <code>Cow::Owned(data)</code> everywhere.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::borrow::Cow;
 
-<pre><code class="language-rs">use std::borrow::Cow;
-
-/// Returns a Cow::Borrowed with static lifetime
-fn func5() -&gt; Cow&lt;'static, str&gt; {
-    &quot;&quot;.into()
+<span style="color:#e6db74">/// Returns a Cow::Borrowed with static lifetime
+</span><span style="color:#e6db74"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func5</span>() -&gt; <span style="color:#a6e22e">Cow</span><span style="color:#f92672">&lt;</span>&#39;static, <span style="color:#66d9ef">str</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#e6db74">&#34;&#34;</span>.into()
 }
 
-/// Returns a Cow::Owned with static lifetime
-fn func6() -&gt; Cow&lt;'static, str&gt; {
-    let s = &quot;s&quot;.to_owned();
+<span style="color:#e6db74">/// Returns a Cow::Owned with static lifetime
+</span><span style="color:#e6db74"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func6</span>() -&gt; <span style="color:#a6e22e">Cow</span><span style="color:#f92672">&lt;</span>&#39;static, <span style="color:#66d9ef">str</span><span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">let</span> s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;s&#34;</span>.to_owned();
     s.into()
 }
 
-/// Returns a Cow::Borrowed with lifetime the same as 'data'.
-fn func7(data: &amp;str) -&gt; Cow&lt;str&gt; {
-    Cow::Borrowed(&amp;data[0..1])
+<span style="color:#e6db74">/// Returns a Cow::Borrowed with lifetime the same as &#39;data&#39;.
+</span><span style="color:#e6db74"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func7</span>(data: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">str</span>) -&gt; <span style="color:#a6e22e">Cow</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">str</span><span style="color:#f92672">&gt;</span> {
+    Cow::Borrowed(<span style="color:#f92672">&amp;</span>data[<span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">1</span>])
 }
 
-// Ditto.
-fn func8(data: &amp;str) -&gt; Cow&lt;str&gt; {
-    data[0..1].into()
+<span style="color:#75715e">// Ditto.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func8</span>(data: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">str</span>) -&gt; <span style="color:#a6e22e">Cow</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">str</span><span style="color:#f92672">&gt;</span> {
+    data[<span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">1</span>].into()
 }
 
-fn main() {
-    match func8(&quot;hello&quot;) {
-        Cow::Borrowed(_) =&gt; println!(&quot;It's borrowed&quot;),
-        Cow::Owned(_) =&gt; println!(&quot;Owned!&quot;),
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">match</span> func8(<span style="color:#e6db74">&#34;hello&#34;</span>) {
+        Cow::Borrowed(_) <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;It&#39;s borrowed&#34;</span>),
+        Cow::Owned(_) <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Owned!&#34;</span>),
     }
 }
-</code></pre>
-
-<h1 id="see-also">See Also</h1>
-
+</code></pre></div><h1 id="see-also">See Also</h1>
 <ul>
 <li><a href="https://rust-lang-nursery.github.io/api-guidelines/about.html">The Official Rust API Guidelines</a></li>
 <li><a href="https://deterministic.space/elegant-apis-in-rust.html">Elegant Rust APIs</a></li>

@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -29,8 +29,9 @@
 <meta property="og:description" content="Summary of Stephen Cleary&rsquo;s &lsquo;A Tour of Task&rsquo; articles The first article
  Task as used by TPL is completely different to Task as used by async. The vast majority of Task members have no place in async code. There are two types of Task ** Delegate tasks, which have code to run ** Promise tasks, which represent an event or signal (e.g. IO or timer based) Most TPL code uses Delegate tasks across multiple threads,, most async code uses Promise tasks which don&rsquo;t tie up a thread." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/tour-of-task/" /><meta property="article:published_time" content="2017-11-06T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2017-11-06T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/tour-of-task/" />
+<meta property="article:published_time" content="2017-11-06T20:19:45+00:00" />
+<meta property="article:modified_time" content="2017-11-06T20:19:45+00:00" />
 
 
     
@@ -45,7 +46,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -236,12 +237,8 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="summary-of-stephen-cleary-s-a-tour-of-task-articles">Summary of Stephen Cleary&rsquo;s &lsquo;A Tour of Task&rsquo; articles</h1>
-
+    <h1 id="summary-of-stephen-clearys-a-tour-of-task-articles">Summary of Stephen Cleary&rsquo;s &lsquo;A Tour of Task&rsquo; articles</h1>
 <p><a href="http://blog.stephencleary.com/2014/04/a-tour-of-task-part-0-overview.html">The first article</a></p>
-
 <ul>
 <li>Task as used by <a href="https://docs.microsoft.com/en-us/dotnet/standard/parallel-programming/task-parallel-library-tpl">TPL</a>
 is completely different to Task as used by <code>async</code>.</li>
@@ -252,11 +249,8 @@ is completely different to Task as used by <code>async</code>.</li>
 <li>Most TPL code uses Delegate tasks across multiple threads,, most async code uses Promise tasks
 which don&rsquo;t tie up a thread.</li>
 </ul>
-
 <h2 id="task-constructors">Task Constructors</h2>
-
 <p><a href="http://blog.stephencleary.com/2014/05/a-tour-of-task-part-1-constructors.html">Original Article</a></p>
-
 <ul>
 <li>These can only create Delegate tasks. Promise tasks are created using the <code>async</code> keyword.</li>
 <li>They create tasks that are not running. Don&rsquo;t use them.</li>
@@ -265,20 +259,14 @@ or <a href="https://docs.microsoft.com/en-us/dotnet/standard/parallel-programmin
 for parallel code.</li>
 <li>For dynamic task parallelism, you can use <code>Task.Run</code> or <code>Task.Factory.StartNew</code>.</li>
 </ul>
-
 <h2 id="task-status">Task Status</h2>
-
 <p><a href="http://blog.stephencleary.com/2014/06/a-tour-of-task-part-3-status.html">Original Article</a></p>
-
 <ul>
 <li>Rarely used except for debugging, normally wait for the task to complete and extract the
 results.</li>
 </ul>
-
 <h2 id="waiting">Waiting</h2>
-
 <p><a href="http://blog.stephencleary.com/2014/10/a-tour-of-task-part-5-wait.html">Original Article</a></p>
-
 <ul>
 <li>All <code>Wait</code> operations block the calling thread until the task completes, so they are never
 used with Promise tasks. (Blocking on a Promise is a cause of deadlocks).</li>
@@ -291,11 +279,8 @@ whereas a canceled wait will raise an unwrapped <code>OperationCanceledException
 <li><code>WaitAll</code> and <code>WaitAny</code> are similar, but for collections of <code>Task</code>.</li>
 <li>Use <code>await</code> instead of <code>Wait</code>.</li>
 </ul>
-
 <h2 id="results">Results</h2>
-
 <p><a href="http://blog.stephencleary.com/2014/12/a-tour-of-task-part-6-results.html">Original Article</a></p>
-
 <ul>
 <li>Only exists on <code>Task&lt;T&gt;</code> type.</li>
 <li>Blocks like <code>Wait</code>, with the same drawbacks.</li>
@@ -304,35 +289,27 @@ whereas a canceled wait will raise an unwrapped <code>OperationCanceledException
 for both <code>Task&lt;T&gt;</code> and <code>Task</code>. So if you have to block, this is better.</li>
 <li>The vast majority of time, <code>await</code> should be used to get the result of a Promise task.</li>
 </ul>
-
 <h2 id="continuations">Continuations</h2>
-
 <p><a href="http://blog.stephencleary.com/2015/01/a-tour-of-task-part-7-continuations.html">Original Article</a></p>
-
 <ul>
 <li>Don&rsquo;t use <code>ContinueWith</code> - the defaults are all wrong. Just use <code>await</code>.</li>
 <li>Don&rsquo;t use <code>TaskFactory.ContinueWhenAny</code> - use <code>await Task.WhenAny(...)</code></li>
 <li>Don&rsquo;t use <code>TaskFactory.ContinueWhenAll</code> - use <code>await Task.WhenAll(...)</code></li>
 </ul>
-
 <h2 id="starting-delegate-tasks">Starting Delegate tasks</h2>
-
 <p><a href="http://blog.stephencleary.com/2015/02/a-tour-of-task-part-8-starting.html">The obsolete way</a>
 and
 <a href="http://blog.stephencleary.com/2015/03/a-tour-of-task-part-9-delegate-tasks.html">The correct way</a></p>
-
 <ul>
 <li>Don&rsquo;t use <code>Start</code>.</li>
 <li>Don&rsquo;t use <code>RunSynchronously</code>. It runs on the current thread.</li>
-<li>Don&rsquo;t use <code>Task.Factory.StartNew</code> unless you are doing <a href="https://msdn.microsoft.com/en-us/library/ff963551.aspx">dynamic task parallelism</a> (which is very rare)</li>
+<li>Don&rsquo;t use <code>Task.Factory.StartNew</code> unless you are doing [dynamic task parallelism]
+(<a href="https://msdn.microsoft.com/en-us/library/ff963551.aspx">https://msdn.microsoft.com/en-us/library/ff963551.aspx</a>) (which is very rare)</li>
 <li>DO USE <code>Task.Run</code>. Its <code>CancellationToken</code> is mostly useless, but the other overloads are good
 for queueing work to the thread pool.</li>
 </ul>
-
 <h2 id="starting-promise-tasks">Starting Promise tasks</h2>
-
 <p><a href="http://blog.stephencleary.com/2015/04/a-tour-of-task-part-10-promise-tasks.html">Original Article</a></p>
-
 <ul>
 <li><code>Task.Delay</code> is the async equivalent of <code>Thread.Sleep</code>, use it in preference. <code>Thread.Sleep</code>
 actually puts the current thread to sleep for a time (which means it is not doing any useful
@@ -341,11 +318,8 @@ work). <code>Task.Delay</code> allows the thread to be used to do other work (pe
 <li><code>Task.FromException</code> and <code>Task.FromCancelled</code> can be used to return completed tasks in those
 states (.Net 4.6 API).</li>
 </ul>
-
-<h1 id="summary-of-stephen-cleary-s-async-intro">Summary of Stephen Cleary&rsquo;s async intro</h1>
-
+<h1 id="summary-of-stephen-clearys-async-intro">Summary of Stephen Cleary&rsquo;s async intro</h1>
 <p><a href="http://blog.stephencleary.com/2012/02/async-and-await.html">Original Article</a></p>
-
 <ul>
 <li>Avoid <code>async void</code> methods, except for event handlers. They can&rsquo;t be awaited.</li>
 <li>When you <code>await</code> a built-in awaitable, the current &ldquo;context&rdquo; is captured and later

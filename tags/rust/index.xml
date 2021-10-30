@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Rust on Phil&#39;s Blog</title>
+    <title>rust on Phil&#39;s Blog</title>
     <link>https://www.philipdaniels.com/tags/rust/</link>
-    <description>Recent content in Rust on Phil&#39;s Blog</description>
+    <description>Recent content in rust on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Jul 2020 00:00:00 +0000</lastBuildDate>
@@ -43,7 +43,7 @@ For manipulating paths, see std::path.
 For low-level network IO, see std::net.
 One Liners for Reading the Entire File Use read_to_string and read.
 These are both fast as they allocate a buffer of the required size to start with.
-let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;quot;/some/file&amp;quot;)?;  One Liners for Writing the Entire File Use write.</description>
+let contents: String = std::fs::read_to_string(&amp;#34;/some/file&amp;#34;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;#34;/some/file&amp;#34;)?; One Liners for Writing the Entire File Use write.</description>
     </item>
     
     <item>
@@ -53,7 +53,7 @@ let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?;
       
       <guid>https://www.philipdaniels.com/blog/2019/rust-equality-and-ordering/</guid>
       <description>Introduction This article is a short how-to guide for writing your own implementations of the equality, hashing and ordering traits in Rust. Often you can just auto-derive these:
-#[derive(PartialEq, Eq, Hash, PartialOrd, Ord)] pub MyStruct { ... }  But sometimes you want to roll your-own, perhaps because you can do it more efficiently than the automatic versions, or you simply want to be more explicit about what it means for two things to be &amp;lsquo;equal&amp;rsquo; or perhaps you want to express relationships between instances of MyStruct and SomeOtherStruct, which the automatic versions can&amp;rsquo;t do.</description>
+#[derive(PartialEq, Eq, Hash, PartialOrd, Ord)] pub MyStruct { ... } But sometimes you want to roll your-own, perhaps because you can do it more efficiently than the automatic versions, or you simply want to be more explicit about what it means for two things to be &amp;lsquo;equal&amp;rsquo; or perhaps you want to express relationships between instances of MyStruct and SomeOtherStruct, which the automatic versions can&amp;rsquo;t do.</description>
     </item>
     
     <item>
@@ -75,9 +75,10 @@ I have created a worked example which has the following features:</description>
       
       <guid>https://www.philipdaniels.com/blog/2019/rust-api-design2/</guid>
       <description>Iterators as Input Parameters This is reasonable:
-fn func1(data: &amp;amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
-fn func2&amp;lt;C&amp;gt;(data: C) where C: IntoIterator&amp;lt;Item = i32&amp;gt;  (Ref: API Guidelines)
-Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.</description>
+fn func1(data: &amp;amp;[i32]) {} But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&amp;lt;C&amp;gt;(data: C) where C: IntoIterator&amp;lt;Item = i32&amp;gt; (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.
+FromIterator allows instances of your collection to be constructed using collect and Extend allows you to easily add the contents of an iterator to a collection via the extend method.</description>
     </item>
     
     <item>

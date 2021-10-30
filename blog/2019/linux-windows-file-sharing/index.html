@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -23,14 +23,15 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="File Sharing Between Linux and Windows"/>
 <meta name="twitter:description" content="Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
-[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes  Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart."/>
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart."/>
 
 <meta property="og:title" content="File Sharing Between Linux and Windows" />
 <meta property="og:description" content="Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
-[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes  Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart." />
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-01-27T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/" />
+<meta property="article:published_time" content="2019-01-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-27T00:00:00+00:00" />
 
 
     
@@ -45,7 +46,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -236,13 +237,9 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="creating-a-samba-share-on-linux">Creating a Samba Share on Linux</h1>
-
+    <h1 id="creating-a-samba-share-on-linux">Creating a Samba Share on Linux</h1>
 <p>Edit <code>/etc/samba/smb.conf</code> adding a stanza at the bottom something like this (<code>[slow]</code> is the name the share
 will have). Notice the valid users.</p>
-
 <pre><code>[slow]
 	path = /home/phil/slow
 	available = yes
@@ -251,46 +248,30 @@ will have). Notice the valid users.</p>
 	browsable = yes
 	public = yes
 	writable = yes
-</code></pre>
-
-<p>Then do <code>sudo smbpasswd -a USER</code> and enter a Samba password for the user, then restart Samba
+</code></pre><p>Then do <code>sudo smbpasswd -a USER</code> and enter a Samba password for the user, then restart Samba
 <code>sudo service smbd restart</code>. The share should now be mappable in Windows as <code>\\plato\slow</code>, use a
 username of <code>phil</code> (no prefixes such as plato\phil) and the relevant password.</p>
-
 <p>You might have to adjust Security Policy on Windows 10 to be able to map the share. Do <code>run secpol</code>
 and navigate to <code>Local Policies → Security Options -&gt; Network Security: LAN Manager authentication level</code>.
 I set it to <code>Send NTMLv2 response only</code>, but that was while trying to connect to an improperly
 setup share. It might not actually be necessary.</p>
-
 <h1 id="permanently-mount-a-windows-share-in-linux-mint">Permanently Mount a Windows Share in Linux Mint</h1>
-
 <p>See <a href="https://wiki.ubuntu.com/MountWindowsSharesPermanently">https://wiki.ubuntu.com/MountWindowsSharesPermanently</a>.
 I added these lines to <code>/etc/fstab</code>:</p>
-
 <pre><code>//192.168.0.202/data /home/phil/win-data cifs credentials=/home/phil/.smbcredentials,uid=1000,gid=1000,iocharset=utf8,sec=ntlm,vers=1.0,rw 0 0
 //192.168.0.202/backup /home/phil/win-backup cifs credentials=/home/phil/.smbcredentials,uid=1000,gid=1000,iocharset=utf8,sec=ntlm,vers=1.0,rw 0 0
-</code></pre>
-
-<p>And <code>~/.smbcredentials</code> just contained:</p>
-
+</code></pre><p>And <code>~/.smbcredentials</code> just contained:</p>
 <pre><code>username=phil
 password=the usual
-</code></pre>
-
-<h1 id="temporarily-access-a-windows-share-from-linux">Temporarily Access a Windows Share from Linux</h1>
-
+</code></pre><h1 id="temporarily-access-a-windows-share-from-linux">Temporarily Access a Windows Share from Linux</h1>
 <p>In Nemo, do <strong>File → Connect to server</strong> then enter</p>
-
 <pre><code>Server = NAMMEOFWINDOWSMACHINE
   Share = r
   Folder = /
   Domain Name = blank usually works (or maybe WORKGROUP)
   User = phil
   Password = THE USUAL
-</code></pre>
-
-<p>You may also need to edit <code>/etc/nsswitch.conf</code> to add this line (the wins is the important bit):</p>
-
+</code></pre><p>You may also need to edit <code>/etc/nsswitch.conf</code> to add this line (the wins is the important bit):</p>
 <pre><code>hosts: files wins dns
 </code></pre>
 

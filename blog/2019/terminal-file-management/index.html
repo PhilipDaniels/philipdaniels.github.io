@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -27,8 +27,9 @@
 <meta property="og:title" content="File Management in the Terminal" />
 <meta property="og:description" content="Copying files and directories  cp manual Duplicate an entire directory including subfolders cp -r SRC DEST Create a symbolic link to a file cp -s FILE NEWLINK (equivalent to ln -s FILE NEWLINK) Create a hard link to a file cp -l FILE NEWLINK (equivalent to ln FILE NEWLINK)  Getting information  stat manual Print last access time, modify time etc. stat FILE du manualShow summary size of a directory in human language du -sh DIR  Exclude certain files --exclude=’*." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/terminal-file-management/" /><meta property="article:published_time" content="2019-01-27T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-01-27T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/terminal-file-management/" />
+<meta property="article:published_time" content="2019-01-27T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-01-27T00:00:00+00:00" />
 
 
     
@@ -43,7 +44,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -178,7 +179,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -225,51 +226,40 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="copying-files-and-directories">Copying files and directories</h1>
-
+    <h1 id="copying-files-and-directories">Copying files and directories</h1>
 <ul>
 <li><a href="http://man7.org/linux/man-pages/man1/cp.1.html">cp manual</a> Duplicate an entire directory including subfolders <code>cp -r SRC DEST</code></li>
 <li>Create a symbolic link to a file <code>cp -s FILE NEWLINK</code> (equivalent to <code>ln -s FILE NEWLINK</code>)</li>
 <li>Create a hard link to a file <code>cp -l FILE NEWLINK</code> (equivalent to <code>ln FILE NEWLINK</code>)</li>
 </ul>
-
 <h1 id="getting-information">Getting information</h1>
-
 <ul>
 <li><a href="http://man7.org/linux/man-pages/man1/stat.1.html">stat manual</a> Print last access time, modify time etc. <code>stat FILE</code></li>
 <li><a href="http://man7.org/linux/man-pages/man1/du.1.html">du manual</a>Show summary size of a directory in human language <code>du -sh DIR</code>
-
 <ul>
 <li>Exclude certain files <code>--exclude=’*.o’</code> (pattern is a shell pattern)</li>
-</ul></li>
+</ul>
+</li>
 <li><a href="http://man7.org/linux/man-pages/man1/find.1.html">find manual</a> Count files in a directory <code>find DIR -type f | wc -l</code> (or use ncdu)</li>
 </ul>
-
 <h1 id="looking-in-files">Looking in files</h1>
-
 <ul>
 <li><a href="http://man7.org/linux/man-pages/man1/cat.1.html">cat manual</a> Number the lines in a file <code>cat -n FILE</code>
-
 <ul>
 <li><a href="http://man7.org/linux/man-pages/man1/nl.1.html">nl manual</a> A more sophisticated version of the above <code>nl file</code></li>
-</ul></li>
+</ul>
+</li>
 <li><a href="http://man7.org/linux/man-pages/man1/head.1.html">head manual</a> Show first N lines of a file <code>head -3 FILE</code></li>
 <li><a href="http://man7.org/linux/man-pages/man1/tail.1.html">tail manual</a> Show last N lines of a file <code>tail -3 FILE</code></li>
 <li>Follow modifications to a file and finish when the process terminates <code>tail –pid=PID -f FILE</code></li>
 </ul>
-
 <h1 id="manage-permissions-and-owners">Manage permissions and owners</h1>
-
 <ul>
 <li><a href="http://man7.org/linux/man-pages/man1/chmod.1.html">chmod manual</a> Change permissions of a file <code>chmod</code></li>
 <li><a href="http://man7.org/linux/man-pages/man1/chown.1.html">chown manual</a> Change the owner of a file <code>chown</code></li>
 <li><a href="http://man7.org/linux/man-pages/man1/chgrp.1.html">chgrp manual</a> Change the group owner of a file <code>chgrp</code></li>
 </ul>
-
 <h1 id="misc">Misc</h1>
-
 <ul>
 <li><a href="https://linux.die.net/man/1/xdg-open">xdg-open manual</a> Open any file from the command line in its associated program <code>xdg-open FILE</code></li>
 </ul>

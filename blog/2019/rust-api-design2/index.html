@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -23,18 +23,21 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Design of Rust APIs (Collections and Iteration)"/>
 <meta name="twitter:description" content="Iterators as Input Parameters This is reasonable:
-fn func1(data: &amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
-fn func2&lt;C&gt;(data: C) where C: IntoIterator&lt;Item = i32&gt;  (Ref: API Guidelines)
-Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits."/>
+fn func1(data: &amp;[i32]) {} But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&lt;C&gt;(data: C) where C: IntoIterator&lt;Item = i32&gt; (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.
+FromIterator allows instances of your collection to be constructed using collect and Extend allows you to easily add the contents of an iterator to a collection via the extend method."/>
 
 <meta property="og:title" content="Design of Rust APIs (Collections and Iteration)" />
 <meta property="og:description" content="Iterators as Input Parameters This is reasonable:
-fn func1(data: &amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
-fn func2&lt;C&gt;(data: C) where C: IntoIterator&lt;Item = i32&gt;  (Ref: API Guidelines)
-Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits." />
+fn func1(data: &amp;[i32]) {} But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&lt;C&gt;(data: C) where C: IntoIterator&lt;Item = i32&gt; (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.
+FromIterator allows instances of your collection to be constructed using collect and Extend allows you to easily add the contents of an iterator to a collection via the extend method." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-api-design2/" /><meta property="article:published_time" content="2019-04-12T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-04-12T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-api-design2/" />
+<meta property="article:published_time" content="2019-04-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-04-12T00:00:00+00:00" />
 
 
     
@@ -49,7 +52,7 @@ Constructing and Extending Collections If you have a type that is a collection t
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -184,7 +187,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -234,97 +237,70 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="iterators-as-input-parameters">Iterators as Input Parameters</h1>
-
+    <h1 id="iterators-as-input-parameters">Iterators as Input Parameters</h1>
 <p>This is reasonable:</p>
-
-<pre><code class="language-rs">fn func1(data: &amp;[i32]) {}
-</code></pre>
-
-<p>But if a function only needs to iterate over its data you can use the
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func1</span>(data: <span style="color:#66d9ef">&amp;</span>[<span style="color:#66d9ef">i32</span>]) {}
+</code></pre></div><p>But if a function only needs to iterate over its data you can use the
 <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html">IntoIterator</a> trait
 to make it more generic:</p>
-
-<pre><code class="language-rs">fn func2&lt;C&gt;(data: C)
-where C: IntoIterator&lt;Item = i32&gt;
-</code></pre>
-
-<p>(Ref: <a href="https://rust-lang-nursery.github.io/api-guidelines/flexibility.html">API Guidelines</a>)</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">func2</span><span style="color:#f92672">&lt;</span>C<span style="color:#f92672">&gt;</span>(data: <span style="color:#a6e22e">C</span>)
+<span style="color:#66d9ef">where</span> C: IntoIterator<span style="color:#f92672">&lt;</span>Item <span style="color:#f92672">=</span> <span style="color:#66d9ef">i32</span><span style="color:#f92672">&gt;</span>
+</code></pre></div><p>(Ref: <a href="https://rust-lang-nursery.github.io/api-guidelines/flexibility.html">API Guidelines</a>)</p>
 <h1 id="constructing-and-extending-collections">Constructing and Extending Collections</h1>
-
 <p>If you have a type that is a collection type, you should consider implementing the
 <a href="https://doc.rust-lang.org/std/iter/trait.FromIterator.html">FromIterator</a>
 and
 <a href="https://doc.rust-lang.org/std/iter/trait.Extend.html">Extend</a> traits.</p>
-
 <p><code>FromIterator</code> allows instances of your collection to be constructed using
 <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.collect">collect</a>
 and
 <code>Extend</code> allows you to easily add the contents of an iterator to a collection
 via the <a href="https://doc.rust-lang.org/std/iter/trait.Extend.html#tymethod.extend">extend</a>
 method.</p>
-
 <p>See links above for example implementations, they are simple and obvious.
 In particular, <code>FromIterator</code> can be implemented by creating an empty collection
 and calling <code>extend</code> on it.</p>
-
 <p>If a collection type implements <code>FromIterator&lt;A&gt;</code> then its static method
 <code>from_iter</code> builds a value of that type from an iterable producing items
 of type <code>A</code>.</p>
-
 <h1 id="providing-iterators-for-your-collection-types">Providing Iterators for your collection types</h1>
-
 <p>If you have a type which is a collection of items, you should consider
 providing the ability to iterate over instances of that type. We then say that
 the type is an <em>iterable</em>.</p>
-
 <ul>
 <li>An <em>iterator</em> is any type that implements <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html">Iterator</a></li>
 <li>An <em>iterable</em> is any type that implements <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html">IntoIterator</a></li>
 <li>An <em>iterator</em> produces <em>items</em></li>
 <li>The code that receives the items is the <em>consumer</em></li>
 </ul>
-
 <p>(Definitions from <em>Programming Rust</em> by Blandy &amp; Orendorff)</p>
-
 <h2 id="the-3-types-of-iteration">The 3 types of iteration</h2>
-
 <p>There are basically 3 ways that you can iterate over something - by move,
 by shared reference, and by mutable reference. In the for loop idiom, these
 are expressed as follows:</p>
-
-<pre><code class="language-rs">for item in collection      // move
-for item in &amp;collection     // shared reference
-for item in &amp;mut collection // mutable reference
-</code></pre>
-
-<p>Note that iterating using moves consumes the original collection.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">for</span> item <span style="color:#66d9ef">in</span> collection      <span style="color:#75715e">// move
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> item <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span>collection     <span style="color:#75715e">// shared reference
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">for</span> item <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> collection <span style="color:#75715e">// mutable reference
+</span></code></pre></div><p>Note that iterating using moves consumes the original collection.</p>
 <p>Under the hood, these calls de-sugar into something like this</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#75715e">// By move.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> iterator <span style="color:#f92672">=</span> collection.into_iter();
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(item) <span style="color:#f92672">=</span> iterator.next() {
+    <span style="color:#75715e">// Use the item.
+</span><span style="color:#75715e"></span>}
 
-<pre><code class="language-rs">// By move.
-let mut iterator = collection.into_iter();
-while let Some(item) = iterator.next() {
-    // Use the item.
-}
+<span style="color:#75715e">// Shared reference.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> iterator <span style="color:#f92672">=</span> (<span style="color:#f92672">&amp;</span>collection).into_iter();
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(item) <span style="color:#f92672">=</span> iterator.next() {
+    <span style="color:#75715e">// Use the item.
+</span><span style="color:#75715e"></span>}
 
-// Shared reference.
-let mut iterator = (&amp;collection).into_iter();
-while let Some(item) = iterator.next() {
-    // Use the item.
-}
-
-// Mutable reference.
-let mut iterator = (&amp;mut collection).into_iter();
-while let Some(item) = iterator.next() {
-    // Use the item.
-}
-</code></pre>
-
-<p><strong>Note 1</strong> Many collections also implement <code>iter()</code> and <code>iter_mut()</code> methods which
+<span style="color:#75715e">// Mutable reference.
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> iterator <span style="color:#f92672">=</span> (<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> collection).into_iter();
+<span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(item) <span style="color:#f92672">=</span> iterator.next() {
+    <span style="color:#75715e">// Use the item.
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p><strong>Note 1</strong> Many collections also implement <code>iter()</code> and <code>iter_mut()</code> methods which
 return iterators. They correspond to the shared and mutable reference examples above,
 respectively. The method-equivalent of the move example is handled
 by the <code>into_iter()</code> method, which is part of the <code>IntoIterator</code> trait and described
@@ -334,7 +310,6 @@ not using the for-loop syntax. You&rsquo;ll often see them used when
 and
 <a href="https://doc.rust-lang.org/std/iter/trait.Iterator.html#method.filter">filtering</a>
 in a functional style.</p>
-
 <p><strong>Note 2</strong> Not all collections implement all 3 types of iteration. In particular, iterating by
 mutable reference doesn&rsquo;t always make sense, for example you can&rsquo;t iterate over
 a <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.keys">HashMap&rsquo;s</a> keys
@@ -342,211 +317,160 @@ by mutable reference because changing a key would destory the integrity of the
 HashMap&rsquo;s internal data structures. But you can iterate over the key-value
 pairs, the items returned are tuples with immutable keys but mutable values!
 See <a href="https://doc.rust-lang.org/std/collections/struct.HashMap.html#method.iter_mut">HashMap.iter_mut</a>.</p>
-
 <h2 id="how-to-implement-intoiterator">How to implement IntoIterator</h2>
-
 <p>Let&rsquo;s imagine we have a very simple collection type called <code>Solution</code>, which contains a
 vec of <code>Projects</code>:</p>
-
-<pre><code class="language-rs">pub struct Solution {
-    projects: Vec&lt;Project&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Solution</span> {
+    projects: Vec<span style="color:#f92672">&lt;</span>Project<span style="color:#f92672">&gt;</span>
 }
 
-pub struct Project {
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Project</span> {
     name: String
 }
-</code></pre>
-
-<p>If we try to iterate over this</p>
-
-<pre><code class="language-rs">for proj in sln {
+</code></pre></div><p>If we try to iterate over this</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">for</span> proj <span style="color:#66d9ef">in</span> sln {
 }
-</code></pre>
-
-<p>We will get an error which helpfully reminds us we need to implement <code>IntoIterator</code>:</p>
-
+</code></pre></div><p>We will get an error which helpfully reminds us we need to implement <code>IntoIterator</code>:</p>
 <pre><code>22 |     for proj in sln {
    |                 ^^^^ `Solution` is not an iterator
    |
    = help: the trait `std::iter::Iterator` is not implemented for `&amp;Solution`
    = note: required by `std::iter::IntoIterator::into_iter`
-</code></pre>
+</code></pre><p>Here is how to implement the <strong>move</strong> form:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">impl</span> IntoIterator <span style="color:#66d9ef">for</span> Solution {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Item</span> <span style="color:#f92672">=</span> Project;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IntoIter</span> <span style="color:#f92672">=</span> ::std::vec::IntoIter<span style="color:#f92672">&lt;</span>Project<span style="color:#f92672">&gt;</span>;
 
-<p>Here is how to implement the <strong>move</strong> form:</p>
-
-<pre><code class="language-rs">impl IntoIterator for Solution {
-    type Item = Project;
-    type IntoIter = ::std::vec::IntoIter&lt;Project&gt;;
-
-    fn into_iter(self) -&gt; Self::IntoIter {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">into_iter</span>(self) -&gt; <span style="color:#a6e22e">Self</span>::IntoIter {
         self.projects.into_iter()
     }
 }
-</code></pre>
-
-<p>The line <code>type Item = Project</code> says what types of items the iterator will yield.</p>
-
+</code></pre></div><p>The line <code>type Item = Project</code> says what types of items the iterator will yield.</p>
 <p>The next line, <code>type IntoIter = ::std::vec::IntoIter&lt;Project&gt;</code> says what type is
 produced by the call to <code>into_iter</code> - in other words it is naming the <strong>Iterator</strong> type (see terminology above) that <code>Solution</code> can produce. <code>Solution</code> itself is now an <strong>Iterable</strong>
 type thanks to this simple trait implementation.</p>
-
 <p>In this example I don&rsquo;t need to create my own iterator type, I can simply
 leverage the vector&rsquo;s already-existing type. But if I couldn&rsquo;t, say my
 iteration needs were more complex, this line is the one I would need to target. I
 would create a type <code>SolutionIterator</code> (say) and specify <code>type IntoIter = SolutionIterator&lt;Project&gt;</code>
 and then return an instance of <code>SolutionIterator</code> from <code>into_iter</code>.</p>
-
 <p>With the above in place, for loops of the <strong>move</strong> form now work:</p>
-
-<pre><code class="language-rs">for proj in sln {
-    println!(&quot;Project = {}&quot;, proj.name);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">for</span> proj <span style="color:#66d9ef">in</span> sln {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Project = {}&#34;</span>, proj.name);
 }
-</code></pre>
-
-<p>Prints</p>
-
+</code></pre></div><p>Prints</p>
 <pre><code>Project = Project1
 Project = Project2
 Project = Project3
-</code></pre>
-
-<p>But unfortunately it destroys the collection. For loops of <strong>shared</strong> or <strong>mutable</strong>
+</code></pre><p>But unfortunately it destroys the collection. For loops of <strong>shared</strong> or <strong>mutable</strong>
 references still do not work:</p>
-
 <pre><code>31 |     for proj in &amp;sln {
    |                 ^^^^ `&amp;Solution` is not an iterator
-</code></pre>
+</code></pre><p>We need to add another implementation:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span><span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> Solution {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Item</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> Project;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IntoIter</span> <span style="color:#f92672">=</span> ::std::slice::Iter<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span>, Project<span style="color:#f92672">&gt;</span>;
 
-<p>We need to add another implementation:</p>
-
-<pre><code class="language-rs">impl&lt;'s&gt; IntoIterator for &amp;'s Solution {
-    type Item = &amp;'s Project;
-    type IntoIter = ::std::slice::Iter&lt;'s, Project&gt;;
-
-    fn into_iter(self) -&gt; Self::IntoIter {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">into_iter</span>(self) -&gt; <span style="color:#a6e22e">Self</span>::IntoIter {
         self.projects.iter()
     }
 }
-</code></pre>
-
-<p>Note that we need a lifetime specification. This says that the references returned
+</code></pre></div><p>Note that we need a lifetime specification. This says that the references returned
 by the iterator are tied to the lifetime of the <code>Solution</code>. This makes sense because the
 Projects are owned by the <code>Solution</code>.</p>
-
 <p>With this in place we can iterate by <strong>shared reference</strong>, preserving our precious <code>Solution</code>
 object:</p>
-
-<pre><code class="language-rs">for proj in &amp;sln {
-    println!(&quot;Project = {}&quot;, proj.name);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">for</span> proj <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span>sln {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Project = {}&#34;</span>, proj.name);
 }
 
-for proj in &amp;sln {
-    println!(&quot;Project = {}&quot;, proj.name);
+<span style="color:#66d9ef">for</span> proj <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span>sln {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Project = {}&#34;</span>, proj.name);
 }
-</code></pre>
-
-<p>Lastly, as you would expect, iterating by mutable reference requires another
+</code></pre></div><p>Lastly, as you would expect, iterating by mutable reference requires another
 implemention:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span><span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> <span style="color:#66d9ef">mut</span> Solution {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Item</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> <span style="color:#66d9ef">mut</span> Project;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IntoIter</span> <span style="color:#f92672">=</span> ::std::slice::IterMut<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span>, Project<span style="color:#f92672">&gt;</span>;
 
-<pre><code class="language-rs">impl&lt;'s&gt; IntoIterator for &amp;'s mut Solution {
-    type Item = &amp;'s mut Project;
-    type IntoIter = ::std::slice::IterMut&lt;'s, Project&gt;;
-
-    fn into_iter(self) -&gt; Self::IntoIter {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">into_iter</span>(self) -&gt; <span style="color:#a6e22e">Self</span>::IntoIter {
         self.projects.iter_mut()
     }
 }
-</code></pre>
-
-<p>The only difference here is that we inserted &lsquo;mut&rsquo; in the references and the
+</code></pre></div><p>The only difference here is that we inserted &lsquo;mut&rsquo; in the references and the
 <code>type</code> changed from <code>slice::Iter</code> to <code>slice::IterMut</code>.</p>
-
 <p>Mutable iteration is now possible:</p>
-
-<pre><code class="language-rs">for proj in &amp;mut sln {
-    proj.name = proj.name.to_ascii_uppercase();
-    println!(&quot;Project = {}&quot;, proj.name);
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">for</span> proj <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> sln {
+    proj.name <span style="color:#f92672">=</span> proj.name.to_ascii_uppercase();
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Project = {}&#34;</span>, proj.name);
 }
-</code></pre>
-
-<p>Prints</p>
-
+</code></pre></div><p>Prints</p>
 <pre><code>Project = PROJECT1
 Project = PROJECT2
 Project = PROJECT3
-</code></pre>
-
-<h2 id="implementations-in-the-standard-library">Implementations in the standard library</h2>
-
+</code></pre><h2 id="implementations-in-the-standard-library">Implementations in the standard library</h2>
 <p>The implementations shown above exactly mimic, and were worked out by
 copying, the implementations for <code>Vec</code> in the standard library.</p>
-
 <p>In the <a href="https://doc.rust-lang.org/std/iter/trait.IntoIterator.html">IntoIterator</a>
 documentation you can see the following implementations (some scrolling
 and searching required)</p>
-
-<pre><code class="language-rs">impl&lt;T&gt; IntoIterator for Vec&lt;T&gt;
-impl&lt;'a, T&gt; IntoIterator for &amp;'a Vec&lt;T&gt;
-impl&lt;'a, T&gt; IntoIterator for &amp;'a mut Vec&lt;T&gt;
-</code></pre>
-
-<p>Click through to their source to see how they work.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> Vec<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;a</span>, T<span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;a</span> Vec<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+<span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;a</span>, T<span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;a</span> <span style="color:#66d9ef">mut</span> Vec<span style="color:#f92672">&lt;</span>T<span style="color:#f92672">&gt;</span>
+</code></pre></div><p>Click through to their source to see how they work.</p>
 <h2 id="complete-source-code">Complete source code</h2>
-
-<pre><code class="language-rs">pub struct Solution {
-    projects: Vec&lt;Project&gt;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Solution</span> {
+    projects: Vec<span style="color:#f92672">&lt;</span>Project<span style="color:#f92672">&gt;</span>
 }
 
-pub struct Project {
+<span style="color:#66d9ef">pub</span> <span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">Project</span> {
     name: String
 }
 
-fn make_example_solution() -&gt; Solution {
-    let mut sln = Solution { projects: vec![] };
-    sln.projects.push(Project { name: &quot;Project1&quot;.to_owned() });
-    sln.projects.push(Project { name: &quot;Project2&quot;.to_owned() });
-    sln.projects.push(Project { name: &quot;Project3&quot;.to_owned() });
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">make_example_solution</span>() -&gt; <span style="color:#a6e22e">Solution</span> {
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> sln <span style="color:#f92672">=</span> Solution { projects: <span style="color:#a6e22e">vec</span><span style="color:#f92672">!</span>[] };
+    sln.projects.push(Project { name: <span style="color:#e6db74">&#34;Project1&#34;</span>.to_owned() });
+    sln.projects.push(Project { name: <span style="color:#e6db74">&#34;Project2&#34;</span>.to_owned() });
+    sln.projects.push(Project { name: <span style="color:#e6db74">&#34;Project3&#34;</span>.to_owned() });
     sln
 }
 
-impl IntoIterator for Solution {
-    type Item = Project;
-    type IntoIter = ::std::vec::IntoIter&lt;Project&gt;;
+<span style="color:#66d9ef">impl</span> IntoIterator <span style="color:#66d9ef">for</span> Solution {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Item</span> <span style="color:#f92672">=</span> Project;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IntoIter</span> <span style="color:#f92672">=</span> ::std::vec::IntoIter<span style="color:#f92672">&lt;</span>Project<span style="color:#f92672">&gt;</span>;
 
-    fn into_iter(self) -&gt; Self::IntoIter {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">into_iter</span>(self) -&gt; <span style="color:#a6e22e">Self</span>::IntoIter {
         self.projects.into_iter()
     }
 }
 
-impl&lt;'s&gt; IntoIterator for &amp;'s Solution {
-    type Item = &amp;'s Project;
-    type IntoIter = ::std::slice::Iter&lt;'s, Project&gt;;
+<span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span><span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> Solution {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Item</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> Project;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IntoIter</span> <span style="color:#f92672">=</span> ::std::slice::Iter<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span>, Project<span style="color:#f92672">&gt;</span>;
 
-    fn into_iter(self) -&gt; Self::IntoIter {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">into_iter</span>(self) -&gt; <span style="color:#a6e22e">Self</span>::IntoIter {
         self.projects.iter()
     }
 }
 
-impl&lt;'s&gt; IntoIterator for &amp;'s mut Solution {
-    type Item = &amp;'s mut Project;
-    type IntoIter = ::std::slice::IterMut&lt;'s, Project&gt;;
+<span style="color:#66d9ef">impl</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span><span style="color:#f92672">&gt;</span> IntoIterator <span style="color:#66d9ef">for</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> <span style="color:#66d9ef">mut</span> Solution {
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Item</span> <span style="color:#f92672">=</span> <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">&#39;s</span> <span style="color:#66d9ef">mut</span> Project;
+    <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IntoIter</span> <span style="color:#f92672">=</span> ::std::slice::IterMut<span style="color:#f92672">&lt;</span><span style="color:#a6e22e">&#39;s</span>, Project<span style="color:#f92672">&gt;</span>;
 
-    fn into_iter(self) -&gt; Self::IntoIter {
+    <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">into_iter</span>(self) -&gt; <span style="color:#a6e22e">Self</span>::IntoIter {
         self.projects.iter_mut()
     }
 }
 
-fn main() {
-    let mut sln = make_example_solution();
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> sln <span style="color:#f92672">=</span> make_example_solution();
 
-    for proj in &amp;mut sln {
-        proj.name = proj.name.to_ascii_uppercase();
-        println!(&quot;Project = {}&quot;, proj.name);
+    <span style="color:#66d9ef">for</span> proj <span style="color:#66d9ef">in</span> <span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> sln {
+        proj.name <span style="color:#f92672">=</span> proj.name.to_ascii_uppercase();
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Project = {}&#34;</span>, proj.name);
     }
 }
-</code></pre>
-
+</code></pre></div>
   </div>
   
 

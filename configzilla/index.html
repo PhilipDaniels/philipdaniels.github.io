@@ -1,26 +1,246 @@
-<!DOCTYPE html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><title>ConfigZilla Manual Page | ConfigZilla</title><meta name="description" content=""><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="shortcut icon" href="favicon.ico?v=2"><meta name="generator" content="DocPad v6.69.0" /><link  rel="stylesheet" href="css/vendor/normalize.css" /><link  rel="stylesheet" href="css/vendor/main.css" /><link  rel="stylesheet" href="css/style.css" /><link  rel="stylesheet" href="css/obsidian.css" /><script src="js/vendor/modernizr-2.6.2.min.js"></script></head><body><h1>ConfigZilla</h1><div><img src="images/configzilla128x128.png" class="imgleft"/><p>ConfigZilla is a tool for streamlining the management of those pesky .config
-files in .Net projects. The key to the ConfigZilla approach is that it
-creates a project called "ConfigZilla" in your solution, and this project then
-becomes the central location in which you specify the values for your config
-settings and create classes to access those settings. ConfigZilla generates
-App.config files from App.template.configs which you create; this is done on
-a per-project basis whenever you compile your project.
-</p><p>ConfigZilla's key strength is its brevity: by making clever use of MSBuild
-properties and XSL transforms you can achieve a very DRYish result. You have
-one project in which to configure your settings rather than having to hunt
-through your projects for web.Debug.config files.
-ConfigZilla is useful in small .Net projects and has been designed to scale
-to large solutions with dozens of projects, configurations and settings.
-If you'd like a quick tour try the <a href="introduction.html">introduction</a>,
-and clone the repository at <a href="https://github.com/PhilipDaniels/ConfigZilla">Github</a>
-and browse the samples.
-</p><p><strong>Please note:</strong> If you are using ConfigZilla v1 upgrading to
-v2 is highly recommended because of the increased ease of use with respect
-to per-project customisations. Please read the <a href="upgradetov2.html">upgrade notes</a>
-for the (very minor) considerations. 
-</p></div><h3><a href="introduction.html">Introduction & motivation</a></h3><h3><a href="gettingstarted.html">Getting started</a></h3><h3><a href="templates.html">Creating the .template.config files</a></h3><h3><a href="targets.html">.target files: specifying the values for settings</a></h3><h3><a href="transforms.html">.xslt files: how to change *.template.config into *.config</a></h3><h3><a href="doccomments.html">The config file "Document Comment" and finding git.exe</a></h3><h3><a href="log4net.html">Using Log4Net</a></h3><h3><a href="encryption.html">Encrypting your .config files</a></h3><h3><a href="git.html">Setting up your .gitignore correctly</a></h3><p><strong>Contact Details:</strong> Philip dot Daniels 1971 at gmail dot com</p><p>or raise an issue on <a href="https://github.com/PhilipDaniels/ConfigZilla">Github</a>.</p><hr><a href="index.html">Table Of Contents</a><script  src="js/plugins.js"></script><script  src="js/main.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-e.src='//www.google-analytics.com/analytics.js';
-r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-ga('create','UA-XXXXX-X');ga('send','pageview');</script></body>
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.68.3" />
+
+    
+    
+    
+
+<title>Configzillas • Phil&#39;s Blog</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Configzillas"/>
+<meta name="twitter:description" content=""/>
+
+<meta property="og:title" content="Configzillas" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://www.philipdaniels.com/configzilla/" />
+
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/gruvbox-dark.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+
+    
+
+<link href="/configzilla/index.xml" rel="alternate" type="application/rss+xml" title="Phil&#39;s Blog" />
+<link href="/configzilla/index.xml" rel="feed" type="application/rss+xml" title="Phil&#39;s Blog" />
+
+
+    
+        
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+	ga('create', 'UA-51573023-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+
+    
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.philipdaniels.com/">Phil&#39;s Blog</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/5f3e5fe7d6a4062ad188336e06f1cb78?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Phil&#39;s Blog</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/blog">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/gitcheatsheet">
+						<span>My Git CheatSheet</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/PhilipDaniels" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://stackoverflow.com/users/1313057/philip-daniels" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	<a href="mailto:philip.daniels1971@gmail.com" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2021 Philip Daniels
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <span class="section__title">Configzillas</span>
+<ul class="posts">
+    
+        <form action="https://www.google.com/search" method="get">
+  <input type="hidden" name="q" value="site:https://www.philipdaniels.com">
+  <input type="text" name="q" alt="search" placeholder="Search...">
+  <input type="submit" value="Search">
+</form>
+
+
+
+
+<li>
+  <span class="list__title--small">
+    <a href="/configzilla/license/" ></a>
+      
+  </span>
+</li>
+
+<li>
+  <span class="list__title--small">
+    <a href="/configzilla/readme/" ></a>
+      
+  </span>
+</li>
+
+
+    
+</ul>
+
+
+        </div>
+        
+    
+  
+  
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-51573023-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+
+    </body>
+</html>

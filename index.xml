@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Phil&#39;s Blog</title>
@@ -6,10 +6,22 @@
     <description>Recent content on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 07 Jul 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 30 Oct 2021 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Handy SQL HAVING Clauses</title>
+      <link>https://www.philipdaniels.com/blog/2021/havings/</link>
+      <pubDate>Sat, 30 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2021/havings/</guid>
+      <description>Tricks with the &amp;lsquo;HAVING&amp;rsquo; clause Over the years I have collected a few handy HAVING clauses for SQL work. Here&amp;rsquo;s a summary, with some test cases.
+n.b. Watch out if you have nulls in your data! Some of these expressions will then degenerate into expressions comparing NULL for equality, which is obviously never true.
+We&amp;rsquo;ll need a table for testing:
+drop table foo; create table foo(a int, b int) Contents  All values in B are distinct No NULLs in B B is all positive or all negative min(B) is negative, max(B) isn&amp;rsquo;t B has at least one zero min(B) or max(B) or both is 0 B has more than 1 distinct value B has only 1 distinct value, or nulls B deviates above and below const by the same amount Values in B are sequential with no gaps  All values in B are distinct delete foo; insert into foo(a, b) values (1, 0); insert into foo(a, b) values (1, 1); insert into foo(a, b) values (1, 2); insert into foo(a, b) values (2, 0); insert into foo(a, b) values (2, 0); select a from foo group by a having count(distinct b) = count(b) No NULLs in B delete foo; insert into foo(a, b) values (1, 0); insert into foo(a, b) values (1, 1); insert into foo(a, b) values (1, 2); insert into foo(a, b) values (2, 0); insert into foo(a, b) values (2, null); select a from foo group by a having count(*) = count(b) B is all positive or all negative delete foo; insert into foo(a, b) values (1, 0); insert into foo(a, b) values (1, 1); insert into foo(a, b) values (1, 2); insert into foo(a, b) values (2, 1); insert into foo(a, b) values (2, 2); insert into foo(a, b) values (2, 3); insert into foo(a, b) values (3, -1); insert into foo(a, b) values (3, -2); insert into foo(a, b) values (3, -3); insert into foo(a, b) values (4, 4); insert into foo(a, b) values (4, -2); insert into foo(a, b) values (4, -3); insert into foo(a, b) values (5, 0); insert into foo(a, b) values (5, 0); insert into foo(a, b) values (5, 0); select a from foo group by a having min(b) * max(b) &amp;gt; 0 If you change the above to having sign(min(b)) = sign(max(b)) then B can be all positive, all negative, or all zero.</description>
+    </item>
     
     <item>
       <title>Cloning yourself - a refactoring for thread-spawning Rust types</title>
@@ -43,7 +55,7 @@ For manipulating paths, see std::path.
 For low-level network IO, see std::net.
 One Liners for Reading the Entire File Use read_to_string and read.
 These are both fast as they allocate a buffer of the required size to start with.
-let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;quot;/some/file&amp;quot;)?;  One Liners for Writing the Entire File Use write.</description>
+let contents: String = std::fs::read_to_string(&amp;#34;/some/file&amp;#34;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;#34;/some/file&amp;#34;)?; One Liners for Writing the Entire File Use write.</description>
     </item>
     
     <item>
@@ -52,7 +64,7 @@ let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?;
       <pubDate>Sun, 14 Apr 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/blog/2019/ripgrep-cheatsheet/</guid>
-      <description>Ripgrep    Syntax Description     rg &amp;ndash;help &amp;#124; more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&amp;rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README.</description>
+      <description>Ripgrep    Syntax Description     rg &amp;ndash;help | more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&amp;rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README.</description>
     </item>
     
     <item>
@@ -72,7 +84,7 @@ let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?;
       
       <guid>https://www.philipdaniels.com/blog/2019/rust-equality-and-ordering/</guid>
       <description>Introduction This article is a short how-to guide for writing your own implementations of the equality, hashing and ordering traits in Rust. Often you can just auto-derive these:
-#[derive(PartialEq, Eq, Hash, PartialOrd, Ord)] pub MyStruct { ... }  But sometimes you want to roll your-own, perhaps because you can do it more efficiently than the automatic versions, or you simply want to be more explicit about what it means for two things to be &amp;lsquo;equal&amp;rsquo; or perhaps you want to express relationships between instances of MyStruct and SomeOtherStruct, which the automatic versions can&amp;rsquo;t do.</description>
+#[derive(PartialEq, Eq, Hash, PartialOrd, Ord)] pub MyStruct { ... } But sometimes you want to roll your-own, perhaps because you can do it more efficiently than the automatic versions, or you simply want to be more explicit about what it means for two things to be &amp;lsquo;equal&amp;rsquo; or perhaps you want to express relationships between instances of MyStruct and SomeOtherStruct, which the automatic versions can&amp;rsquo;t do.</description>
     </item>
     
     <item>
@@ -103,9 +115,10 @@ I have created a worked example which has the following features:</description>
       
       <guid>https://www.philipdaniels.com/blog/2019/rust-api-design2/</guid>
       <description>Iterators as Input Parameters This is reasonable:
-fn func1(data: &amp;amp;[i32]) {}  But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
-fn func2&amp;lt;C&amp;gt;(data: C) where C: IntoIterator&amp;lt;Item = i32&amp;gt;  (Ref: API Guidelines)
-Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.</description>
+fn func1(data: &amp;amp;[i32]) {} But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&amp;lt;C&amp;gt;(data: C) where C: IntoIterator&amp;lt;Item = i32&amp;gt; (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.
+FromIterator allows instances of your collection to be constructed using collect and Extend allows you to easily add the contents of an iterator to a collection via the extend method.</description>
     </item>
     
     <item>
@@ -158,7 +171,7 @@ Some handy characters See here for more.</description>
       
       <guid>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</guid>
       <description>Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
-[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes  Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart.</description>
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart.</description>
     </item>
     
     <item>
@@ -169,7 +182,7 @@ Some handy characters See here for more.</description>
       <guid>https://www.philipdaniels.com/blog/2019/libreofffice-with-python-scripting/</guid>
       <description>See
  https://ask.libreoffice.org/en/question/154007/how-to-upgrade-libreoffice-version-using-linux-mint/ https://askubuntu.com/questions/132837/how-do-i-install-the-latest-stable-version-of-libreoffice And for python: https://ask.libreoffice.org/en/question/140787/where-does-libreoffice-expect-user-scripts-pythonjavajavascript-to-be-located-on-ubuntu/  Basically I just did:
-sudo add-apt-repository ppa:libreoffice/ppa sudo apt-get update sudo apt-get upgrade # Should try dist-upgrade instead sudo apt install libreoffice # Needed to bring down the latest version sudo apt install libreoffice-script-provider-python  </description>
+sudo add-apt-repository ppa:libreoffice/ppa sudo apt-get update sudo apt-get upgrade # Should try dist-upgrade instead sudo apt install libreoffice # Needed to bring down the latest version sudo apt install libreoffice-script-provider-python </description>
     </item>
     
     <item>
@@ -178,7 +191,7 @@ sudo add-apt-repository ppa:libreoffice/ppa sudo apt-get update sudo apt-get upg
       <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</guid>
-      <description>May need to install the latest Wine manually You may first need to get the latest and greatest version of Wine. Mint 18 shipped with Wine 1.6 which was ancient, I am not sure which version Mint 19 ships with since I did an upgrade. In any case, you can install the latest version of Wine by following these steps
+      <description>May need to install the latest Wine manually You may first need to get the latest and greatest version of Wine. Mint 18 shipped with Wine 1.6 which was ancient, I am not sure which version Mint 19 ships with since I did an upgrade. In any case, you can install the latest version of Wine by following [these steps] (https://www.ubuntupit.com/install-winehq-ubuntu-linux-mint-instantly/)
 sudo dpkg --add-architecture i386 wget -nc https://dl.winehq.org/wine-builds/Release.key sudo apt-key add Release.</description>
     </item>
     
@@ -188,10 +201,17 @@ sudo dpkg --add-architecture i386 wget -nc https://dl.winehq.org/wine-builds/Rel
       <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/blog/2019/linux-user-management/</guid>
-      <description>useradd manual userdel manual usermod manual passwd manual groupadd manual groupdel manual groups manual sudo manual su manual
- List all users cat /etc/passwd It’s the first column. Or awk -F : ‘{print $1, “uid=”$3, “gid=”$3}’ /etc/passwd
- List the default settings for adding a new user useradd -D The shell will often be just /bin/sh, which is not what you want
- Add a new user sudo useradd -c “Joe Bloggs” -m -s “/bin/bash” jbloggs then sudo passwd jbloggs to set his password.</description>
+      <description>useradd manual
+  userdel manual
+  usermod manual
+  passwd manual
+  groupadd manual
+  groupdel manual
+  groups manual
+  sudo manual
+  su manual
+  List all users cat /etc/passwd It’s the first column. Or awk -F : ‘{print $1, “uid=”$3, “gid=”$3}’ /etc/passwd
+  List the default settings for adding a new user useradd -D The shell will often be just /bin/sh, which is not what you want</description>
     </item>
     
     <item>
@@ -202,8 +222,9 @@ sudo dpkg --add-architecture i386 wget -nc https://dl.winehq.org/wine-builds/Rel
       <guid>https://www.philipdaniels.com/blog/2019/process-management-in-the-terminal/</guid>
       <description>Signals The recommended signals to stop a program, in increasing severity, are TERM (15), INT (2), HUP (1), KILL (9)
 The kill command is used to send signals to a program.
- Send a specific signal to a process: kill -INT PID or kill -2 PID The same to several processes: kill -2 PID1 PID2 PID3
- Killing processes by name
+  Send a specific signal to a process: kill -INT PID or kill -2 PID
+  The same to several processes: kill -2 PID1 PID2 PID3
+  Killing processes by name
   kill processes processes by name killall http*</description>
     </item>
     
@@ -214,7 +235,7 @@ The kill command is used to send signals to a program.
       
       <guid>https://www.philipdaniels.com/blog/2019/tar-and-archives/</guid>
       <description>Compressing and archiving files For dealing with directories it is normal to use the tar command, see below.
- .bz2 extension is managed by the commands bzip2, bzcat and bunzip2.  Deal with a single file bzip2 FILE1 FILE2…, bzcat FILEs, bzunzip2 FILEs (the file is replaced)  .gz extension is managed by the commands gzip, zcat and gunzip.  Usage is the same as bzip2. It can also uncompress .</description>
+ .bz2 extension is managed by the commands bzip2, bzcat and bunzip2.  Deal with a single file bzip2 FILE1 FILE2…, bzcat FILEs, bzunzip2 FILEs (the file is replaced)   .gz extension is managed by the commands gzip, zcat and gunzip.  Usage is the same as bzip2. It can also uncompress .</description>
     </item>
     
     <item>
@@ -234,7 +255,7 @@ Then you need to get tmux working with TrueColor. See https://deductivelabs.com/
       <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/blog/2019/unix-redirections/</guid>
-      <description>Redirections  Redirect stdout to a file: &amp;gt; FILE Append stdout to a file: &amp;gt;&amp;gt; FILE Redirect stderr to a file: 2&amp;gt; FILE Redirect stdout and stderr to the same file by redirecting stream 2 to stream 1: &amp;gt; FILE 2&amp;gt;&amp;amp;1  Bash version of the above (non standard, avoid): &amp;amp;&amp;gt; FILE or &amp;amp;&amp;gt;&amp;gt; FILE for appending  Redirect stdout and stderr to different files: &amp;gt; FILE 2&amp;gt; ERRORFILE Read stdin from a file: &amp;lt; FILE Read stdin from a file and write stdout to a file: wc &amp;lt; input.</description>
+      <description>Redirections  Redirect stdout to a file: &amp;gt; FILE Append stdout to a file: &amp;gt;&amp;gt; FILE Redirect stderr to a file: 2&amp;gt; FILE Redirect stdout and stderr to the same file by redirecting stream 2 to stream 1: &amp;gt; FILE 2&amp;gt;&amp;amp;1  Bash version of the above (non standard, avoid): &amp;amp;&amp;gt; FILE or &amp;amp;&amp;gt;&amp;gt; FILE for appending   Redirect stdout and stderr to different files: &amp;gt; FILE 2&amp;gt; ERRORFILE Read stdin from a file: &amp;lt; FILE Read stdin from a file and write stdout to a file: wc &amp;lt; input.</description>
     </item>
     
     <item>
@@ -264,7 +285,7 @@ Then you need to get tmux working with TrueColor. See https://deductivelabs.com/
       
       <guid>https://www.philipdaniels.com/blog/2017/spacemacs-first-steps/</guid>
       <description>Moving to Spacemacs I recently declared, if not quite .emacs bankruptcy , then at least Chapter 11 status. After a long time keeping my .emacs as a single file, I refactored it into a set of self contained lisp files of the form:
-(require &#39;other-peoples-packages) ...my config... (provide &#39;my-package)  Then I just ensured the director with all these files was on my load-path and simply required my own little packages.</description>
+(require &amp;#39;other-peoples-packages) ...my config... (provide &amp;#39;my-package) Then I just ensured the director with all these files was on my load-path and simply required my own little packages.</description>
     </item>
     
     <item>
@@ -324,17 +345,29 @@ General  Do not use Windows Enterprise because this edition does not get patched
       
       <guid>https://www.philipdaniels.com/blog/2016/hugo-blogging-cheatsheet/</guid>
       <description>A test post to see if the new blog is working, also handy for checking out themes. You really want to look at the source for this page.
-Heading 1 Heading 2 Heading 3 Heading 4 Heading 5 Basic Formatting Hugo uses Github Flavoured Markdown.
+Heading 1 Heading 2 Heading 3 Heading 4 Heading 5  Basic Formatting Hugo uses Github Flavoured Markdown.
  *This is italic* This is italic **this is bold** this is bold ***this is bold-italic*** this is bold-italic ~~this is strikethrough~~ this is strikethrough  You can do a link like this: [link](https://github.</description>
     </item>
     
     <item>
       <title></title>
-      <link>https://www.philipdaniels.com/configzilla/</link>
+      <link>https://www.philipdaniels.com/configzilla/license/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://www.philipdaniels.com/configzilla/</guid>
-      <description>ConfigZilla Manual Page | ConfigZillaConfigZillaConfigZilla is a tool for streamlining the management of those pesky .config files in .Net projects. The key to the ConfigZilla approach is that it creates a project called &#34;ConfigZilla&#34; in your solution, and this project then becomes the central location in which you specify the values for your config settings and create classes to access those settings. ConfigZilla generates App.config files from App.template.configs which you create; this is done on a per-project basis whenever you compile your project.</description>
+      <guid>https://www.philipdaniels.com/configzilla/license/</guid>
+      <description>Copyright (c) HTML5 Boilerplate
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &amp;ldquo;Software&amp;rdquo;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>https://www.philipdaniels.com/configzilla/readme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/configzilla/readme/</guid>
+      <description>HTML5 Boilerplate HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites.
+This project is the product of many years of iterative development and combined community knowledge. It does not impose a specific development philosophy or framework, so you&amp;rsquo;re free to architect your code in the way that you want.
+ Source: https://github.com/h5bp/html5-boilerplate Homepage: http://html5boilerplate.com Twitter: @h5bp  Quick start Choose one of the following options:</description>
     </item>
     
     <item>

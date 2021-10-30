@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -23,14 +23,15 @@
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Spacemacs - First Steps"/>
 <meta name="twitter:description" content="Moving to Spacemacs I recently declared, if not quite .emacs bankruptcy , then at least Chapter 11 status. After a long time keeping my .emacs as a single file, I refactored it into a set of self contained lisp files of the form:
-(require &#39;other-peoples-packages) ...my config... (provide &#39;my-package)  Then I just ensured the director with all these files was on my load-path and simply required my own little packages."/>
+(require &#39;other-peoples-packages) ...my config... (provide &#39;my-package) Then I just ensured the director with all these files was on my load-path and simply required my own little packages."/>
 
 <meta property="og:title" content="Spacemacs - First Steps" />
 <meta property="og:description" content="Moving to Spacemacs I recently declared, if not quite .emacs bankruptcy , then at least Chapter 11 status. After a long time keeping my .emacs as a single file, I refactored it into a set of self contained lisp files of the form:
-(require &#39;other-peoples-packages) ...my config... (provide &#39;my-package)  Then I just ensured the director with all these files was on my load-path and simply required my own little packages." />
+(require &#39;other-peoples-packages) ...my config... (provide &#39;my-package) Then I just ensured the director with all these files was on my load-path and simply required my own little packages." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/spacemacs-first-steps/" /><meta property="article:published_time" content="2017-02-06T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2017-02-06T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/spacemacs-first-steps/" />
+<meta property="article:published_time" content="2017-02-06T20:19:45+00:00" />
+<meta property="article:modified_time" content="2017-02-06T20:19:45+00:00" />
 
 
     
@@ -45,7 +46,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -227,23 +228,16 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="moving-to-spacemacs">Moving to Spacemacs</h1>
-
+    <h1 id="moving-to-spacemacs">Moving to Spacemacs</h1>
 <p>I recently declared, if not
 quite <a href="https://www.emacswiki.org/emacs/DotEmacsBankruptcy">.emacs bankruptcy</a>
 , then at least Chapter 11 status. After a long time keeping my .emacs as a single
 file, I refactored it into a set of self contained lisp files of the form:</p>
-
-<pre><code class="language-lisp">(require 'other-peoples-packages)
-...my config...
-(provide 'my-package)
-</code></pre>
-
-<p>Then I just ensured the director with all these files was on my <code>load-path</code> and simply
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(<span style="color:#a6e22e">require</span> <span style="color:#e6db74">&#39;other-peoples-packages</span>)
+<span style="color:#f92672">...</span>my config...
+(<span style="color:#a6e22e">provide</span> <span style="color:#e6db74">&#39;my-package</span>)
+</code></pre></div><p>Then I just ensured the director with all these files was on my <code>load-path</code> and simply
 <code>require</code>d my own little packages.</p>
-
 <p>This worked very nicely, and seemed to have the side effect of speeding up Emacs
 startup. However, I still had quite a way to go to configure a proper
 development environment, especially code completion, so I decided to take a look
@@ -251,39 +245,31 @@ at <a href="https://github.com/syl20bnr/spacemacs">Spacemacs</a> since it claims
 such stuff &ldquo;preconfigured, out of the box&rdquo;. Interestingly, it seemed to be using
 many of the packages that I was already using in my own configuration, so I
 hoped to be able to eliminate some of my own code.</p>
-
 <h1 id="installation">Installation</h1>
-
 <p>To avoid clobbering my existing Emacs configuration I created a new user in
 Linux Mint and simply followed the instructions at the Github repo. The first
 time that Spacemacs starts you are asked what editing style you prefer - Vim or
 Emacs - and it downloads a lot of packages from the Emacs package archives.</p>
-
 <p>I had previously been put off from Spacemacs by the stress that the
 documentation places on Evil mode, however I am pleased to report that if you
 choose Emacs style editing then, as far as I can tell, it works just like
 standard Emacs does - at least if you are used
 to <a href="https://github.com/emacs-helm/helm">Helm</a> and <a href="https://github.com/abo-abo/hydra">Hydra</a>.</p>
-
 <h1 id="porting-my-emacs-configuration">Porting my .emacs configuration</h1>
-
 <p>Once I was up and running the process of porting my existing .emacs began. This
 was a frustrating process to begin with, it took me a few days to grok what was
 really happening. It has to be said that
 the <a href="http://spacemacs.org/doc/DOCUMENTATION">documentation</a> is excellent, but
 there is a lot to take in at one sitting.</p>
-
 <p>As an experienced Emacs user with a significant amount of configuration to
 port, <a href="http://spacemacs.org/doc/DOCUMENTATION#dotfile-configuration">the advice</a>
 to put most of your customization in the <code>dotspacemacs/user-config</code> function
 doesn&rsquo;t feel like a good move. It could end up being huge and would in fact be a
 backward step from my nicely modularized configuration.</p>
-
 <p>The route I quickly decided on was to write my
 own <a href="http://spacemacs.org/doc/LAYERS.html#introduction">Spacemacs layer</a>, which
 I called simply &ldquo;pd&rdquo;. Layers come with a pre-defined set of files which are
 loaded in a specific order:</p>
-
 <ul>
 <li>layers.el (declare &ldquo;extra&rdquo; layers)</li>
 <li>packages.el (where you configure the packages you are using)</li>
@@ -291,7 +277,6 @@ loaded in a specific order:</p>
 <li>config.el (for your layer&rsquo;s variables)</li>
 <li>keybindings.el (general keybindings, not package specific)</li>
 </ul>
-
 <p><code>funcs.el</code> and <code>keybindings.el</code> were pretty easy to port. Writing <code>packages.el</code>
 was a bit more challenging, one issue that I ran into was that I wanted to use a
 function that I had declared in <code>funcs.el</code> as part of my initialization but it
@@ -299,88 +284,69 @@ wasn&rsquo;t loaded by then. It would make more sense to me to load <code>funcs.
 <code>packages.el</code>, but when you start to use a framework like Spacemacs you have to
 work within the constraints it sets you. My <code>packages.el</code> has actually ended up
 pretty small, it just brings in a few little custom packages that I like to use.</p>
-
 <p>Incidentally, the trick to reusing packages that are not on ELPA - whether they
 are yours or anyone else&rsquo;s - is just to create a folder under your layer called
 &ldquo;local&rdquo;, for example, under my &ldquo;pd&rdquo; layer I have the <code>buffer-move</code> package
 download from the Emacs wiki, and a package of my own containing hydras:</p>
-
 <pre><code>pd\local\buffer-move\buffer-move.el
 pd\local\pd-hydra\pd-hydra.el
 </code></pre>
-
 <p>I can then initialize them simply within <code>packages.el</code>:</p>
-
-<pre><code class="language-lisp">(defun pd/init-pd-hydra ()
-  (use-package pd-hydra))
-</code></pre>
-
-<p>I still have quite a number of settings that are not related to any package in
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(defun pd/init-pd-hydra ()
+  (<span style="color:#a6e22e">use-package</span> pd-hydra))
+</code></pre></div><p>I still have quite a number of settings that are not related to any package in
 particular, and these have all ended up in the <code>dotspacemacs/user-config</code>
 function. However, since Spacemacs seems so well configured out of the box, it&rsquo;s
 a much smaller list than I used to have in my own .emacs configuration.</p>
-
 <h1 id="replacing-hydras">Replacing hydras</h1>
-
 <p>Spacemacs uses <a href="https://github.com/abo-abo/hydra">Hydra</a> to create what it calls
 &ldquo;Transient States&rdquo;. One that caught my attention was the &ldquo;Window Manipulation
 Transient State&rdquo;. which is bound to <code>SPC w .</code> by default. I had previously
 developed my own very similar hydra, though with non-VIM keybindings and some
 extra functions, such as the ability to open <code>helm-mini</code>, bring up dired, save
 the current buffer etc.</p>
-
 <p>I couldn&rsquo;t figure out a way of augmenting a built-in hydra - not really
 surprising because the design of them is so intricate, especially if they use a
 docstring. So I just copied the built-in one, pasted it into my <code>keybindings.el</code>
 and hacked it until I had it just how I wanted it. Then I bound it to the
 standard keybinding:</p>
-
-<pre><code class="language-lisp">(spacemacs|define-transient-state pd-window-manipulation
-  :title &quot;Phil's Window Manipulation Transient State.&quot;
-  :doc (concat &quot;M-arrow = select, M-S-arrow = move, S-arrow = resize. 0-9 = select window N.
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(spacemacs|define-transient-state pd-window-manipulation
+  :title &#34;Phil&#39;s Window Manipulation Transient State.&#34;
+  :doc (concat &#34;M-arrow = select, M-S-arrow = move, S-arrow = resize. 0-9 = select window N.
 
 Split^^              Buffers^^      Windows^^          Files^^         Other
 ─────^^───────────── ───────^^───── ───────^^───────── ─────^^──────── ─────^^──────────────────
 [___] vertical       [_n_] next     [_c_] close        [_b_] helm mini [_u_] restore prev layout
 [_V_] vert &amp; follow  [_p_] previous [_o_] close others [_f_] helm find [_U_] restore next layout
-[_|_] horizontal     [_k_] kill     [_r_] rotate fwd   [_d_] dired     [_F_] go to other frame
-[_H_] horiz &amp; follow [_s_] save     [_R_] rotate bwd   [_t_] terminal  [_g_] golden-ratio-mode&quot;)
-
-...
-
-
-(spacemacs/set-leader-keys &quot;w.&quot; 'spacemacs/pd-window-manipulation-transient-state/body)
-</code></pre>
-
-<p>The full thing can be <a href="https://github.com/PhilipDaniels/pd">found here</a>, but be
+[_|_] horizontal     [_k_] kill     [_r_] rotate fwd   [_d_] dired     [_F_] <span style="color:#66d9ef">go</span> to other frame
+[_H_] horiz &amp; follow [_s_] save     [_R_] rotate bwd   [_t_] terminal  [_g_] golden-ratio-mode<span style="color:#e6db74">&#34;)
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">...
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">(spacemacs/set-leader-keys &#34;</span>w.<span style="color:#960050;background-color:#1e0010">&#34;</span> <span style="color:#e6db74">&#39;spacemacs/pd-window-manipulation-transient-state/body</span>)
+</code></pre></div><p>The full thing can be <a href="https://github.com/PhilipDaniels/pd">found here</a>, but be
 warned, it is still evolving!</p>
-
 <h1 id="theme-customization">Theme customization</h1>
-
 <p>One of the first things I wanted to change in Spacemacs was the default theme.
 Just my luck that my longstanding favourite theme
 <a href="https://github.com/sellout/emacs-color-theme-solarized">Sellout&rsquo;s Solarized</a>
 uses a non-standard loading mechanism and was a bit tricky to configure.
 I <a href="https://www.philipdaniels.com/blog/2017/spacemacs-solarized/">have another post</a>
 detailing how to do it.</p>
-
 <h1 id="conclusion">Conclusion</h1>
-
 <p>After hacking on it on and off for about a week I now have a Spacemacs
 configuration that contains everything I deemed really important from my own
 config, and in fact the amount of configuration code I need seems to have
 diminished quite significantly. I was really surprised how small my
 <code>packages.el</code> file had become when I reviewed it for this post.</p>
-
 <p>Sometime in the not too distant future I expect to be moving over to using
 Spacemacs rather than my old config. Just need to perfect my hyper key on Linux
 first&hellip;I also want to take the opportunity to produce a set of keybindings that
 are much more in line with the Windows and Visual Studio defaults.</p>
-
 <p>If you are a new Emacs user or don&rsquo;t have much invested in your <code>.emacs</code>, I
 would say it is a no-brainer - you should definitely start with Spacemacs rather
 than Emacs. It is just a much better out-of-the-box experience.</p>
-
 <p>If you are an intermediate or advanced user with a lot of configuration
 investment, then I would still consider the switch worthwhile, but it will
 probably take a little longer to get back to status quo. It would be nice if the

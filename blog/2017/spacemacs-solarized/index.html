@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -29,8 +29,9 @@
 <meta property="og:description" content="Solarized, tredux There are at least 3 different Solarized theme packages for Emacs:
  BBatsov&rsquo;s Solarized Greg Pfeil&rsquo;s (aka Sellout) Solarized Steve Purcell&rsquo;s (aka SanityInc) Solarized  Steve&rsquo;s is based on Greg&rsquo;s. Of the three, I have always used Greg&rsquo;s in the past, finding it to have a comprehensive set of faces. So naturally I wanted to get it working in Spacemacs. That was a bit trickier than expected, because it uses a non-standard loading mechanism, however, I found an issue on Github that explained how to do it." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/spacemacs-solarized/" /><meta property="article:published_time" content="2017-02-07T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2017-02-07T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2017/spacemacs-solarized/" />
+<meta property="article:published_time" content="2017-02-07T20:19:45+00:00" />
+<meta property="article:modified_time" content="2017-02-07T20:19:45+00:00" />
 
 
     
@@ -45,7 +46,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -227,51 +228,34 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="solarized-tredux">Solarized, tredux</h1>
-
+    <h1 id="solarized-tredux">Solarized, tredux</h1>
 <p>There are at least 3 different Solarized theme packages for Emacs:</p>
-
 <ul>
 <li><a href="https://github.com/bbatsov/solarized-emacs">BBatsov&rsquo;s Solarized</a></li>
 <li><a href="https://github.com/sellout/emacs-color-theme-solarized">Greg Pfeil&rsquo;s (aka Sellout) Solarized</a></li>
 <li><a href="https://github.com/purcell/color-theme-sanityinc-solarized">Steve Purcell&rsquo;s (aka SanityInc) Solarized</a></li>
 </ul>
-
 <p>Steve&rsquo;s is based on Greg&rsquo;s. Of the three, I have always used Greg&rsquo;s in the past,
 finding it to have a comprehensive set of faces. So naturally I wanted to get it
 working in Spacemacs. That was a bit trickier than expected, because it uses a
 non-standard loading mechanism, however, I found an issue on Github that
 explained how to do it. I reproduce it here.</p>
-
 <h1 id="basic-steps">Basic Steps</h1>
-
 <p>The package you want is called <code>color-theme-solarized</code>. But you will get a load
 error if you try and add it to the <code>dotspacemacs-themes</code> variable in your
 <code>.spacemacs</code>. Instead, add it here:</p>
-
-<pre><code class="language-lisp">dotspacemacs-additional-packages '(color-theme-solarized)
-</code></pre>
-
-<p>Then, in your <code>dotspacemacs/user-config</code> function, you need to manually load the
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">dotspacemacs-additional-packages <span style="color:#f92672">&#39;</span>(color-theme-solarized)
+</code></pre></div><p>Then, in your <code>dotspacemacs/user-config</code> function, you need to manually load the
 theme:</p>
-
-<pre><code class="language-lisp">(set-terminal-parameter nil 'background-mode 'dark)
-(set-frame-parameter nil 'background-mode 'dark)
-(spacemacs/load-theme 'solarized)
-</code></pre>
-
-<p>Thanks to <a href="https://github.com/cpaulik">Christoph Paulik</a> who posted this
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(set-terminal-parameter <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#39;background-mode</span> <span style="color:#e6db74">&#39;dark</span>)
+(set-frame-parameter <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#39;background-mode</span> <span style="color:#e6db74">&#39;dark</span>)
+(spacemacs/load-theme <span style="color:#e6db74">&#39;solarized</span>)
+</code></pre></div><p>Thanks to <a href="https://github.com/cpaulik">Christoph Paulik</a> who posted this
 solution at
 <a href="https://github.com/syl20bnr/spacemacs/issues/1269#issuecomment-198309213">https://github.com/syl20bnr/spacemacs/issues/1269#issuecomment-198309213</a></p>
-
 <p>Things look pretty good out of the box, you even get rainbow delimiters:</p>
-
-<p><img src="default-solarized.gif" alt="Solarized Dark in action" /></p>
-
+<p><img src="default-solarized.gif" alt="Solarized Dark in action"></p>
 <h1 id="tweaking-the-modeline">Tweaking the modeline</h1>
-
 <p>I find the provided modeline to be a bit bland, I prefer something little bolder
 and that functions as a sort of &ldquo;on/off&rdquo; modeline where the modeline for
 inactive buffers is the inverse of the active one. To accomplish this I adjusted
@@ -279,44 +263,38 @@ some faces after the theme has loaded. Spacemacs has a layer
 called
 <a href="https://github.com/syl20bnr/spacemacs/tree/master/layers/%2Bthemes/theming">theming</a>
 which helps with this.</p>
-
 <p>First ensure you bring in the <code>theming</code> package in the usual way, by adding it to your
 <code>dotspacemacs-configuration-layers</code> variable in the <code>.spacemacs</code> file. Then add
 the following code <em>just before</em> the lines above that call <code>spacemacs/load-theme</code>.</p>
-
-<pre><code class="language-lisp">;; Get color-theme-solarized working. It is specified as an additional package
-;; above. First we setup some theme modifications - we must do this *before*
-;; we load the theme. Note that the color-theme-solarized package appears in
-;; the list of themes as plain old 'solarized'.
-(setq theming-modifications
-      '((solarized
-         ;; Provide a sort of &quot;on-off&quot; modeline whereby the current buffer has a nice
-         ;; bright blue background, and all the others are in cream.
-         ;; TODO: Change to use variables here. However, got error:
-         ;; (Spacemacs) Error in dotspacemacs/user-config: Wrong type argument: stringp, pd-blue
-         (mode-line :foreground &quot;#e9e2cb&quot; :background &quot;#2075c7&quot; :inverse-video nil)
-         (powerline-active1 :foreground &quot;#e9e2cb&quot; :background &quot;#2075c7&quot; :inverse-video nil)
-         (powerline-active2 :foreground &quot;#e9e2cb&quot; :background &quot;#2075c7&quot; :inverse-video nil)
-         (mode-line-inactive :foreground &quot;#2075c7&quot; :background &quot;#e9e2cb&quot; :inverse-video nil)
-         (powerline-inactive1 :foreground &quot;#2075c7&quot; :background &quot;#e9e2cb&quot; :inverse-video nil)
-         (powerline-inactive2 :foreground &quot;#2075c7&quot; :background &quot;#e9e2cb&quot; :inverse-video nil)
-         ;; Make a really prominent helm selection line.
-         (helm-selection :foreground &quot;white&quot; :background &quot;red&quot; :inverse-video nil)
-         ;; See comment above about dotspacemacs-colorize-cursor-according-to-state.
-         (cursor :background &quot;#b58900&quot;)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;; Get color-theme-solarized working. It is specified as an additional package</span>
+<span style="color:#75715e">;; above. First we setup some theme modifications - we must do this *before*</span>
+<span style="color:#75715e">;; we load the theme. Note that the color-theme-solarized package appears in</span>
+<span style="color:#75715e">;; the list of themes as plain old &#39;solarized&#39;.</span>
+(<span style="color:#66d9ef">setq</span> theming-modifications
+      <span style="color:#f92672">&#39;</span>((solarized
+         <span style="color:#75715e">;; Provide a sort of &#34;on-off&#34; modeline whereby the current buffer has a nice</span>
+         <span style="color:#75715e">;; bright blue background, and all the others are in cream.</span>
+         <span style="color:#75715e">;; TODO: Change to use variables here. However, got error:</span>
+         <span style="color:#75715e">;; (Spacemacs) Error in dotspacemacs/user-config: Wrong type argument: stringp, pd-blue</span>
+         (mode-line <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;#e9e2cb&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#2075c7&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         (powerline-active1 <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;#e9e2cb&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#2075c7&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         (powerline-active2 <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;#e9e2cb&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#2075c7&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         (mode-line-inactive <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;#2075c7&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#e9e2cb&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         (powerline-inactive1 <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;#2075c7&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#e9e2cb&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         (powerline-inactive2 <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;#2075c7&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#e9e2cb&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         <span style="color:#75715e">;; Make a really prominent helm selection line.</span>
+         (helm-selection <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#34;white&#34;</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;red&#34;</span> <span style="color:#e6db74">:inverse-video</span> <span style="color:#66d9ef">nil</span>)
+         <span style="color:#75715e">;; See comment above about dotspacemacs-colorize-cursor-according-to-state.</span>
+         (cursor <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#34;#b58900&#34;</span>)
        )))
 
-(set-terminal-parameter nil 'background-mode 'dark)
-(set-frame-parameter nil 'background-mode 'dark)
-(spacemacs/load-theme 'solarized)
-</code></pre>
-
-<p>Now, these modifications will be applied after solarized is loaded. <code>#e9e2cb</code> is
+(set-terminal-parameter <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#39;background-mode</span> <span style="color:#e6db74">&#39;dark</span>)
+(set-frame-parameter <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">&#39;background-mode</span> <span style="color:#e6db74">&#39;dark</span>)
+(spacemacs/load-theme <span style="color:#e6db74">&#39;solarized</span>)
+</code></pre></div><p>Now, these modifications will be applied after solarized is loaded. <code>#e9e2cb</code> is
 the creamy-white color from solarized, and <code>#2075c7</code> is the blue colour. The
 final result looks like this:</p>
-
-<p><img src="solarized-adjusted.gif" alt="Solarized with tweaked modeline" /></p>
-
+<p><img src="solarized-adjusted.gif" alt="Solarized with tweaked modeline"></p>
 <p>You can take this opportunity to customize other faces too. I changed the cursor
 to the yellow color from solarized, but to get this to work you must set the
 variable <code>dotspacemacs-colorize-cursor-according-to-state</code> to nil, otherwise
@@ -324,14 +302,10 @@ Spacemacs will change the cursor back to what it thinks it should be! That took
 a while to figure out, it was an unrelated posting on
 the <a href="https://gitter.im/syl20bnr/spacemacs">Gitter Channel</a> that tipped me off to
 that one.</p>
-
 <p>Oh, and my helm selection line looks like this - I like there to be no ambiguity
 about what I am selecting!</p>
-
-<p><img src="helm-selection.gif" alt="Prominent helm-selection line" /></p>
-
+<p><img src="helm-selection.gif" alt="Prominent helm-selection line"></p>
 <h1 id="tweaking-parentheses-highlighting">Tweaking parentheses highlighting</h1>
-
 <p>My last theming tweak was to adjust the parentheses highlighting to something
 more to my taste. As I noted
 above, <a href="https://github.com/Fanael/rainbow-delimiters">rainbow delimiters</a> are on
@@ -339,51 +313,37 @@ out of the box, but dynamic highlighting
 by <a href="https://github.com/tsdh/highlight-parentheses.el">highlight-parentheses</a> is
 also enabled. I think <a href="https://github.com/Fuco1/smartparens">smart-parens</a> also
 gets in on the act.</p>
-
 <p>Anyway, I found the light green highlighting on top of rainbow delimiters to be
 a little too much&hellip;it made it <em>harder</em> to see the matching parentheses.</p>
-
 <p>I like to use a package
 called <a href="https://www.emacswiki.org/emacs/mic-paren.el">mic-paren</a> to do my
 highlighting. I found it on
 the <a href="https://www.emacswiki.org/emacs/SiteMap">Emacs Wiki</a> but it is available
 on <a href="https://melpa.org/#/">MELPA</a>.</p>
-
 <p>To setup mic-paren, first let&rsquo;s ban <code>highlight-parentheses</code> by adding it to the variable
 <code>dotspacemacs-excluded-packages</code> in the <code>.spacemacs</code> file:</p>
-
-<pre><code class="language-lisp">dotspacemacs-excluded-packages '(highlight-parentheses)
-</code></pre>
-
-<p>Finally, in
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">dotspacemacs-excluded-packages <span style="color:#f92672">&#39;</span>(highlight-parentheses)
+</code></pre></div><p>Finally, in
 my <a href="https://www.philipdaniels.com/blog/2017/spacemacs-first-steps/">pd layer&rsquo;s</a>
 <code>packages.el</code> file I added <code>mic-paren</code> to the list of packages I needed, and
 initialized it as follows:</p>
-
-<pre><code class="language-lisp">(defun pd/init-mic-paren ()
-  &quot;Customize mic-paren. The standard package highlight-parentheses is banned in my
-  .spacemacs file, I much prefer this.&quot;
-  (use-package mic-paren
-    :config
-    (setq blink-matching-paren nil)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp">(defun pd/init-mic-paren ()
+  <span style="color:#e6db74">&#34;Customize mic-paren. The standard package highlight-parentheses is banned in my
+</span><span style="color:#e6db74">  .spacemacs file, I much prefer this.&#34;</span>
+  (<span style="color:#a6e22e">use-package</span> mic-paren
+    <span style="color:#e6db74">:config</span>
+    (<span style="color:#66d9ef">setq</span> blink-matching-paren <span style="color:#66d9ef">nil</span>)
     (paren-activate)
-    (setq paren-match-face 'mode-line)
+    (<span style="color:#66d9ef">setq</span> paren-match-face <span style="color:#e6db74">&#39;mode-line</span>)
   ))
-</code></pre>
-
-<p>You can pick any face you want, I like to use the same as my active modeline.</p>
-
+</code></pre></div><p>You can pick any face you want, I like to use the same as my active modeline.</p>
 <p>I also needed to stop <code>smart-parens</code> from interfering by adding these two lines to my
 <code>dotspacemacs/user-config</code> function:</p>
-
-<pre><code class="language-lisp">;; Turn this off to stop it interfering with mic-paren.
-(set-face-attribute 'sp-show-pair-match-face nil :foreground 'unspecified :background 'unspecified)
-(set-face-attribute 'sp-show-pair-mismatch-face nil :foreground 'unspecified :background 'unspecified)
-</code></pre>
-
-<p>The final result looks like this:</p>
-
-<p><img src="mic-paren.gif" alt="mic-paren highlighting" /></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-lisp" data-lang="lisp"><span style="color:#75715e">;; Turn this off to stop it interfering with mic-paren.</span>
+(set-face-attribute <span style="color:#e6db74">&#39;sp-show-pair-match-face</span> <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#39;unspecified</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#39;unspecified</span>)
+(set-face-attribute <span style="color:#e6db74">&#39;sp-show-pair-mismatch-face</span> <span style="color:#66d9ef">nil</span> <span style="color:#e6db74">:foreground</span> <span style="color:#e6db74">&#39;unspecified</span> <span style="color:#e6db74">:background</span> <span style="color:#e6db74">&#39;unspecified</span>)
+</code></pre></div><p>The final result looks like this:</p>
+<p><img src="mic-paren.gif" alt="mic-paren highlighting"></p>
 
   </div>
   

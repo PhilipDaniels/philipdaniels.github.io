@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -29,8 +29,9 @@ How SSH Works SSH stands for &ldquo;Secure Shell&rdquo;. As its name implies it 
 <meta property="og:description" content="Other Build Book Posts  Debian VM Setup Windows VM Setup Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
 How SSH Works SSH stands for &ldquo;Secure Shell&rdquo;. As its name implies it is a network protocol for secure communication between two computers, a server - your VM - and a client, e." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2016/setup-of-ssh/" /><meta property="article:published_time" content="2016-12-27T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2016-12-27T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2016/setup-of-ssh/" />
+<meta property="article:published_time" content="2016-12-27T20:19:45+00:00" />
+<meta property="article:modified_time" content="2016-12-27T20:19:45+00:00" />
 
 
     
@@ -45,7 +46,7 @@ How SSH Works SSH stands for &ldquo;Secure Shell&rdquo;. As its name implies it 
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -230,22 +231,16 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h2 id="other-build-book-posts">Other Build Book Posts</h2>
-
+    <h2 id="other-build-book-posts">Other Build Book Posts</h2>
 <ul>
 <li><a href="https://www.philipdaniels.com/blog/2016/debian-vm-setup/">Debian VM Setup</a></li>
 <li><a href="https://www.philipdaniels.com/blog/2016/windows-vm-setup/">Windows VM Setup</a></li>
 <li><a href="https://www.philipdaniels.com/blog/2016/vm-networking-overview/">Network Setup in Hyper-V and Virtual Box</a></li>
 </ul>
-
 <p>Posts in the Build Book sequence are intended primarily as an aide-mémoire for
 myself; a series of steps to go through for a consistent build experience. They
 tend to be to the point, prescriptive and tailored for me personally.</p>
-
 <h2 id="how-ssh-works">How SSH Works</h2>
-
 <p>SSH stands for &ldquo;Secure Shell&rdquo;. As its name implies it is a network protocol for
 secure communication between two computers, a server - your VM - and a client,
 e.g. your work or home PC. The most basic type of communication SSH supports is
@@ -265,35 +260,21 @@ choose to share them. Whatever you choose to do you should think of the private
 key as a &ldquo;super password&rdquo;, and keep it secret just as you would do a password.)
 The server is usually installed when you build a VM, but it can be installed
 later with this command. No other configuration should be required:</p>
-
 <pre><code>sudo apt-get install openssh-server
 </code></pre>
-
 <h2 id="further-reading">Further Reading</h2>
-
 <p>PuTTY&rsquo;s documentation is an excellent guide to SSH:</p>
-
 <p><a href="http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html">http://www.chiark.greenend.org.uk/~sgtatham/putty/docs.html</a></p>
-
 <p>Other useful links:</p>
-
 <p><a href="http://en.wikipedia.org/wiki/Secure_Shell">http://en.wikipedia.org/wiki/Secure_Shell</a></p>
-
 <p><a href="http://www.wikihow.com/Use-SSH">http://www.wikihow.com/Use-SSH</a></p>
-
 <p><a href="http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html">http://www.cyberciti.biz/tips/linux-unix-bsd-openssh-server-best-practices.html</a></p>
-
 <p><a href="http://www.howtoforge.com/ssh-best-practices">http://www.howtoforge.com/ssh-best-practices</a></p>
-
 <p><a href="http://sitaramc.github.com/gitolite/glssh.html">http://sitaramc.github.com/gitolite/glssh.html</a></p>
-
 <h2 id="creating-a-key">Creating a Key</h2>
-
 <p>Open a prompt and type:</p>
-
 <pre><code>ssh-keygen -t rsa -b 2048
 </code></pre>
-
 <p>This generates an RSA-2 type key of size 2048 bits. These are the defaults and
 are considered secure. You can leave the passphrase blank but if you do this it
 means that anyone who gets hold of your private key file will be able to logon
@@ -303,252 +284,172 @@ effectively functions as a &ldquo;super long password&rdquo;. You should use a p
 which is fairly long but easy to remember and with a mixture of upper and lower
 case. There are utilities available that you can run which means you only have
 to enter it once per session - see the section below, &ldquo;Typing your PassPhrase
-only once&rdquo;. You should name the file &ldquo;id_<em>something</em>&rdquo; because various SSH
+only once&rdquo;. You should name the file &ldquo;id_*something*&rdquo; because various SSH
 utilities pattern match against that. There are two files created – id_phil
 which is your private key - do not copy this up to any servers! - and
 id_phil.pub which is the public key which you copy up to Github or a VM.</p>
-
 <h2 id="enabling-ssh-up-to-a-server">Enabling SSH up to a Server</h2>
-
 <p>When you SSH to the server, you are doing it as a particular user, e.g. root. In
 that user&rsquo;s home folder there needs to be a file, <code>~/.ssh/authorized_keys</code>, to
 which we will append the public key. You can do this manually, but it is easier
 to use the ssh-copy-id program:</p>
-
 <pre><code>ssh-copy-id -i ~/.ssh/id_phil phil@NEWVM
 </code></pre>
-
 <p>To do it manually, you can just open the authorized_keys file in a text editor
 and paste the &ldquo;.pub&rdquo; key in - each key is on a separate line. Here is a complete
 manual script to do this. First, on the VM, do this to create the file if it
 does not already exist:</p>
-
 <pre><code>mkdir -m700 .ssh
 touch .ssh/authorized_keys
 chmod 600 .ssh/authorized_keys
 </code></pre>
-
 <p>Then on the client, do this to copy your public key to the server and append it
 to the authorized_keys file:</p>
-
 <pre><code>cat ~/.ssh/id_phil.pub | ssh root@NEWVM &quot;cat  &gt;&gt; ~/.ssh/authorized_keys&quot;
 </code></pre>
-
 <p>Adjust &lsquo;id_phil&rsquo; and &lsquo;root@NEWVM&rsquo; as appropriate.</p>
-
 <p>Pay careful attention to the punctuation! The right angle-brackets must be
 double as shown, or you&rsquo;ll wipe out any keys you already have; and the quotes
 must be as shown, or you won&rsquo;t get the desired result. Also be careful to cat
 the public file, not the private one, this is an easy mistake to make if you are
 using tab-completion to enter the filename.</p>
-
 <h2 id="using-multiple-key-files">Using multiple key files</h2>
-
 <p>My <a href="https://github.com/PhilipDaniels/dotfiles/blob/master/.bashrc">.bashrc</a>
 now looks like this:</p>
-
 <pre><code>KeyFiles=`find ~/.ssh -type f ! -name &quot;*.*&quot; -name &quot;id*&quot;`
 eval `keychain --quiet --eval &quot;$KeyFiles&quot;`
-</code></pre>
-
-<p>And hence runs keychain for both my personal and work ssh keys.</p>
-
+</code></pre><p>And hence runs keychain for both my personal and work ssh keys.</p>
 <h2 id="installing-a-key-on-unix-servers">Installing a key on Unix Servers</h2>
-
 <p>If you want to install your public key <strong>itself</strong> (so that it is available when
 you login to the console) then you can do so like this:</p>
-
 <p>Or using scp:</p>
-
 <pre><code>scp ~/.ssh/id_phil phil@NEWVM:~/.ssh/id_phil
 </code></pre>
-
 <p>Or using sftp:</p>
-
 <pre><code>sftp phil@NEWVM
 cd ~/.ssh
 put id_phil
 chmod 600 id_phil
 </code></pre>
-
 <h2 id="setting-up-forwarding">Setting up Forwarding</h2>
-
 <p>Forwarding allows you to SSH out from the server you just SSH&rsquo;ed into. This can
 be as innocuous as using Git over SSH. Edit the file <code>~/.ssh/config</code> and add the
 following lines:</p>
-
 <pre><code>ForwardAgent yes
 ForwardX11Trusted yes
 </code></pre>
-
 <p>This is considered somewhat insecure, but is fine for non-production use. See
 <code>man ssh_config</code> for details on how to restrict forwarding to particular hosts.</p>
-
 <p>If it&rsquo;s not working, check that forwarding is enabled on the server:</p>
-
 <pre><code>cat /etc/ssh/sshd_config | grep X11
 </code></pre>
-
 <p>There must be a line &ldquo;X11Forwarding yes&rdquo; for this to work.</p>
-
 <p>To forward X, do this on the client:</p>
-
 <pre><code>ssh [-v] -Y phil@destination
 </code></pre>
-
 <p>The -Y option supercedes the -X option. The -v is verbose help. To confirm that
 ssh is forwarding X11, check for a line containing &ldquo;Requesting X11 forwarding&rdquo;
 in the output.</p>
-
 <h2 id="using-x-from-my-cygwin-setup">Using X from my Cygwin setup</h2>
-
 <p>Create this file. It will start X and keep it running, but not start any
 programs (this is actually part of my default Cygwin dotfiles):</p>
-
 <pre><code>echo &quot;sleep inf&quot; &gt; ~/.startxwinrc
 </code></pre>
-
 <p>Then:</p>
-
 <pre><code>[Cygwin] runx                 # Start X server on Cygwin.
 [Cygwin] ssh -Y phil@NEWVM    # DISPLAY is already setup by ~/.bashrc
 [NEWVM]  xeyes &amp;
 </code></pre>
-
 <p>One problem is that Gnome apps do not work properly over SSH, they don&rsquo;t display
 their theming which makes them look a bit ugly. For a possible solution see
 <a href="http://superuser.com/questions/69174/x11-looks-ugly-while-opening-a-remote-window-from-ssh-can-i-use-gtk-themes/69175#69175">http://superuser.com/questions/69174/x11-looks-ugly-while-opening-a-remote-window-from-ssh-can-i-use-gtk-themes/69175#69175</a></p>
-
 <p><strong>Debugging</strong></p>
-
 <p><a href="http://x.cygwin.com/docs/faq/cygwin-x-faq.html#q-ssh-no-x11forwarding">http://x.cygwin.com/docs/faq/cygwin-x-faq.html#q-ssh-no-x11forwarding</a></p>
-
 <p><a href="http://unix.stackexchange.com/questions/12755/how-to-forward-x-over-ssh-from-ubuntu-machine">http://unix.stackexchange.com/questions/12755/how-to-forward-x-over-ssh-from-ubuntu-machine</a></p>
-
 <h2 id="installing-ssh-keys-on-github-and-bitbucket">Installing SSH keys on Github and Bitbucket</h2>
-
 <p>Login to Bitbucket (you can do this using a Google login). Go to the Management
 screen, there you will see a page for &ldquo;SSH keys&rdquo;. Simply open the <code>id_*.pub</code> file
 and paste it in.</p>
-
 <p>Login to Github (you must use a UID and PWD to do this). Go to Account Settings,
 there you will see a page for &ldquo;SSH keys&rdquo;. Simply open the <code>id_*.pub</code> file and
 paste it in.</p>
-
 <h2 id="using-the-scp-command">Using the SCP command</h2>
-
 <p>After setting up SSH you can use the scp (secure copy) command. Watch out for
 permissions on the transferred files. To copy from a client to the VM, run this
 command in the client:</p>
-
 <pre><code>scp myfile root@NEWVM:dest_file_name
 </code></pre>
-
 <p>To copy an entire folder:</p>
-
 <pre><code>scp -r mydir root@NEWVM:dest_dir
 </code></pre>
-
 <p>To copy using tar (handy for arbitrary lists of files):</p>
-
 <pre><code>tar -cf mydir/* | ssh root@NEWVM 'tar -xf -'
 </code></pre>
-
 <h2 id="using-ssh-with-windows-apps">Using SSH with Windows apps</h2>
-
 <p>Both FileZilla and WinSCP are Windows programs and do not support unix-format
 SSH keys. Such keys need to be converted to a Putty private key and you should use
 Pageant to cache the key. There are 3 programs involved, which are installed by
 Chocolatey into <code>C:\ProgramData\chocolatey\bin</code>:</p>
-
 <ul>
 <li>PuTTYgen.exe - used to create keys</li>
 <li>Pageant.exe - this is the agent used to hold keys in memory</li>
 <li>PuTTY.exe - this is the client used to establish a connection to the VM</li>
 </ul>
-
 <p>(From <a href="http://meinit.nl/using-your-openssh-private-key-in-putty">http://meinit.nl/using-your-openssh-private-key-in-putty</a> and
-<a href="https://wiki.filezilla-project.org/Howto)">https://wiki.filezilla-project.org/Howto)</a></p>
-
+<a href="https://wiki.filezilla-project.org/Howto">https://wiki.filezilla-project.org/Howto</a>)</p>
 <p>You can use PuttyGen to create a completely new key pair, or you can import an
 existing key such as a Unix key. In this example I&rsquo;ll assume you have an
 existing Unix key and want to also use it in PuTTY (if you don&rsquo;t have an
 existing key the only difference in the process is you need to hit the Generate
 button instead of the Load button). Start PuTTYgen, press Load and select your
 Cygwin private key file:</p>
-
-<p><img src="load-private-key.png" alt="Load Private Key" /></p>
-
+<p><img src="load-private-key.png" alt="Load Private Key"></p>
 <p>Enter a description, otherwise you won&rsquo;t be able to tell which passphrase to use
 when Pageant asks you for it. Enter your passphrase when prompted:</p>
-
-<p><img src="enter-passphrase.png" alt="Enter Passphrase" /></p>
-
+<p><img src="enter-passphrase.png" alt="Enter Passphrase"></p>
 <p>You will get this self-explanatory message:</p>
-
-<p><img src="puttygen-notice.png" alt="PuTTYgen Notice" /></p>
-
+<p><img src="puttygen-notice.png" alt="PuTTYgen Notice"></p>
 <p>Press Save Private Key and create the file &ldquo;id_rsa.ppk&rdquo;. PPK is PuTTY&rsquo;s private
 key format.</p>
-
 <h2 id="setting-up-pageant">Setting up Pageant</h2>
-
 <p>The PuTTY suite&rsquo;s equivalent of ssh-agent is called Pageant. When started it
 appears in the notification area as a VERY small computer with a hat on!</p>
-
-<p><img src="pageant-icon.png" alt="Pageant Icon" /></p>
-
+<p><img src="pageant-icon.png" alt="Pageant Icon"></p>
 <p>Bring up its window, press Add Key, and browse for your ppk file. You are asked
 for your passphrase again. You&rsquo;re done. Pageant now has your key in memory and
 has validated your passphrase. It&rsquo;s a good idea to add a Pageant shortcut to
 your Startup folder:</p>
-
 <pre><code>Target = \\Path\To\Pageant.exe id_phil.ppk other.ppk
 Start in = C:\Users\Phil\.ssh
 </code></pre>
-
 <p>Then in FileZilla, just enter</p>
-
 <pre><code>Host = sftp://servername
 User = theuser  (the user on the server)
 Password = leave blank
 Port = 22 (or leave blank, it's the default for sftp)
 </code></pre>
-
 <p>If you can&rsquo;t get the SSH key to work, you can make a password-authenticated
 connection in FileZilla using:</p>
-
 <pre><code>Host = sftp://servername
 User = theuser
 Password = the pwd
 Port = 22
 </code></pre>
-
 <h2 id="installing-keys-on-servers-using-putty">Installing Keys on servers using PuTTY</h2>
-
 <p>You need to somehow get the public key into the user&rsquo;s authorized_keys file. The
 easiest way is probably to use PuTTY&rsquo;s secure FTP program to pull a copy of the
 file down to your client, paste in your new key, then push it back up. Test the
 connection using PuTTY itself. Under the SSH, Auth section specify the PPK file:</p>
-
-<p><img src="putty-ssh-file.png" alt="PuTTY SSH file" /></p>
-
+<p><img src="putty-ssh-file.png" alt="PuTTY SSH file"></p>
 <p>Then create a new session to the VM:</p>
-
-<p><img src="putty-new-session.png" alt="PuTTY SSH file" /></p>
-
+<p><img src="putty-new-session.png" alt="PuTTY SSH file"></p>
 <p>You will be asked for your passphrase:</p>
-
-<p><img src="putty-pwd-prompt.png" alt="PuTTY SSH file" /></p>
-
+<p><img src="putty-pwd-prompt.png" alt="PuTTY SSH file"></p>
 <h2 id="ssh-in-visual-studio">SSH in Visual Studio</h2>
-
 <p>I had to create an environment variable <strong>GIT_SSH</strong> in Windows to get Visual Studio to use SSH.
 Its value is</p>
-
 <pre><code>GIT_SSH=C:\Users\pdaniels\AppData\Local\SourceTree\app-2.6.10\tools\putty\plink.exe
 </code></pre>
-
 <p>This variable must NOT be set for Cygwin or WSL, otherwise it interferes with normal git remote
 operations on those systems.</p>
 

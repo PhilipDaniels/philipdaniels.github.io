@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -28,7 +28,7 @@ For manipulating paths, see std::path.
 For low-level network IO, see std::net.
 One Liners for Reading the Entire File Use read_to_string and read.
 These are both fast as they allocate a buffer of the required size to start with.
-let contents: String = std::fs::read_to_string(&quot;/some/file&quot;)?; let bytes: Vec&lt;u8&gt; = std::fs::read(&quot;/some/file&quot;)?;  One Liners for Writing the Entire File Use write."/>
+let contents: String = std::fs::read_to_string(&#34;/some/file&#34;)?; let bytes: Vec&lt;u8&gt; = std::fs::read(&#34;/some/file&#34;)?; One Liners for Writing the Entire File Use write."/>
 
 <meta property="og:title" content="Rust File IO" />
 <meta property="og:description" content="See std::io for more details.
@@ -37,10 +37,11 @@ For manipulating paths, see std::path.
 For low-level network IO, see std::net.
 One Liners for Reading the Entire File Use read_to_string and read.
 These are both fast as they allocate a buffer of the required size to start with.
-let contents: String = std::fs::read_to_string(&quot;/some/file&quot;)?; let bytes: Vec&lt;u8&gt; = std::fs::read(&quot;/some/file&quot;)?;  One Liners for Writing the Entire File Use write." />
+let contents: String = std::fs::read_to_string(&#34;/some/file&#34;)?; let bytes: Vec&lt;u8&gt; = std::fs::read(&#34;/some/file&#34;)?; One Liners for Writing the Entire File Use write." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-file-io/" /><meta property="article:published_time" content="2019-05-23T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-05-23T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-file-io/" />
+<meta property="article:published_time" content="2019-05-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-05-23T00:00:00+00:00" />
 
 
     
@@ -55,7 +56,7 @@ let contents: String = std::fs::read_to_string(&quot;/some/file&quot;)?; let byt
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -190,7 +191,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -240,146 +241,104 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<p>See <a href="https://doc.rust-lang.org/std/io/index.html">std::io</a> for more details.</p>
-
+    <p>See <a href="https://doc.rust-lang.org/std/io/index.html">std::io</a> for more details.</p>
 <p>For dealing with the filesystem, such as opening or deleting files, see
 <a href="https://doc.rust-lang.org/std/fs/index.html">std::fs</a>.</p>
-
 <p>For manipulating paths, see
 <a href="https://doc.rust-lang.org/std/path/index.html">std::path</a>.</p>
-
 <p>For low-level network IO, see <a href="https://doc.rust-lang.org/std/net/index.html">std::net</a>.</p>
-
 <h1 id="one-liners-for-reading-the-entire-file">One Liners for Reading the Entire File</h1>
-
 <p>Use <a href="https://doc.rust-lang.org/std/fs/fn.read_to_string.html">read_to_string</a>
 and <a href="https://doc.rust-lang.org/std/fs/fn.read.html">read</a>.</p>
-
 <p>These are both fast as they allocate a buffer of the required size to start with.</p>
-
-<pre><code class="language-rs">let contents: String = std::fs::read_to_string(&quot;/some/file&quot;)?;
-let bytes: Vec&lt;u8&gt; = std::fs::read(&quot;/some/file&quot;)?;
-</code></pre>
-
-<h1 id="one-liners-for-writing-the-entire-file">One Liners for Writing the Entire File</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">let</span> contents: String <span style="color:#f92672">=</span> std::fs::read_to_string(<span style="color:#e6db74">&#34;/some/file&#34;</span>)<span style="color:#f92672">?</span>;
+<span style="color:#66d9ef">let</span> bytes: Vec<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">u8</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> std::fs::read(<span style="color:#e6db74">&#34;/some/file&#34;</span>)<span style="color:#f92672">?</span>;
+</code></pre></div><h1 id="one-liners-for-writing-the-entire-file">One Liners for Writing the Entire File</h1>
 <p>Use <a href="https://doc.rust-lang.org/std/fs/fn.write.html">write</a>.
 The file will be created if it does not exist, replaced if it does.</p>
-
 <p>The contents is anything that implements <code>AsRef&lt;[u8]&gt;</code> - which includes
 <a href="https://doc.rust-lang.org/std/string/struct.String.html">String</a>
 and <a href="https://doc.rust-lang.org/std/primitive.str.html">str</a>.</p>
-
-<pre><code class="language-rs">let contents = &quot;Some data!&quot;;
-std::fs::write(&quot;/some/file&quot;, &amp;data);
-</code></pre>
-
-<h1 id="reading-files-line-by-line">Reading Files Line by Line</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">let</span> contents <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Some data!&#34;</span>;
+std::fs::write(<span style="color:#e6db74">&#34;/some/file&#34;</span>, <span style="color:#f92672">&amp;</span>data);
+</code></pre></div><h1 id="reading-files-line-by-line">Reading Files Line by Line</h1>
 <p>You should use <a href="https://doc.rust-lang.org/std/io/struct.BufReader.html">BufReader</a>
 to speed up reading. Note that you need to bring the
 <a href="https://doc.rust-lang.org/std/io/trait.BufRead.html">BufRead</a>
 trait into scope to get access to the
 <a href="https://doc.rust-lang.org/std/io/trait.BufRead.html#method.lines">lines</a>
 method.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::fs::File;
+<span style="color:#66d9ef">use</span> std::io::{BufRead, BufReader};
 
-<pre><code class="language-rs">use std::fs::File;
-use std::io::{BufRead, BufReader};
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> File::open(<span style="color:#e6db74">&#34;/some/file&#34;</span>).unwrap();
+    <span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> BufReader::new(f);
 
-fn main() {
-    let f = File::open(&quot;/some/file&quot;).unwrap();
-    let f = BufReader::new(f);
-
-    for line in f.lines() {
-        let line = line.expect(&quot;Unable to read line&quot;);
-        println!(&quot;{}&quot;, line);
+    <span style="color:#66d9ef">for</span> line <span style="color:#66d9ef">in</span> f.lines() {
+        <span style="color:#66d9ef">let</span> line <span style="color:#f92672">=</span> line.expect(<span style="color:#e6db74">&#34;Unable to read line&#34;</span>);
+        println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;{}&#34;</span>, line);
     }
 }
-</code></pre>
-
-<p><a href="https://doc.rust-lang.org/std/io/trait.BufRead.html#method.lines">Lines</a>
+</code></pre></div><p><a href="https://doc.rust-lang.org/std/io/trait.BufRead.html#method.lines">Lines</a>
 splits on LF (0xA) or CRLF (0xD,0xA). To split on other bytes, use
 the <a href="https://doc.rust-lang.org/std/io/trait.BufRead.html#method.split">split</a>
 method.</p>
-
 <h1 id="getting-all-lines-from-a-file-into-a-vector">Getting All Lines From a File into a Vector</h1>
-
-<pre><code class="language-rs">let lines = reader.lines().collect::&lt;io::Result&lt;Vec&lt;String&gt;&gt;&gt;()?;
-</code></pre>
-
-<h1 id="writing">Writing</h1>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">let</span> lines <span style="color:#f92672">=</span> reader.lines().collect::<span style="color:#f92672">&lt;</span>io::Result<span style="color:#f92672">&lt;</span>Vec<span style="color:#f92672">&lt;</span>String<span style="color:#f92672">&gt;&gt;&gt;</span>()<span style="color:#f92672">?</span>;
+</code></pre></div><h1 id="writing">Writing</h1>
 <p>Writing is mainly done using macros, namely
 <a href="https://doc.rust-lang.org/1.5.0/std/macro.write!.html">write!</a>
 and
 <a href="https://doc.rust-lang.org/1.5.0/std/macro.writeln!.html">writeln!</a>.
 See <a href="https://doc.rust-lang.org/1.5.0/std/fmt/index.html">fmt</a>
 for the juicy stuff.</p>
-
-<p>If you&rsquo;re looking for functionality equivalent to C#&rsquo;s
+<p>If you&rsquo;re looking for functionality equivalent to C#&lsquo;s
 <a href="https://docs.microsoft.com/en-us/dotnet/api/system.io.textwriter?view=netframework-4.8">TextWriter</a>
 such as <code>Write(UInt32)</code>, this is how you do it, using the macros.</p>
-
-<pre><code class="language-rs">let f = File::open(&quot;/some/file&quot;).unwrap();
-let f = BufWriter::new(f);
-writeln!(f, &quot;Hello {}, you are {} years old&quot;, name, age);
-f.flush()?;
-</code></pre>
-
-<p><strong>VERY IMPORTANT</strong></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> File::open(<span style="color:#e6db74">&#34;/some/file&#34;</span>).unwrap();
+<span style="color:#66d9ef">let</span> f <span style="color:#f92672">=</span> BufWriter::new(f);
+writeln<span style="color:#f92672">!</span>(f, <span style="color:#e6db74">&#34;Hello {}, you are {} years old&#34;</span>, name, age);
+f.flush()<span style="color:#f92672">?</span>;
+</code></pre></div><p><strong>VERY IMPORTANT</strong></p>
 <p>Rigorous code should call <a href="https://doc.rust-lang.org/std/io/trait.Write.html#tymethod.flush">flush</a>
 explicitly rather than just letting Rust do it when the <code>BufWriter</code> is dropped. This is because
 any errors from <code>flush</code> will be squashed inside <code>drop</code>. It is better to flush explicitly so
 that errors are surfaced to the program.</p>
-
 <p>Looking for the <code>BufWrite</code> trait to mirror <a href="https://doc.rust-lang.org/std/io/trait.BufRead.html">BufRead</a>?
 There is no such trait! Because there are no extra methods (over and above those on
 <a href="https://doc.rust-lang.org/std/fs/fn.write.html">write</a>)
 which <code>BufWrite</code> would add.</p>
-
 <h1 id="generic-code">Generic Code</h1>
-
 <p>It is typical to write code that is generic over <code>Read</code> and <code>Write</code> traits - or
 <code>BufRead</code> and <code>BufWrite</code>. Note that the references are mutable.</p>
-
-<pre><code class="language-rs">fn copy&lt;R,W&gt;(reader: &amp;mut R, writer: &amp;mut W)
-where
-    R: Read,
-    W: Write
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">copy</span><span style="color:#f92672">&lt;</span>R,W<span style="color:#f92672">&gt;</span>(reader: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> R, writer: <span style="color:#66d9ef">&amp;</span><span style="color:#a6e22e">mut</span> W)
+<span style="color:#66d9ef">where</span>
+    R: <span style="color:#a6e22e">Read</span>,
+    W: <span style="color:#a6e22e">Write</span>
 {
     ...
 }
-</code></pre>
-
-<h1 id="stdin-stdout-and-stderr">Stdin, Stdout and Stderr</h1>
-
+</code></pre></div><h1 id="stdin-stdout-and-stderr">Stdin, Stdout and Stderr</h1>
 <p>Rust (and C also) guard reads and writes to the standard IO file descriptors
 using a global lock. That lock will be obtained separately for every call to
 <a href="https://doc.rust-lang.org/std/macro.println.html">println!</a>, for example.</p>
-
 <p>To speed things up, you can obtain the lock once at the start of a writing
 session and hold it until done.</p>
-
 <p>The <a href="https://doc.rust-lang.org/std/io/struct.Stdout.html#method.lock">lock</a> method
 returns a <a href="https://doc.rust-lang.org/std/io/struct.StdoutLock.html">StdoutLock</a>
 which implements <a href="https://doc.rust-lang.org/std/io/trait.Write.html">Write</a>, so
 you can use the <code>write!</code> and <code>writeln</code> macros with it.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> std::io::prelude::<span style="color:#f92672">*</span>;
 
-<pre><code class="language-rs">use std::io::prelude::*;
-
-fn main() {
-    let stdout = std::io::stdout();
-    let mut writer = stdout.lock();
-    writeln!(writer, &quot;Hello&quot;);
-    writeln!(writer, &quot; World&quot;);
-    // lock released here
-}
-</code></pre>
-
-<p>Same applies to
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> stdout <span style="color:#f92672">=</span> std::io::stdout();
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> writer <span style="color:#f92672">=</span> stdout.lock();
+    writeln<span style="color:#f92672">!</span>(writer, <span style="color:#e6db74">&#34;Hello&#34;</span>);
+    writeln<span style="color:#f92672">!</span>(writer, <span style="color:#e6db74">&#34; World&#34;</span>);
+    <span style="color:#75715e">// lock released here
+</span><span style="color:#75715e"></span>}
+</code></pre></div><p>Same applies to
 <a href="https://doc.rust-lang.org/std/io/struct.Stdin.html">stdin</a>
 and <a href="https://doc.rust-lang.org/std/io/struct.Stderr.html">stderr</a></p>
 

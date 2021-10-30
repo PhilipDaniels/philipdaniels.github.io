@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -29,8 +29,9 @@
 <meta property="og:description" content="Configuring the release profile Here are some settings you can specify in Cargo.toml for fastest possible Release mode builds. Expect these changes to make marginal differences (5-10%? YMMV). If you are using a workspace you should specify this in the top-level Cargo.toml only.
 [profile.release] # Enable link-time optimization, eliminates more code and inlines across crate boundaries. # Default: false lto = true # codegen-units of 1 gives best optimization, but disables parallel building." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-release-mode-builds/" /><meta property="article:published_time" content="2019-04-14T00:00:00&#43;00:00"/>
-<meta property="article:modified_time" content="2019-04-14T00:00:00&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/rust-release-mode-builds/" />
+<meta property="article:published_time" content="2019-04-14T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-04-14T00:00:00+00:00" />
 
 
     
@@ -45,7 +46,7 @@
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -214,63 +215,44 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h1 id="configuring-the-release-profile">Configuring the release profile</h1>
-
+    <h1 id="configuring-the-release-profile">Configuring the release profile</h1>
 <p>Here are some settings you can specify in <code>Cargo.toml</code> for fastest possible Release mode builds.
 Expect these changes to make marginal differences (5-10%? YMMV).
 If you are using a workspace you should specify this in the top-level <code>Cargo.toml</code> only.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">profile</span>.<span style="color:#a6e22e">release</span>]
+<span style="color:#75715e"># Enable link-time optimization, eliminates more code and inlines across crate boundaries.</span>
+<span style="color:#75715e"># Default: false</span>
+<span style="color:#a6e22e">lto</span> = <span style="color:#66d9ef">true</span>
 
-<pre><code class="language-toml">[profile.release]
-# Enable link-time optimization, eliminates more code and inlines across crate boundaries.
-# Default: false
-lto = true
+<span style="color:#75715e"># codegen-units of 1 gives best optimization, but disables parallel building.</span>
+<span style="color:#75715e"># Default: 16</span>
+<span style="color:#a6e22e">codegen</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">units</span> = <span style="color:#ae81ff">1</span>
 
-# codegen-units of 1 gives best optimization, but disables parallel building.
-# Default: 16
-codegen-units = 1
+<span style="color:#75715e"># Includes debug information in release builds. Necessary for profiling. Does not</span>
+<span style="color:#75715e"># slow down the executable.</span>
+<span style="color:#a6e22e">debug</span> = <span style="color:#66d9ef">true</span>
 
-# Includes debug information in release builds. Necessary for profiling. Does not
-# slow down the executable.
-debug = true
-
-# The default optimization level is 3 for release mode builds.
-# 0 means disable optimization and is the default for debug mode buids.
-# (Setting opt-level=1 for debug builds is a good way of speeding them up a bit.)
-# &quot;s&quot; means optimize for size, &quot;z&quot; reduces size even more.
-opt-level = 3
-</code></pre>
-
-<p>In addition, if you only care about running on your PC, you can instruct Cargo and rustc to
+<span style="color:#75715e"># The default optimization level is 3 for release mode builds.</span>
+<span style="color:#75715e"># 0 means disable optimization and is the default for debug mode buids.</span>
+<span style="color:#75715e"># (Setting opt-level=1 for debug builds is a good way of speeding them up a bit.)</span>
+<span style="color:#75715e"># &#34;s&#34; means optimize for size, &#34;z&#34; reduces size even more.</span>
+<span style="color:#a6e22e">opt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">level</span> = <span style="color:#ae81ff">3</span>
+</code></pre></div><p>In addition, if you only care about running on your PC, you can instruct Cargo and rustc to
 produce a native binary. The easiest way to do this on a &lsquo;one-off&rsquo; basis is</p>
-
-<pre><code class="language-bash">RUSTFLAGS=&quot;-C target-cpu=native&quot; cargo build --release
-</code></pre>
-
-<p>To check that it&rsquo;s working add a <code>--verbose</code> flag to the cargo command.</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">RUSTFLAGS<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;-C target-cpu=native&#34;</span> cargo build --release
+</code></pre></div><p>To check that it&rsquo;s working add a <code>--verbose</code> flag to the cargo command.</p>
 <p>You may want to set RUSTFLAGS in your <code>~/.profile</code>.</p>
-
 <p>On Windows, in PowerShell you set an environment variable in two steps (use
 <code>echo $env:RUSTFLAGS</code> to check it&rsquo;s set):</p>
-
-<pre><code class="language-powershell">$env:RUSTFLAGS=&quot;-C target-cpu=native&quot;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-powershell" data-lang="powershell">$env:RUSTFLAGS=<span style="color:#e6db74">&#34;-C target-cpu=native&#34;</span>
 cargo build --release
-</code></pre>
-
-<p>This will set RUSTLFAGS temporarily, for that PowerShell session only: if you start
+</code></pre></div><p>This will set RUSTLFAGS temporarily, for that PowerShell session only: if you start
 a new PowerShell window you will need to set it again. You can use the
 <code>System Properties -&gt; Environment Variables</code> window to set it permanently.</p>
-
 <p>Alternatively you can set RUSTFLAGS in <code>.cargo/config</code>, see below for an example.</p>
-
 <p><a href="https://doc.rust-lang.org/cargo/reference/manifest.html">Cargo manifest format</a></p>
-
 <p><a href="https://rust-embedded.github.io/book/unsorted/speed-vs-size.html">Speed vs size</a></p>
-
 <h1 id="getting-better-performance-from-development-mode-builds">Getting better performance from Development mode builds</h1>
-
 <p>There is a neat trick you can use to get Cargo make your Development mode
 builds run faster, potentially giving you faster run times while keeping
 compilation times reasonable. If you add the following to your <code>Cargo.toml</code>,
@@ -282,42 +264,32 @@ As the <a href="https://doc.rust-lang.org/cargo/reference/profiles.html#override
 won&rsquo;t get the full benefit, but in most cases I would not be surprised if
 90% of the Rust code in your program is actually from crates. It certainly
 worked fantastically well on a game I was writing.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml"><span style="color:#75715e"># Set the default for dependencies.</span>
+[<span style="color:#a6e22e">profile</span>.<span style="color:#a6e22e">dev</span>.<span style="color:#a6e22e">package</span>.<span style="color:#e6db74">&#34;*&#34;</span>]
+<span style="color:#a6e22e">opt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">level</span> = <span style="color:#ae81ff">3</span>
 
-<pre><code class="language-toml"># Set the default for dependencies.
-[profile.dev.package.&quot;*&quot;]
-opt-level = 3
-
-[profile.dev]
-# Turn on a small amount of optimisation in development mode.
-opt-level = 1
-</code></pre>
-
-<h1 id="creating-a-config-file-for-cargo">Creating a config file for Cargo</h1>
-
+[<span style="color:#a6e22e">profile</span>.<span style="color:#a6e22e">dev</span>]
+<span style="color:#75715e"># Turn on a small amount of optimisation in development mode.</span>
+<span style="color:#a6e22e">opt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">level</span> = <span style="color:#ae81ff">1</span>
+</code></pre></div><h1 id="creating-a-config-file-for-cargo">Creating a config file for Cargo</h1>
 <p>You can create a <code>config</code> file for Cargo to specify defaults for these settings.</p>
-
 <p>This file can reside either in your crate&rsquo;s directory, or any parent thereof. In
 particular, if your source code is under your home directory, you can create
 a &lsquo;global&rsquo; default in <code>~/.cargo/config</code>. <a href="https://doc.rust-lang.org/cargo/reference/config.html">See here</a>
 for the actual directory search order.</p>
-
 <p>Typical contents might be:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-toml" data-lang="toml">[<span style="color:#a6e22e">target</span>.<span style="color:#e6db74">&#39;cfg(any(windows, unix))&#39;</span>]
+<span style="color:#a6e22e">rustflags</span> = [<span style="color:#e6db74">&#34;-C target-cpu=native&#34;</span>]
 
-<pre><code class="language-toml">[target.'cfg(any(windows, unix))']
-rustflags = [&quot;-C target-cpu=native&quot;]
-
-[profile.release]
-lto = true
-codegen-units = 1
-debug = true
-opt-level = 3
-</code></pre>
-
-<p>However, at the time of writing there is a significant downside. You&rsquo;ll soon
+[<span style="color:#a6e22e">profile</span>.<span style="color:#a6e22e">release</span>]
+<span style="color:#a6e22e">lto</span> = <span style="color:#66d9ef">true</span>
+<span style="color:#a6e22e">codegen</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">units</span> = <span style="color:#ae81ff">1</span>
+<span style="color:#a6e22e">debug</span> = <span style="color:#66d9ef">true</span>
+<span style="color:#a6e22e">opt</span><span style="color:#960050;background-color:#1e0010">-</span><span style="color:#a6e22e">level</span> = <span style="color:#ae81ff">3</span>
+</code></pre></div><p>However, at the time of writing there is a significant downside. You&rsquo;ll soon
 discover that <code>cargo build --release</code> won&rsquo;t work, and you are told to use
 <code>cargo build --release -Z config-profile</code> but that won&rsquo;t work either unless you
 are on the nightly channel of cargo! Annoying.</p>
-
 <p>Probably best to stick to pasting it into your <code>Cargo.toml</code>.</p>
 
   </div>

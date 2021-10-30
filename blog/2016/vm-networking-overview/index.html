@@ -11,7 +11,7 @@
 <meta http-equiv="Cache-Control" content="public" />
 <!-- Enable responsiveness on mobile devices -->
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
-<meta name="generator" content="Hugo 0.53" />
+<meta name="generator" content="Hugo 0.68.3" />
 
     
     
@@ -29,8 +29,9 @@ In this article I describe the different types of switch available in Hyper-V an
 <meta property="og:description" content="Other Build Book Posts  Debian VM Setup Setup of SSH Windows VM Setup  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
 In this article I describe the different types of switch available in Hyper-V and their equivalents in Virtual Box." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://www.philipdaniels.com/blog/2016/vm-networking-overview/" /><meta property="article:published_time" content="2016-12-27T20:19:45&#43;00:00"/>
-<meta property="article:modified_time" content="2016-12-27T20:19:45&#43;00:00"/>
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2016/vm-networking-overview/" />
+<meta property="article:published_time" content="2016-12-27T20:19:45+00:00" />
+<meta property="article:modified_time" content="2016-12-27T20:19:45+00:00" />
 
 
     
@@ -45,7 +46,7 @@ In this article I describe the different types of switch available in Hyper-V an
 
 
 
-<link rel="stylesheet" href="/scss/hyde-hyde.3365924f1904a2c9b5991a4d079133052f247ee399df58b1a74e1119d7f49823.css" integrity="sha256-M2WSTxkEosm1mRpNB5EzBS8kfuOZ31ixp04RGdf0mCM=">
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
 
 
 <link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
@@ -180,7 +181,7 @@ if (!doNotTrack) {
     </div>
     
 <div class="copyright">
-  &copy; 2020 Philip Daniels
+  &copy; 2021 Philip Daniels
   
 </div>
 
@@ -236,25 +237,18 @@ if (!doNotTrack) {
   
   
   <div class="post">
-    
-
-<h2 id="other-build-book-posts">Other Build Book Posts</h2>
-
+    <h2 id="other-build-book-posts">Other Build Book Posts</h2>
 <ul>
 <li><a href="https://www.philipdaniels.com/blog/2016/debian-vm-setup/">Debian VM Setup</a></li>
 <li><a href="https://www.philipdaniels.com/blog/2016/setup-of-ssh/">Setup of SSH</a></li>
 <li><a href="https://www.philipdaniels.com/blog/2016/windows-vm-setup/">Windows VM Setup</a></li>
 </ul>
-
 <p>Posts in the Build Book sequence are intended primarily as an aide-mémoire for
 myself; a series of steps to go through for a consistent build experience. They
 tend to be to the point, prescriptive and tailored for me personally.</p>
-
 <p>In this article I describe the different types of switch available in Hyper-V
 and their equivalents in Virtual Box.</p>
-
 <h2 id="further-info">Further Info</h2>
-
 <ul>
 <li>The site <a href="http://intronetworks.cs.luc.edu/">http://intronetworks.cs.luc.edu/</a> is an awesome intro to networking.</li>
 <li><a href="http://www.aboutdebian.com/network.htm">http://www.aboutdebian.com/network.htm</a> has lots and lots of info from a Debian
@@ -263,11 +257,8 @@ perspective.</li>
 <a href="https://en.wikipedia.org/wiki/Private_network">Private network</a> article at
 Wikipedia.</li>
 </ul>
-
 <h2 id="problem-statement">Problem Statement</h2>
-
 <p>Typically when installing a VM we want the following:</p>
-
 <ol>
 <li>The machine should be able to access the Internet. Without this, it won&rsquo;t be
 possible to install software or have the VM patch itself.</li>
@@ -279,25 +270,20 @@ at work, and whether or not I am connected to the corporate VPN.</li>
 <li>At work, the machine should NOT be visible to machines other than my host
 laptop unless I explicitly setup port-forwarding.</li>
 </ol>
-
 <p>Points 1-3 are easy. Point 4 I do not believe is easily possible in Hyper-V 2012
 because it does not support NAT, therefore I recommend using an <strong>External</strong>
 network, which means your IP will be visible to other machines on the local
 network. Hyper-V 2016
 <a href="http://www.thomasmaurer.ch/2016/05/set-up-a-hyper-v-virtual-switch-using-a-nat-network/">adds a new NAT switch type</a>,
 which makes this problem go away. Virtual Box already has support for NAT.</p>
-
 <p><strong>The TL;DR summary</strong> is that VMs at home can be built with <strong>one</strong> network
 adapter and DHCP reservation to assign a fixed IP, but VMs at work need to be
 built with <strong>two</strong> network adapters and a static IP manually assigned on the
 internal network. Before the reasoning for this can be understood, you need to
 understand the types of networks available in Hyper-V and Virtual Box.</p>
-
 <p>But your first decision is whether to use Hyper-V or Virtual Box as your
 hypervisor.</p>
-
 <h2 id="hyper-v-overview">Hyper-V Overview</h2>
-
 <ul>
 <li>Has the advantage of being built-in to Windows</li>
 <li>Integration with Linux clients is less than stellar, even with integration
@@ -318,9 +304,7 @@ rock-solid.</li>
 IP on an internal network seems&hellip;odd. Despite trying many setups, I cannot
 get it to work correctly at work.</li>
 </ul>
-
 <h2 id="virtual-box-overview">Virtual Box Overview</h2>
-
 <ul>
 <li>It&rsquo;s an extra download, though that is easy via
 <a href="https://chocolatey.org/">chocolatey</a>.</li>
@@ -338,18 +322,13 @@ a Linux environment.</li>
 <li>Supports NAT, which means that internet connectivity for VMs is simply defined
 and works whether I am at home on WiFi, at work and docked or undocked.</li>
 </ul>
-
 <h2 id="hyper-v-or-virtual-box">Hyper-V or Virtual Box?</h2>
-
 <p><strong>Conclusion:</strong> At home, use Hyper-V because it is already installed on my
 server and I have access to the router, at work use Virtual Box because its
 support of NAT is an overwhelming advantage.</p>
-
 <h2 id="hyper-v-switch-types">Hyper-V Switch Types</h2>
-
 <p>There are three types of switch in Hyper-V (2012 edition). These descriptions
 are taken directly from the Hyper-V manager:</p>
-
 <ul>
 <li><strong>External</strong> Creates a virtual switch that binds to the physical network
 adapter so that virtual machines can access a physical network.</li>
@@ -360,39 +339,28 @@ connectivity to a physical network connection.</li>
 <li><strong>Private</strong> Creates a virtual switch that can be used only by the virtual
 machines that run on this physical computer.</li>
 </ul>
-
 <p><strong>Conclusion:</strong> If you want a VM to be able to access the Internet you must give
 the machine a network adapter that is bound to an <strong>External</strong> switch. (That is
 not strictly true, an alternative is to give it a NIC that is bound to an
 internal or private switch that has a gateway on it. That technique is described
 later for completeness, but is not needed to solve the problem statement above).</p>
-
 <p>You setup switches in Hyper-V before creating any VMs. VM host is called
 HYPERBOX and has only one physical network adapter, so I end up with a pair like
 this:</p>
-
-<p><img src="hyperbox_external_switch.png" alt="Hyperbox External Switch" />
-<img src="hyperbox_internal_switch.png" alt="Hyperbox Internal Switch" /></p>
-
+<p><img src="hyperbox_external_switch.png" alt="Hyperbox External Switch">
+<img src="hyperbox_internal_switch.png" alt="Hyperbox Internal Switch"></p>
 <p>When you create a switch in Hyper-V it shows up in Control Panel -&gt; Network and
 Sharing Center on the host machine. <strong>You can use this to determine the MAC
 addresses of the interfaces, if necessary:</strong></p>
-
-<p><img src="hyperbox_nics1.png" alt="The Network Adapters on the Hyper-V host machine" />
-<img src="hyperbox_nics2.png" alt="The External Switch in Control Panel" />
-<img src="hyperbox_nics3.png" alt="The Internal Switch in Control Panel" /></p>
-
+<p><img src="hyperbox_nics1.png" alt="The Network Adapters on the Hyper-V host machine">
+<img src="hyperbox_nics2.png" alt="The External Switch in Control Panel">
+<img src="hyperbox_nics3.png" alt="The Internal Switch in Control Panel"></p>
 <h2 id="virtual-box-switch-types">Virtual Box Switch Types</h2>
-
 <p>Virtual Box networking is very similar to Hyper-V,
 <a href="https://www.virtualbox.org/manual/ch06.html#networkingmodes">but it allows even more flexibility</a>:</p>
-
 <p>The equivalent of a Hyper-V External network is a <strong>Bridged</strong> network.</p>
-
 <p>The equivalent of a Hyper-V Internal network is a <strong>Host-only</strong> network.</p>
-
 <p>The equivalent of a Hyper-V Private network is an <strong>Internal</strong> network.</p>
-
 <p>Virtual Box also has a <strong>NAT</strong> network type; Hyper-V does not have a direct
 equivalent in Hyper-V 2012 but will in Hyper-V 2016. NAT ensures that VMs
 attached to it are not visible to the outside world (i.e. from off the host)
@@ -400,21 +368,15 @@ attached to it are not visible to the outside world (i.e. from off the host)
 the default network type in Virtual Box for that very reason. Otherwise, as far
 as the VM itself is concerned, Bridged and NAT both provide Internet
 connectivity and should appear identical in function.</p>
-
 <p><strong>Conclusion:</strong> If using Virtual Box, use <strong>NAT</strong> for your &ldquo;External Switch&rdquo; and
 <strong>Host-only</strong> for what we called the &ldquo;Internal Switch&rdquo; in the Hyper-V section
 above.</p>
-
 <h2 id="vm-setup-at-home-the-simple-way">VM Setup at home, the simple way</h2>
-
 <p>This is how I setup at home.</p>
-
-<p><img src="topology-home-simple.png" alt="Home Network Topology" /></p>
-
+<p><img src="topology-home-simple.png" alt="Home Network Topology"></p>
 <p>This section describes the simplest possible VM setup at home. Note that my router
 is currently configured to assign IP addresses in the range 192.168.0.200 to
 192.168.0.254. DHCP reservations must be in this range too.</p>
-
 <ul>
 <li>Create a new VM with one <strong>External</strong> network adapter. Specify CPUs etc.</li>
 <li>Boot the VM and install the OS. Both
@@ -426,46 +388,33 @@ DHCP.</li>
 reservation while a client is connected, so shutdown the VM, add a new
 reservation, and boot up the VM again.</li>
 </ul>
-
 <p>Now, every time the VM boots, it will be assigned the same IP, and you can move
 on to <a href="#making-vms-visible-to-other-machines">Making VMs visible to other machines</a>.
 The list of DHCP reservations can be pasted into <code>/etc/hosts</code>.</p>
-
 <h2 id="vm-setup-at-work">VM Setup at work</h2>
-
 <p>At work we have an NTLM authenticating proxy which &ldquo;caches&rdquo; your IP and Active
 Directory credentials. If it gets a non-NTLM request from an IP it knows about,
 it considers you authenticated. The upshot is, if you open a browser window the
 proxy will, from that point in time, consider you authenticated, so you don&rsquo;t
 have to do anything special such as using
 <a href="http://cntlm.sourceforge.net/">cntlm</a>.</p>
-
 <p>Uninstall Hyper-V if it is installed then install Virtual Box.</p>
-
 <p>We are going to build this:</p>
-
-<p><img src="topology-work-simple.png" alt="Work Network Topology" /></p>
-
+<p><img src="topology-work-simple.png" alt="Work Network Topology"></p>
 <p>This all seems to work fine as long as addresses in the range 192.168.56.* don&rsquo;t
 clash with anything else on my network. (They don&rsquo;t, AFAIK. I am not sure how
 Virtual Box chooses that number).</p>
-
 <p>Create a new VM in Virtual Box. It needs two network adapters, the first should
 be NAT and the second a Host Only adapter. Create them in that order (1 = NAT, 2
 = Host Only):</p>
-
-<p><img src="vbox-nic1.png" alt="NAT NIC in Virtual Box" />
-<img src="vbox-nic2.png" alt="Host Only NIC in Virtual Box" /></p>
-
+<p><img src="vbox-nic1.png" alt="NAT NIC in Virtual Box">
+<img src="vbox-nic2.png" alt="Host Only NIC in Virtual Box"></p>
 <p>When you run through a Debian install, you will be prompted to pick a primary
 network card: pick the first one, which will be the NAT one. You will then have
 to setup the second one manually in <code>/etc/network/interfaces</code>. Given the
 host-only network adapter has the default IP and netmask:</p>
-
-<p><img src="vbox-host-only-ip.png" alt="Host Only IP" /></p>
-
+<p><img src="vbox-host-only-ip.png" alt="Host Only IP"></p>
 <p>Then my <code>/etc/network/interfaces</code> looks like this:</p>
-
 <pre><code>source /etc/network/interfaces.d/*
 
 # The loopback network interface
@@ -487,100 +436,72 @@ iface enp0s8 inet static
     network 192.168.56.0
     broadcast 192.168.56.255
 </code></pre>
-
 <h3 id="getting-through-the-proxy-when-setting-up-package-manager">Getting through the proxy when setting up Package Manager</h3>
-
 <p>When configuring the package manager, if you are having trouble getting through
 the proxy (notwithstanding the note above about how it is supposed to cache
 things), you can enter a proxy of the form:</p>
-
 <pre><code>http://pdaniels:pwd@the.corp.proxy.net:1234
 </code></pre>
-
 <p>The precise text is in my password vault.</p>
-
 <h2 id="making-vms-visible-to-other-machines">Making VMs visible to other machines</h2>
-
 <p>DNS is the service used to translate machine names to IP addresses. At home, my
 router is not capable of running a DNS server - n.b. DHCP and DNS are
 <strong>completely different</strong>: even though you may have entered a machine name on the
 DHCP reservation page, that is just for human consumption, it does not form part
 of the DHCP protocol at all. The DHCP protocal just deals with MAC-to-IP mapping
 when reserving names.</p>
-
 <p>And at work I do not have admin access to the DNS services (obviously).</p>
-
 <h3 id="simple-edit-the-hosts-file">Simple: Edit the hosts file</h3>
-
 <p>Because all machines have static IPs it is easy enough to add them into the
 <a href="http://linux.die.net/man/5/hosts">/etc/hosts</a> file on Linux. The equivalent on
 Windows is <code>C:\Windows\System32\drivers\etc\hosts</code>. The format of each line is
 identical on both operating systems (names are not case-sensitive):</p>
-
 <pre><code>192.168.0.200 hyperbox
 192.168.0.201 seedbox
 192.168.0.203 samsungtablet mytablet
 192.168.0.204 debbox
 </code></pre>
-
 <p>On Windows, the <code>/etc/hosts</code> file
 <a href="https://support.microsoft.com/en-us/kb/172218">has priority</a>, so if you give a
 VM an IP the same as some other machine on your network, your assignment will
 hide the other machine.</p>
-
 <p>On Linux,
 <a href="http://unix.stackexchange.com/questions/81979/how-does-etc-hosts-match-work">it depends</a>
 on <code>/etc/nsswith.conf</code> and <code>/etc/host.conf</code>.</p>
-
 <h3 id="not-so-simple-use-your-own-dns-server">Not-so-simple: Use your own DNS server</h3>
-
 <p>You must somehow get a local DNS server working, so that it is capable of
 resolving all hosts on your network and forwarding other requests to your
 Internet Provider&rsquo;s DNS servers. Either of the two &ldquo;DD-WRT methods&rdquo; described
 below will work, as will running a Virtual Router such as
 <a href="https://www.untangle.com/">Untangle</a>.</p>
-
 <h2 id="alternative-vm-setups">Alternative VM setups</h2>
-
 <h3 id="vm-setup-at-home-the-first-dd-wrt-method">VM Setup at home, the first DD-WRT method</h3>
-
 <p>My home router does not do DNS, so machines are only known to each other by IP.
 One way to fix this is to run a more comprehensive firmware on the router.
 Something like <a href="http://www.dd-wrt.com/site/index">DD-WRT</a> will allow you to run
 both DHCP and DNS on the router, obviating the need to setup <code>/etc/hosts</code> with a
 list of IPs.</p>
-
-<p><img src="topology-home-dd-wrt1.png" alt="Home Network Topology - DD-WRT on the router" /></p>
-
+<p><img src="topology-home-dd-wrt1.png" alt="Home Network Topology - DD-WRT on the router"></p>
 <p><strong>Conclusion:</strong> This is a good solution for running DNS at home, however
 installing DD-WRT will invalidate the warranty and might annoy Virgin if you
 hose the router&hellip;which I have done in the past.</p>
-
 <h3 id="vm-setup-at-home-the-second-dd-wrt-way">VM Setup at home, the second DD-WRT way</h3>
-
 <p>Change my Virgin SuperHub into modem mode, then insert my Netgear router between
 the Virgin SuperHub and the rest of the network, then flash the Netgear with
 DD-WRT and proceed. Essentially this puts a new piece of hardware, over which I
 have total control, between my network and the Virgin world.</p>
-
-<p><img src="topology-home-dd-wrt2.png" alt="Home Network Topology - DD-WRT on the router" /></p>
-
+<p><img src="topology-home-dd-wrt2.png" alt="Home Network Topology - DD-WRT on the router"></p>
 <p><strong>Conclusion:</strong> This is a good solution if I want DNS and don&rsquo;t want to wreck
 the Virgin box (I will probably be wrecking my Netgear box instead), but I can
 cope without it and it will invalidate the Netgear warranty.</p>
-
 <p>Instead of a router, you can use an old PC, as long as it has at least two
 network adapters, one to connect to the Virgin modem, and the remainder to
 connect all your internal devices (multi-port Ethernet cards are available, or
 you could use a hub or switch).</p>
-
 <h3 id="the-linux-software-firewall-alternative">The &ldquo;Linux software firewall&rdquo; alternative</h3>
-
 <p>As an alternative to a hardware solution using DD-WRT, it is possible to run what
 is essentially a software router as a VM itself.</p>
-
-<p><img src="topology-home-software-firewall.png" alt="Home Network Topology - software firewall" /></p>
-
+<p><img src="topology-home-software-firewall.png" alt="Home Network Topology - software firewall"></p>
 <p>In this scenario, we build a VM with two NICs, one we connect to the
 <strong>External</strong> switch and one to the <strong>Internal</strong> switch. Then on that VM we
 install a Linux distribution that can function, essentially, as a software
@@ -592,7 +513,6 @@ getting them to recognise the Hyper-V network cards and/or simply crashing
 during installation. Untangle on the other hand installs extremely easily and
 has a fantastic web configuration system. On the downside, it needs 2GB of RAM
 to function.</p>
-
 <p>Once the firewall is in place, subsequent VMs can be built with a single NIC
 connected to the <strong>Internal</strong> network, and configured by DHCP. They will be
 assigned an IP address by the firewall (you can reserve them an IP) and the
@@ -600,12 +520,9 @@ firewall will also function as a gateway and DNS proxy, giving them access to
 the Internet. This technique also has the advantage that the machines are not
 visible outside the host (unless you setup port-forwarding). This makes it
 useful at work where, at the moment, Hyper-V 2012 does not have NAT.</p>
-
 <p>The downside is the rather large memory footprint (2GB) and CPU overhead of
 running Untangle.</p>
-
 <h3 id="the-windows-dns-server-alternative">The &ldquo;Windows DNS server&rdquo; alternative</h3>
-
 <p>Never tried this, but it is available as a role in Windows Server 2012. Dunno
 about Windows 10.</p>
 

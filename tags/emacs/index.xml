@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Emacs on Phil&#39;s Blog</title>
+    <title>emacs on Phil&#39;s Blog</title>
     <link>https://www.philipdaniels.com/tags/emacs/</link>
-    <description>Recent content in Emacs on Phil&#39;s Blog</description>
+    <description>Recent content in emacs on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 07 Feb 2017 20:19:45 +0000</lastBuildDate>
@@ -28,7 +28,7 @@
       
       <guid>https://www.philipdaniels.com/blog/2017/spacemacs-first-steps/</guid>
       <description>Moving to Spacemacs I recently declared, if not quite .emacs bankruptcy , then at least Chapter 11 status. After a long time keeping my .emacs as a single file, I refactored it into a set of self contained lisp files of the form:
-(require &#39;other-peoples-packages) ...my config... (provide &#39;my-package)  Then I just ensured the director with all these files was on my load-path and simply required my own little packages.</description>
+(require &amp;#39;other-peoples-packages) ...my config... (provide &amp;#39;my-package) Then I just ensured the director with all these files was on my load-path and simply required my own little packages.</description>
     </item>
     
   </channel>

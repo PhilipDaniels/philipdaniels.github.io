@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Libreoffice on Phil&#39;s Blog</title>
+    <title>libreoffice on Phil&#39;s Blog</title>
     <link>https://www.philipdaniels.com/tags/libreoffice/</link>
-    <description>Recent content in Libreoffice on Phil&#39;s Blog</description>
+    <description>Recent content in libreoffice on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
@@ -19,7 +19,7 @@
       <guid>https://www.philipdaniels.com/blog/2019/libreofffice-with-python-scripting/</guid>
       <description>See
  https://ask.libreoffice.org/en/question/154007/how-to-upgrade-libreoffice-version-using-linux-mint/ https://askubuntu.com/questions/132837/how-do-i-install-the-latest-stable-version-of-libreoffice And for python: https://ask.libreoffice.org/en/question/140787/where-does-libreoffice-expect-user-scripts-pythonjavajavascript-to-be-located-on-ubuntu/  Basically I just did:
-sudo add-apt-repository ppa:libreoffice/ppa sudo apt-get update sudo apt-get upgrade # Should try dist-upgrade instead sudo apt install libreoffice # Needed to bring down the latest version sudo apt install libreoffice-script-provider-python  </description>
+sudo add-apt-repository ppa:libreoffice/ppa sudo apt-get update sudo apt-get upgrade # Should try dist-upgrade instead sudo apt install libreoffice # Needed to bring down the latest version sudo apt install libreoffice-script-provider-python </description>
     </item>
     
   </channel>

@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Io on Phil&#39;s Blog</title>
+    <title>io on Phil&#39;s Blog</title>
     <link>https://www.philipdaniels.com/tags/io/</link>
-    <description>Recent content in Io on Phil&#39;s Blog</description>
+    <description>Recent content in io on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 23 May 2019 00:00:00 +0000</lastBuildDate>
@@ -23,7 +23,7 @@ For manipulating paths, see std::path.
 For low-level network IO, see std::net.
 One Liners for Reading the Entire File Use read_to_string and read.
 These are both fast as they allocate a buffer of the required size to start with.
-let contents: String = std::fs::read_to_string(&amp;quot;/some/file&amp;quot;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;quot;/some/file&amp;quot;)?;  One Liners for Writing the Entire File Use write.</description>
+let contents: String = std::fs::read_to_string(&amp;#34;/some/file&amp;#34;)?; let bytes: Vec&amp;lt;u8&amp;gt; = std::fs::read(&amp;#34;/some/file&amp;#34;)?; One Liners for Writing the Entire File Use write.</description>
     </item>
     
   </channel>
