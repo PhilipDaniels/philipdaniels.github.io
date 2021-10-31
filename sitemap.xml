@@ -3,8 +3,58 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/tags/api/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2021-10-30T00:00:00+00:00</lastmod>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/closure/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/closures/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/fn/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/functions/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/rust/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2021/rust-fn-traits/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/traits/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
@@ -18,17 +68,7 @@
   </url>
   
   <url>
-    <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2021-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.philipdaniels.com/tags/sql/</loc>
-    <lastmod>2021-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/</loc>
     <lastmod>2021-10-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -48,11 +88,6 @@
   </url>
   
   <url>
-    <loc>https://www.philipdaniels.com/tags/closure/</loc>
-    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.philipdaniels.com/tags/mutex/</loc>
     <lastmod>2020-07-07T00:00:00+00:00</lastmod>
   </url>
@@ -64,11 +99,6 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/refactor/</loc>
-    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/rust/</loc>
     <lastmod>2020-07-07T00:00:00+00:00</lastmod>
   </url>
   
@@ -209,11 +239,6 @@
   
   <url>
     <loc>https://www.philipdaniels.com/blog/2019/rust-configuration-example/</loc>
-    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/api/</loc>
     <lastmod>2019-04-12T00:00:00+00:00</lastmod>
   </url>
   
