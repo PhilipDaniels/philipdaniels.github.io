@@ -3,12 +3,52 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://www.philipdaniels.com/tags/api/</loc>
-    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+    <loc>https://www.philipdaniels.com/tags/bassutils.oracle/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2021/oracle-from-csharp/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.philipdaniels.com/blog/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/c#/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/odp.net/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/oracle/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/sql/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/api/</loc>
     <lastmod>2021-10-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -33,22 +73,12 @@
   </url>
   
   <url>
-    <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.philipdaniels.com/tags/rust/</loc>
     <lastmod>2021-10-31T00:00:00+00:00</lastmod>
   </url>
   
   <url>
     <loc>https://www.philipdaniels.com/blog/2021/rust-fn-traits/</loc>
-    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/</loc>
     <lastmod>2021-10-31T00:00:00+00:00</lastmod>
   </url>
   
@@ -64,11 +94,6 @@
   
   <url>
     <loc>https://www.philipdaniels.com/tags/having/</loc>
-    <lastmod>2021-10-30T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/sql/</loc>
     <lastmod>2021-10-30T00:00:00+00:00</lastmod>
   </url>
   
@@ -435,11 +460,6 @@
   <url>
     <loc>https://www.philipdaniels.com/tags/wine/</loc>
     <lastmod>2019-01-27T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/c#/</loc>
-    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
   </url>
   
   <url>
