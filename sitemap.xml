@@ -3,6 +3,71 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/c#/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/dsl/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/generator/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/oracle/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/parsing/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/roslyn/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/sprache/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/sql/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/udt/</loc>
+    <lastmod>2022-01-02T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://www.philipdaniels.com/tags/bassutils.oracle/</loc>
     <lastmod>2021-12-29T00:00:00+00:00</lastmod>
   </url>
@@ -13,37 +78,7 @@
   </url>
   
   <url>
-    <loc>https://www.philipdaniels.com/blog/</loc>
-    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/c#/</loc>
-    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://www.philipdaniels.com/tags/odp.net/</loc>
-    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/oracle/</loc>
-    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/</loc>
-    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/sql/</loc>
-    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://www.philipdaniels.com/tags/</loc>
     <lastmod>2021-12-29T00:00:00+00:00</lastmod>
   </url>
   

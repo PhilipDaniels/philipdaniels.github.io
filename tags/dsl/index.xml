@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Oracle on Phil&#39;s Blog</title>
-    <link>https://www.philipdaniels.com/tags/oracle/</link>
-    <description>Recent content in Oracle on Phil&#39;s Blog</description>
+    <title>DSL on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/dsl/</link>
+    <description>Recent content in DSL on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 02 Jan 2022 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.philipdaniels.com/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.philipdaniels.com/tags/dsl/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,16 +18,6 @@
       
       <guid>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</guid>
       <description>Introduction Working with Oracle recently, I found myself wanting an equivalent of SQL Server&amp;rsquo;s Table-Valued Parameters - a way to pass structured records, or tables of such records, into stored procedures. The Oracle equivalent is the User-Defined Data Type but using them requires quite a bit of work. I&amp;rsquo;ve created BassUtils.Oracle which contains helpers for creating the correct OracleCommand parameters, described in a previous blog post. But that still leaves you having to manually code the C# class that Oracle requires to map them to and from the Oracle SQL types.</description>
-    </item>
-    
-    <item>
-      <title>BassUtils.Oracle - Helpers for Calling Oracle from C#</title>
-      <link>https://www.philipdaniels.com/blog/2021/oracle-from-csharp/</link>
-      <pubDate>Wed, 29 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/blog/2021/oracle-from-csharp/</guid>
-      <description>Oracle, eh? My new job requires me to deal with Oracle for the first time in anger. I&amp;rsquo;ve found Oracle to be both impressive (PL/SQL is far more powerful than T-SQL) and frustrating. When things go wrong the error messages are often confusing, at best, and at worst positively misleading.
-Most of my time has been spent trying to get data in and out of Oracle using C#, in particular I have been looking at doing bulk-loads of classes, in other words, how to get multiple records of data into and out of Oracle ergonomically.</description>
     </item>
     
   </channel>
