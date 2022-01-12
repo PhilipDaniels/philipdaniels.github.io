@@ -6,7 +6,7 @@
     <description>Recent content in Roslyn on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 02 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 12 Jan 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/tags/roslyn/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>A C# Source Generator for Oracle UDTs</title>
       <link>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</link>
-      <pubDate>Sun, 02 Jan 2022 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</guid>
       <description>Introduction Working with Oracle recently, I found myself wanting an equivalent of SQL Server&amp;rsquo;s Table-Valued Parameters - a way to pass structured records, or tables of such records, into stored procedures. The Oracle equivalent is the User-Defined Data Type but using them requires quite a bit of work. I&amp;rsquo;ve created BassUtils.Oracle which contains helpers for creating the correct OracleCommand parameters, described in a previous blog post. But that still leaves you having to manually code the C# class that Oracle requires to map them to and from the Oracle SQL types.</description>

@@ -28,8 +28,8 @@
 <meta property="og:description" content="Introduction Working with Oracle recently, I found myself wanting an equivalent of SQL Server&rsquo;s Table-Valued Parameters - a way to pass structured records, or tables of such records, into stored procedures. The Oracle equivalent is the User-Defined Data Type but using them requires quite a bit of work. I&rsquo;ve created BassUtils.Oracle which contains helpers for creating the correct OracleCommand parameters, described in a previous blog post. But that still leaves you having to manually code the C# class that Oracle requires to map them to and from the Oracle SQL types." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/" />
-<meta property="article:published_time" content="2022-01-02T00:00:00+00:00" />
-<meta property="article:modified_time" content="2022-01-02T00:00:00+00:00" />
+<meta property="article:published_time" content="2022-01-12T00:00:00+00:00" />
+<meta property="article:modified_time" content="2022-01-12T00:00:00+00:00" />
 
 
     
@@ -192,7 +192,7 @@
 <div class="post__meta">
     
     
-      <i class="fas fa-calendar-alt"></i> Jan 2, 2022
+      <i class="fas fa-calendar-alt"></i> Jan 12, 2022
     
     
     
@@ -233,7 +233,7 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 12 min read
+    <i class="fas fa-clock"></i> 13 min read
 </div>
 
 
@@ -260,7 +260,8 @@ opportunity to create a source generator and to use a DSL (Domain-Specific Langu
 to simplify the definition of the classes. While the classes themselves are voluminous
 there&rsquo;s not actually a lot of information required. It&rsquo;s possible to capture it all
 in a significantly shorter form, an example of which is:</p>
-<pre><code>class PersonRecord MYSCHEMA.objPerson MYSCHEMA.tblPerson
+<pre><code>class PersonRecord MYSCHEMA.objPerson
+    Collection PersonArray MYSCHEMA.tblPerson
     Namespace People
     Fields [
         int Age,
@@ -269,7 +270,7 @@ in a significantly shorter form, an example of which is:</p>
     ]
 </code></pre><p>To go from this to a C# class the steps are</p>
 <ol>
-<li>Parse this text into a C# class.</li>
+<li>Parse this text into a specification, held in a C# class.</li>
 <li>Use the specs to generate C# source code using a
 <a href="https://devblogs.microsoft.com/dotnet/introducing-c-source-generators/">Source Generator</a></li>
 <li>Package the source generator as a NuGet package.</li>
@@ -277,7 +278,7 @@ in a significantly shorter form, an example of which is:</p>
 <p>This post describes how I performed each of these steps. If you find yourself
 wanting to generate a DSL-based Source Generator you can use this as a template.
 The finished generator is availble on NuGet as
-<a href="">OracleUdtClassGenerator</a>
+<a href="https://www.nuget.org/packages/OracleUdtClassGenerator/">OracleUdtClassGenerator</a>
 and the source code is
 <a href="https://github.com/PhilipDaniels/OracleUdtClassGenerator">available on GitHub</a>.
 A list of current <a href="https://github.com/amis92/csharp-source-generators">C# Source Generators</a>
@@ -315,37 +316,58 @@ a whole list of reference articles on different Sprache techniques.</p>
 <p>The grammer for my DSL is specified as a series of parsers using LINQ expressions. You can
 probably figure out what is happening just by looking at the code (<code>TargetClassSpecification</code> is
 the DTO that contains all the parsed information):</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Parser&lt;TargetClassSpecification&gt; TargetClassSpecificationParser =
-    <span style="color:#66d9ef">from</span> _ <span style="color:#66d9ef">in</span> Parse.String(<span style="color:#e6db74">&#34;class&#34;</span>).TokenOnLine().Text()
-    <span style="color:#66d9ef">from</span> className <span style="color:#66d9ef">in</span> Parse.Identifier(Parse.Letter, TokenChar).TokenOnLine().Text()
-    <span style="color:#66d9ef">from</span> recordTypeName <span style="color:#66d9ef">in</span> Parse.Identifier(Parse.Letter, TokenChar).TokenOnLine().Text()
-    <span style="color:#66d9ef">from</span> collectionTypeName <span style="color:#66d9ef">in</span> Parse.Identifier(Parse.Letter, TokenChar).TokenOnLine().Text().Optional()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Parser&lt;TargetClassSpecification&gt; TargetClassSpecificationParser =
+    <span style="color:#66d9ef">from</span> classNames <span style="color:#66d9ef">in</span> ClassNameParser
+    <span style="color:#66d9ef">from</span> collectionNames <span style="color:#66d9ef">in</span> CollectionNameParser.Optional()
     <span style="color:#66d9ef">from</span> namespaceName <span style="color:#66d9ef">in</span> NamespaceParser.Optional()
+    <span style="color:#66d9ef">from</span> filename <span style="color:#66d9ef">in</span> FilenameParser.Optional()
     <span style="color:#66d9ef">from</span> ddspec <span style="color:#66d9ef">in</span> DebugParser.Optional()
     <span style="color:#66d9ef">from</span> tsspec <span style="color:#66d9ef">in</span> ToStringParser.Optional()
     <span style="color:#66d9ef">from</span> fields <span style="color:#66d9ef">in</span> FieldListParser
     <span style="color:#66d9ef">select</span> <span style="color:#66d9ef">new</span> TargetClassSpecification
     {
+        FileName = filename.GetOrDefault(),
         Namespace = namespaceName.GetOrDefault(),
-        ClassName = className,
-        OracleRecordTypeName = recordTypeName,
-        OracleCollectionTypeName = collectionTypeName.GetOrDefault(),
+        ClassName = classNames.Item1,
+        CollectionName = collectionNames.IsDefined ? collectionNames.Get().Item1 : <span style="color:#66d9ef">null</span>,
+        OracleRecordTypeName = classNames.Item2,
+        OracleCollectionTypeName = collectionNames.IsDefined ? collectionNames.Get().Item2 : <span style="color:#66d9ef">null</span>,
         DebuggerDisplayFormat = ddspec.GetOrDefault(),
         ToStringFormat = tsspec.GetOrDefault(),
         Fields = fields
     };
-
-</code></pre></div><p><code>from _ in Parse.String(&quot;class&quot;).TokenOnLine().Text()</code> means &ldquo;look for the word &lsquo;class&rsquo; then throw it away&rdquo;.
-<code>TokenOnLine()</code> eats whitespace around tokens but doesn&rsquo;t consume newlines. (I had to write this specially
-because I used newline as a separator rather than requiring a comma. This was probably a mistake, I should
-have used comma and the built-in <code>Token</code> parser which <strong>does</strong> eat newlines). <code>Text</code> turns a list of parsed
-chars into a string.</p>
-<p>Then we extract the <code>className</code> (&lsquo;PersonRecord&rsquo;) via the <code>Parse.Identififer</code> parser which looks for a starting
-character then a sequence of <code>TokenChars</code>.  We then consume the <code>recordTypeName</code>, e.g.
-<code>MYSCHEMA.objPerson</code> using the same technique. After that we attempt to consume the <code>collectionTypeName</code>
-but notice the <code>Optional()</code> call - this combinator shows how easy it is to make something optional.
-There are then individual parsers for the namespace, debug display attribute, and <code>ToString()</code> method
-which are all optional. Finally <code>FieldListParser</code> returns a list of <code>FieldSpecification</code> DTOs.
+</code></pre></div><p>This declares one parser, which is composed from a sequence of sub-parsers such as <code>ClassNameParser</code> and
+<code>CollectionNameParser</code> (which is optional). If the entire parse succeeds then a new <code>TargetClassSpecification</code>
+object is created. At this level, most of the interesting code is tucked away in the sub-parsers, most of which
+return single strings, but <code>ClassNameParser</code>and <code>CollectionNameParser</code> return tuples consisting of two strings.
+I really admire the way that Sprache leverages LINQ to express sequencing.</p>
+<p>If we dig into <code>ClassNameParser</code> we can see some of the lower-level techniques.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Parser&lt;(<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>)&gt; ClassNameParser =
+    <span style="color:#66d9ef">from</span> _ <span style="color:#66d9ef">in</span> Parse.IgnoreCase(<span style="color:#e6db74">&#34;CLASS&#34;</span>).TokenOnLine()
+    <span style="color:#66d9ef">from</span> csharpClassName <span style="color:#66d9ef">in</span> Parse.Identifier(Parse.Letter, TokenChar).TokenOnLine().Text()
+    <span style="color:#66d9ef">from</span> oracleObjectTypeName <span style="color:#66d9ef">in</span> Parse.Identifier(Parse.Letter, TokenChar).TokenOnLine().Text()
+    <span style="color:#66d9ef">from</span> _2 <span style="color:#66d9ef">in</span> OptionalCommaParser
+    <span style="color:#66d9ef">select</span> (csharpClassName, oracleObjectTypeName);
+</code></pre></div><p>This is designed to parse the first line of this text:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">class PersonRecord MYSCHEMA.objPerson
+    Collection PersonArray MYSCHEMA.tblPerson
+    ...
+</code></pre></div><p>First we look for the word &ldquo;CLASS&rdquo; to start off the entire specification. We use <code>Parse.IgnoreCase</code> in preference
+to <code>Parse.String</code> here so the user can write in any case they want. <code>TokenOnLine()</code> eats whitespace around
+tokens but doesn&rsquo;t consume newlines. (I had to write this specially because I used newline as a separator rather
+than requiring a comma. This was probably a mistake, I should have used comma and the built-in <code>Token</code> parser
+which <strong>does</strong> eat newlines). <code>Text()</code> turns a list of parsed chars into a string. Finally, if the parse succeeds
+the <code>from _</code> means &ldquo;I don&rsquo;t care what you parsed, throw it away&rdquo;. Since the word &ldquo;class&rdquo; is just a keyword and
+carries no information we need we can just dispose of it.</p>
+<p>We <strong>do</strong> want to get the C# class name and the Oracle Object Type Name because we need them both for
+the code generation step. All my sub-parsers leverage the <code>Parse.Identifier(first_char, subsequent_chars)</code>
+built-in parser. I&rsquo;ve configured <code>TokenChar</code> so that this accepts letters, numbers, and dots, so that it can parse
+&ldquo;MYSCHEMA.objPerson&rdquo; as well as &ldquo;Person.g.cs&rdquo; and &ldquo;PersonRecord&rdquo;.</p>
+<p><code>OptionalCommaParser</code> is a &lsquo;tidy-up&rsquo; operation. It greedily consumes input consisting of either a comma or
+whitespace and then stops. This means that the <em>overall</em> parser will be in a position to start the next parser, in
+this case we will be at the &lsquo;C&rsquo; in &ldquo;Collection&rdquo;.</p>
+<p>The other individual parsers for the namespace, debug display attribute etc. are all similar, and all optional.</p>
+<p>Finally <code>FieldListParser</code> returns a list of <code>FieldSpecification</code> DTOs.
 Notice how sequencing is handled simply by adding a new LINQ <code>from</code> expression. It&rsquo;s very easy to build
 up from simple parsers to the final one.</p>
 <p>The <code>TargetClassSpecificationParser</code> isn&rsquo;t actually the final word: the parsing is done by
@@ -354,9 +376,9 @@ this higher-level parser:</p>
     <span style="color:#66d9ef">from</span> t <span style="color:#66d9ef">in</span> TargetClassSpecificationParser.Many()
     <span style="color:#66d9ef">select</span> t.ToList();
 </code></pre></div><p>This really demonstrates the power of the combinator approach with the <code>.Many()</code> call being all that
-is required to say &lsquo;parse a list of these things from the input&rsquo; rather than just one.</p>
+is required to say &ldquo;parse a list of these things from the input&rdquo; rather than just one.</p>
 <h3 id="drill-down-into-fieldlistparser">Drill-down into FieldListParser</h3>
-<p><code>FieldListParser</code> shows a couple of interesting techniques. The high-level parsers are defined as:</p>
+<p><code>FieldListParser</code> shows a couple of interesting techniques. It is defined as:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Parser&lt;List&lt;FieldSpecification&gt;&gt; FieldListParser =
     <span style="color:#66d9ef">from</span> open <span style="color:#66d9ef">in</span> FieldKeywordParser
     <span style="color:#66d9ef">from</span> elements <span style="color:#66d9ef">in</span> FieldParser.DelimitedBy(FieldSeparatorParser)
@@ -406,11 +428,16 @@ defined to omit <code>oracleName</code>:</p>
         DotNetDataTypeName = typeName,
         PropertyName = propertyName,
     };
-</code></pre></div><p>You can see the whole set of parsers at the Github repository but that&rsquo;s the main ones.
+</code></pre></div><blockquote>
+<p>An alternative implementation could use a single FieldParser which gathers 1, 2 or 3
+strings and then assigns them to the appropriate properties of the <code>FieldSpecification</code>
+depending on how many strings were present.</p>
+</blockquote>
+<p>You can see the whole set of parsers at the Github repository but that&rsquo;s the main ones.
 The stepwise refinement continues down to lower and lower levels until you reach parsers
 for individual words and characters.</p>
 <p>The top-level method that drives the parsing is defined like this:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List&lt;TargetClassSpecification&gt; ParseTargetSpecs(<span style="color:#66d9ef">string</span> input)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> List&lt;TargetClassSpecification&gt; ParseTargetSpecs(<span style="color:#66d9ef">string</span> input)
 {
     input = input.Trim();
     <span style="color:#66d9ef">var</span> specs = TargetClassSpecificationListParser.Parse(input);
@@ -424,7 +451,7 @@ using the Visual Studio Installer:</p>
 <p>A generator is quite easy to write - but debugging it is a different matter, more on
 that later. To start, you have to implement the
 <a href="https://docs.microsoft.com/en-us/dotnet/api/microsoft.codeanalysis.isourcegenerator?view=roslyn-dotnet-4.0.1">ISourceGenerator interface</a>. Create a class like this</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> Microsoft.CodeAnalysis;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">using</span> Microsoft.CodeAnalysis;
 <span style="color:#66d9ef">using</span> Microsoft.CodeAnalysis.Text;
 <span style="color:#a6e22e">
 </span><span style="color:#a6e22e">[Generator]</span>
@@ -446,7 +473,7 @@ to a project as additional files:</p>
 <p><img src="additional_files.png" alt="VS Extension Development"></p>
 <p>So all we need to do during generation is find all these files, extract the text, parse it,
 and use the parsed specifications to generate C#:</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Execute(GeneratorExecutionContext context)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Execute(GeneratorExecutionContext context)
 {
     <span style="color:#66d9ef">try</span>
     {
@@ -506,8 +533,8 @@ and use the parsed specifications to generate C#:</p>
 will drive the C# source code generation in <code>CreateSourceFile</code>.</p>
 <p>A note on the logging and exception trapping in these methods. During development debugging
 source generators is something of a pain. You can attach a debugger to the running generator
-using</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">if</span> (!Debugger.IsAttached)
+using:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-csharp" data-lang="csharp"><span style="color:#66d9ef">if</span> (!Debugger.IsAttached)
 {
     Debugger.Launch();
 }
@@ -523,13 +550,13 @@ inside a C# comment, looking something like this:</p>
 </span><span style="color:#75715e">
 </span><span style="color:#75715e">Found file C:\repos\OracleUdtClassGenerator\OracleUdtClassGenerator.ConsoleTestHarness\ArticleMaster.oraudt
 </span><span style="color:#75715e">  Found spec for ArticleMasterRecord with 17 fields
-</span><span style="color:#75715e">  Generated file ArticleMasterRecord.g.cs in namespace OracleUdtClassGenerator.ConsoleTestHarness.OracleUdts
+</span><span style="color:#75715e">  Generated file ArticleMasterRecord.g.cs in namespace OracleUdtClassGenerator.ConsoleTestHarness
 </span><span style="color:#75715e">Found file C:\repos\OracleUdtClassGenerator\OracleUdtClassGenerator.ConsoleTestHarness\MyClass.oraudt
 </span><span style="color:#75715e">  Found spec for MyClass with 5 fields
 </span><span style="color:#75715e">  Generated file MyClass.g.cs in namespace MyNamespace
 </span><span style="color:#75715e">Found file C:\repos\OracleUdtClassGenerator\OracleUdtClassGenerator.ConsoleTestHarness\SubFolder\ArticleMaster2.oraudt
 </span><span style="color:#75715e">  Found spec for ArticleMasterRecord2 with 17 fields
-</span><span style="color:#75715e">  Generated file ArticleMasterRecord2.g.cs in namespace OracleUdtClassGenerator.ConsoleTestHarness.SubFolder.OracleUdts
+</span><span style="color:#75715e">  Generated file ArticleMasterRecord2.g.cs in namespace OracleUdtClassGenerator.ConsoleTestHarness.SubFolder
 </span><span style="color:#75715e">Found file C:\repos\OracleUdtClassGenerator\OracleUdtClassGenerator.ConsoleTestHarness\Person.oraudt
 </span><span style="color:#75715e">  Found spec for PersonRecord with 3 fields
 </span><span style="color:#75715e">  Generated file PersonRecord.g.cs in namespace People
@@ -570,8 +597,9 @@ automatically on <code>Dispose</code>, so you can do</p>
     }
 }
 </code></pre></div><p>This class lives in my <a href="https://www.nuget.org/packages/BassUtils/">BassUtils</a> NuGet package, but I
-copied and pasted it into the generator to avoid having another NuGet dependency to deal with. This
-thinking also meant I decided not to use a templating library to assist with the code generation.</p>
+copied and pasted it into the generator to avoid having another NuGet dependency to deal with (see
+below for the problems they cause). This thinking also meant I decided not to use a templating library
+to assist with the code generation.</p>
 <h1 id="packaging-as-a-nuget-package">Packaging as a NuGet Package</h1>
 <p>When packaged as a NuGet package, we want our source generator to run at compile time
 only, and not to become a deployment dependency of the project that it is deployed in.
@@ -596,7 +624,7 @@ warning NU5128: - Add lib or ref assemblies for the netstandard2.0 target framew
 <span style="color:#f92672">&lt;/PropertyGroup&gt;</span>
 </code></pre></div><p>We have to ensure that the NuGet package includes the dependencies that we used while
 writing it. If we don&rsquo;t do this users of the NuGet will get a runtime error along the lines
-of &lsquo;cannot find file or assembly&hellip;'. For the OracleUdtClassGenerator, it&rsquo;s just Sprache:</p>
+of &lsquo;cannot find file or assembly&hellip;'. For our <code>OracleUdtClassGenerator</code>, it&rsquo;s just Sprache:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;ItemGroup&gt;</span>
     <span style="color:#75715e">&lt;!-- Generator dependencies --&gt;</span>
     <span style="color:#f92672">&lt;PackageReference</span> <span style="color:#a6e22e">Include=</span><span style="color:#e6db74">&#34;Sprache&#34;</span> <span style="color:#a6e22e">Version=</span><span style="color:#e6db74">&#34;2.3.1&#34;</span> <span style="color:#a6e22e">PrivateAssets=</span><span style="color:#e6db74">&#34;all&#34;</span> <span style="color:#a6e22e">GeneratePathProperty=</span><span style="color:#e6db74">&#34;true&#34;</span> <span style="color:#f92672">/&gt;</span>
