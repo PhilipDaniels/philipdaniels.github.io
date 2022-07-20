@@ -6,10 +6,19 @@
     <description>Recent content in Blogs on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/blog/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Oracle Mind Map</title>
+      <link>https://www.philipdaniels.com/blog/2022/oracle-mind-map/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2022/oracle-mind-map/</guid>
+      <description>Table Of Contents  Data Types  General Notes Mapping Between SQL, PL/SQL and C# Numeric Types  NUMBER (SQL Type) INTEGER PLS_INTEGER, BINARY_INTEGER and SIMPLE_INTEGER (PL/SQL only) BINARY_FLOAT and BINARY_DOUBLE (SQL Type) Working With Numbers   Character Types  Working With Strings Regular Expressions   Data and Time Types  Data and Time Conversions and Formatting Date and Timestamp Literals Current Date and Time Interval Types Extracting Date Components Datetime Arithmetic   Other Types SubTypes   Record Types Collections  Associative Arrays VARRAYs Nested Tables Collection Methods   Using Collections for Bulk Operations Variable and Constant Declarations Block Structure Loops Exceptions  Raising Custom Exceptions Error Built-ins   Useful System Views Using RowIds Query Plans URI Types and Network Access from within the DB Rights Models Oracle SQL  Sequences Cursor Attributes   Returning Clauses  Transactions   Cursors (for Data Retrieval)  Definitions Cursor Attributes Cursor Declarations Cursor Usage Cursors - Locking Rows with FOR UPDATE Cursors - Avoiding using ROWIDs and Primary Key clauses Cursors - Cursor Variables and Reference Cursors Cursor Expressions   Functions and Procedures  Table functions Pipelined functions (SEE ALSO CHAPTER 21) Parallel Functions Deterministic Functions DIsplaying Cursors (TSQL style)   Packages  Hiding of implementation details Initialization    Official Oracle Documentation  Oracle 21c Development Oracle 21c PL/SQL Language Reference Oracle 21c SQL Language Reference Oracle 21c SQL Language Quick Reference All Oracle SQL Functions  Data Types General Notes  Summary of PL/SQL Data Built-in Data Types PLS_INTEGER is highly efficient and should be used for all integer calculations.</description>
+    </item>
     
     <item>
       <title>A C# Source Generator for Oracle UDTs</title>

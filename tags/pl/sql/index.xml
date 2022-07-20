@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Oracle on Phil&#39;s Blog</title>
-    <link>https://www.philipdaniels.com/tags/oracle/</link>
-    <description>Recent content in Oracle on Phil&#39;s Blog</description>
+    <title>pl/sql on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/pl/sql/</link>
+    <description>Recent content in pl/sql on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.philipdaniels.com/tags/oracle/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.philipdaniels.com/tags/pl/sql/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -18,25 +17,6 @@
       
       <guid>https://www.philipdaniels.com/blog/2022/oracle-mind-map/</guid>
       <description>Table Of Contents  Data Types  General Notes Mapping Between SQL, PL/SQL and C# Numeric Types  NUMBER (SQL Type) INTEGER PLS_INTEGER, BINARY_INTEGER and SIMPLE_INTEGER (PL/SQL only) BINARY_FLOAT and BINARY_DOUBLE (SQL Type) Working With Numbers   Character Types  Working With Strings Regular Expressions   Data and Time Types  Data and Time Conversions and Formatting Date and Timestamp Literals Current Date and Time Interval Types Extracting Date Components Datetime Arithmetic   Other Types SubTypes   Record Types Collections  Associative Arrays VARRAYs Nested Tables Collection Methods   Using Collections for Bulk Operations Variable and Constant Declarations Block Structure Loops Exceptions  Raising Custom Exceptions Error Built-ins   Useful System Views Using RowIds Query Plans URI Types and Network Access from within the DB Rights Models Oracle SQL  Sequences Cursor Attributes   Returning Clauses  Transactions   Cursors (for Data Retrieval)  Definitions Cursor Attributes Cursor Declarations Cursor Usage Cursors - Locking Rows with FOR UPDATE Cursors - Avoiding using ROWIDs and Primary Key clauses Cursors - Cursor Variables and Reference Cursors Cursor Expressions   Functions and Procedures  Table functions Pipelined functions (SEE ALSO CHAPTER 21) Parallel Functions Deterministic Functions DIsplaying Cursors (TSQL style)   Packages  Hiding of implementation details Initialization    Official Oracle Documentation  Oracle 21c Development Oracle 21c PL/SQL Language Reference Oracle 21c SQL Language Reference Oracle 21c SQL Language Quick Reference All Oracle SQL Functions  Data Types General Notes  Summary of PL/SQL Data Built-in Data Types PLS_INTEGER is highly efficient and should be used for all integer calculations.</description>
-    </item>
-    
-    <item>
-      <title>A C# Source Generator for Oracle UDTs</title>
-      <link>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</link>
-      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</guid>
-      <description>Introduction Working with Oracle recently, I found myself wanting an equivalent of SQL Server&amp;rsquo;s Table-Valued Parameters - a way to pass structured records, or tables of such records, into stored procedures. The Oracle equivalent is the User-Defined Data Type but using them requires quite a bit of work. I&amp;rsquo;ve created BassUtils.Oracle which contains helpers for creating the correct OracleCommand parameters, described in a previous blog post. But that still leaves you having to manually code the C# class that Oracle requires to map them to and from the Oracle SQL types.</description>
-    </item>
-    
-    <item>
-      <title>BassUtils.Oracle - Helpers for Calling Oracle from C#</title>
-      <link>https://www.philipdaniels.com/blog/2021/oracle-from-csharp/</link>
-      <pubDate>Wed, 29 Dec 2021 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/blog/2021/oracle-from-csharp/</guid>
-      <description>Oracle, eh? My new job requires me to deal with Oracle for the first time in anger. I&amp;rsquo;ve found Oracle to be both impressive (PL/SQL is far more powerful than T-SQL) and frustrating. When things go wrong the error messages are often confusing, at best, and at worst positively misleading.
-Most of my time has been spent trying to get data in and out of Oracle using C#, in particular I have been looking at doing bulk-loads of classes, in other words, how to get multiple records of data into and out of Oracle ergonomically.</description>
     </item>
     
   </channel>

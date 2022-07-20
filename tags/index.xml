@@ -6,10 +6,28 @@
     <description>Recent content in Tags on Phil&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 12 Jan 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="https://www.philipdaniels.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Oracle</title>
+      <link>https://www.philipdaniels.com/tags/oracle/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/oracle/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>https://www.philipdaniels.com/tags/sql/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/sql/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>c#</title>
@@ -39,15 +57,6 @@
     </item>
     
     <item>
-      <title>Oracle</title>
-      <link>https://www.philipdaniels.com/tags/oracle/</link>
-      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/tags/oracle/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>Parsing</title>
       <link>https://www.philipdaniels.com/tags/parsing/</link>
       <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
@@ -71,15 +80,6 @@
       <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/sprache/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>SQL</title>
-      <link>https://www.philipdaniels.com/tags/sql/</link>
-      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
-      
-      <guid>https://www.philipdaniels.com/tags/sql/</guid>
       <description></description>
     </item>
     
@@ -773,6 +773,15 @@
       <pubDate>Tue, 01 Mar 2016 00:00:00 +0000</pubDate>
       
       <guid>https://www.philipdaniels.com/tags/hugo/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pl/sql</title>
+      <link>https://www.philipdaniels.com/tags/pl/sql/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/tags/pl/sql/</guid>
       <description></description>
     </item>
     
