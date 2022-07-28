@@ -22,10 +22,10 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Ripgrep Cheatsheet"/>
-<meta name="twitter:description" content="Ripgrep    Syntax Description     rg &ndash;help | more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README."/>
+<meta name="twitter:description" content="Ripgrep    Syntax Description     rg --help | more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README."/>
 
 <meta property="og:title" content="Ripgrep Cheatsheet" />
-<meta property="og:description" content="Ripgrep    Syntax Description     rg &ndash;help | more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README." />
+<meta property="og:description" content="Ripgrep    Syntax Description     rg --help | more Make help useful on Windows   rg -l NEEDLE List matching files only   rg -c NEEDLE List matching files, including a count   rg -i NEEDLE Search case-insensitively   rg --no-filename NEEDLE Don&rsquo;t print filenames, handy when you care about the match more than the file   rg -v NEEDLE Invert matching: show lines that do not match   rg NEEDLE README." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://www.philipdaniels.com/blog/2019/ripgrep-cheatsheet/" />
 <meta property="article:published_time" content="2019-04-14T00:00:00+00:00" />
@@ -230,7 +230,7 @@
 </thead>
 <tbody>
 <tr>
-<td><!-- raw HTML omitted -->rg &ndash;help | more<!-- raw HTML omitted --></td>
+<td><code>rg --help | more</code></td>
 <td>Make help useful on Windows</td>
 </tr>
 <tr>
@@ -258,7 +258,7 @@
 <td>Search only in specified file(s)</td>
 </tr>
 <tr>
-<td><!-- raw HTML omitted -->rg -c ‐‐sort path|modified|accessed|created NEEDLE<!-- raw HTML omitted --></td>
+<td><code>rg -c --sort path|modified|accessed|created NEEDLE</code></td>
 <td>Sort the results (<code>-sortr</code> to reverse)</td>
 </tr>
 <tr>
@@ -270,7 +270,7 @@
 <td>Search in everything but <code>*.nuspec</code> files</td>
 </tr>
 <tr>
-<td><!-- raw HTML omitted -->rg -p NEEDLE | less -R<!-- raw HTML omitted --></td>
+<td><code>rg -p NEEDLE | less -R</code></td>
 <td>Force pretty printed output even in pipes</td>
 </tr>
 <tr>
@@ -292,6 +292,10 @@
 <tr>
 <td><code>rg -Tconfig</code></td>
 <td><strong>Don&rsquo;t</strong> search in file type <code>config</code></td>
+</tr>
+<tr>
+<td><code>rg --files | rg NEEDLE</code></td>
+<td>Match against <strong>filenames</strong> rather than content</td>
 </tr>
 </tbody>
 </table>
