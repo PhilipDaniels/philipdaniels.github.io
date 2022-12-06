@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>users on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/users/</link>
+    <description>Recent content in users on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/users/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Linux User Management</title>
+      <link>https://www.philipdaniels.com/blog/2019/linux-user-management/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/linux-user-management/</guid>
+      <description>useradd manual
+  userdel manual
+  usermod manual
+  passwd manual
+  groupadd manual
+  groupdel manual
+  groups manual
+  sudo manual
+  su manual
+  List all users cat /etc/passwd It’s the first column. Or awk -F : ‘{print $1, “uid=”$3, “gid=”$3}’ /etc/passwd
+  List the default settings for adding a new user useradd -D The shell will often be just /bin/sh, which is not what you want</description>
+    </item>
+    
+  </channel>
+</rss>

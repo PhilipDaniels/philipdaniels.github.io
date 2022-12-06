@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>linux on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/linux/</link>
+    <description>Recent content in linux on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/linux/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>File Sharing Between Linux and Windows</title>
+      <link>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</guid>
+      <description>Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart.</description>
+    </item>
+    
+    <item>
+      <title>Installing LibreOffice with Python Scripting Support</title>
+      <link>https://www.philipdaniels.com/blog/2019/libreofffice-with-python-scripting/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/libreofffice-with-python-scripting/</guid>
+      <description>See
+ https://ask.libreoffice.org/en/question/154007/how-to-upgrade-libreoffice-version-using-linux-mint/ https://askubuntu.com/questions/132837/how-do-i-install-the-latest-stable-version-of-libreoffice And for python: https://ask.libreoffice.org/en/question/140787/where-does-libreoffice-expect-user-scripts-pythonjavajavascript-to-be-located-on-ubuntu/  Basically I just did:
+sudo add-apt-repository ppa:libreoffice/ppa sudo apt-get update sudo apt-get upgrade # Should try dist-upgrade instead sudo apt install libreoffice # Needed to bring down the latest version sudo apt install libreoffice-script-provider-python </description>
+    </item>
+    
+    <item>
+      <title>Installing Wine and Quicken 2000 on Linux Mint</title>
+      <link>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</guid>
+      <description>May need to install the latest Wine manually You may first need to get the latest and greatest version of Wine. Mint 18 shipped with Wine 1.6 which was ancient, I am not sure which version Mint 19 ships with since I did an upgrade. In any case, you can install the latest version of Wine by following [these steps] (https://www.ubuntupit.com/install-winehq-ubuntu-linux-mint-instantly/)
+sudo dpkg --add-architecture i386 wget -nc https://dl.winehq.org/wine-builds/Release.key sudo apt-key add Release.</description>
+    </item>
+    
+    <item>
+      <title>Linux User Management</title>
+      <link>https://www.philipdaniels.com/blog/2019/linux-user-management/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/linux-user-management/</guid>
+      <description>useradd manual
+  userdel manual
+  usermod manual
+  passwd manual
+  groupadd manual
+  groupdel manual
+  groups manual
+  sudo manual
+  su manual
+  List all users cat /etc/passwd It’s the first column. Or awk -F : ‘{print $1, “uid=”$3, “gid=”$3}’ /etc/passwd
+  List the default settings for adding a new user useradd -D The shell will often be just /bin/sh, which is not what you want</description>
+    </item>
+    
+    <item>
+      <title>Tmux and Vim true-color support</title>
+      <link>https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/</guid>
+      <description>You will need to compile tmux from source, you need tmux v2.2 at least.
+Also need to compile Vim from source, see https://github.com/Valloric/YouCompleteMe/wiki/Building-Vim-from-source
+Then you need to get tmux working with TrueColor. See https://deductivelabs.com/en/using-true-color-vim-tmux/, especially the comments about .tmux.conf. And https://github.com/tmux/tmux/wiki/FAQ</description>
+    </item>
+    
+    <item>
+      <title>Network Setup in Hyper-V and Virtual Box</title>
+      <link>https://www.philipdaniels.com/blog/2016/vm-networking-overview/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2016/vm-networking-overview/</guid>
+      <description>Other Build Book Posts  Debian VM Setup Setup of SSH Windows VM Setup  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+In this article I describe the different types of switch available in Hyper-V and their equivalents in Virtual Box.</description>
+    </item>
+    
+    <item>
+      <title>Setup of Debian Virtual Machines</title>
+      <link>https://www.philipdaniels.com/blog/2016/debian-vm-setup/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2016/debian-vm-setup/</guid>
+      <description>Other Build Book Posts  Setup of SSH Windows VM Setup Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+Installation Steps Pick the type of Debian distribution you want. I usually go for Testing to keep up with the latest fixes - it is a rolling release.</description>
+    </item>
+    
+    <item>
+      <title>Setup of ssh</title>
+      <link>https://www.philipdaniels.com/blog/2016/setup-of-ssh/</link>
+      <pubDate>Tue, 27 Dec 2016 20:19:45 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2016/setup-of-ssh/</guid>
+      <description>Other Build Book Posts  Debian VM Setup Windows VM Setup Network Setup in Hyper-V and Virtual Box  Posts in the Build Book sequence are intended primarily as an aide-mémoire for myself; a series of steps to go through for a consistent build experience. They tend to be to the point, prescriptive and tailored for me personally.
+How SSH Works SSH stands for &amp;ldquo;Secure Shell&amp;rdquo;. As its name implies it is a network protocol for secure communication between two computers, a server - your VM - and a client, e.</description>
+    </item>
+    
+  </channel>
+</rss>

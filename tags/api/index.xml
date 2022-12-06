@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>api on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/api/</link>
+    <description>Recent content in api on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 31 Oct 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/api/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Rust Fn Traits</title>
+      <link>https://www.philipdaniels.com/blog/2021/rust-fn-traits/</link>
+      <pubDate>Sun, 31 Oct 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2021/rust-fn-traits/</guid>
+      <description>The Rust Fn Traits There are 3 traits, defined as follows
+pub trait Fn&amp;lt;Args&amp;gt;: FnMut&amp;lt;Args&amp;gt; { extern &amp;#34;rust-call&amp;#34; fn call(&amp;amp;self, args: Args) -&amp;gt; Self::Output; } pub trait FnMut&amp;lt;Args&amp;gt;: FnOnce&amp;lt;Args&amp;gt; { extern &amp;#34;rust-call&amp;#34; fn call_mut( &amp;amp;mut self, args: Args ) -&amp;gt; Self::Output; } pub trait FnOnce&amp;lt;Args&amp;gt; { type Output; extern &amp;#34;rust-call&amp;#34; fn call_once(self, args: Args) -&amp;gt; Self::Output; } Fn callables can be called repeatedly without mutating their argument (they take arguments by &amp;amp;).</description>
+    </item>
+    
+    <item>
+      <title>Design of Rust APIs (Collections and Iteration)</title>
+      <link>https://www.philipdaniels.com/blog/2019/rust-api-design2/</link>
+      <pubDate>Fri, 12 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/rust-api-design2/</guid>
+      <description>Iterators as Input Parameters This is reasonable:
+fn func1(data: &amp;amp;[i32]) {} But if a function only needs to iterate over its data you can use the IntoIterator trait to make it more generic:
+fn func2&amp;lt;C&amp;gt;(data: C) where C: IntoIterator&amp;lt;Item = i32&amp;gt; (Ref: API Guidelines)
+Constructing and Extending Collections If you have a type that is a collection type, you should consider implementing the FromIterator and Extend traits.
+FromIterator allows instances of your collection to be constructed using collect and Extend allows you to easily add the contents of an iterator to a collection via the extend method.</description>
+    </item>
+    
+    <item>
+      <title>Design of Rust APIs (AsRef, Into, Cow)</title>
+      <link>https://www.philipdaniels.com/blog/2019/rust-api-design/</link>
+      <pubDate>Sat, 06 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/rust-api-design/</guid>
+      <description>Flexible Input Parameters There are two generic built-in traits you can use to make your function easy to call.
+They are AsRef and Into.
+AsRef (and AsMut) AsRef allows a function to be called with parameters of differing types - basically anything that allows a reference of the appropriate type to be created cheaply and without ever failing. AsMut is the same but for mutable references.
+Example:
+fn func1(p1: PathBuf); fn func2(p1: &amp;amp;Path); fn func3&amp;lt;S&amp;gt;(p1: S) where S: AsRef&amp;lt;Path&amp;gt; { let p1 = p1.</description>
+    </item>
+    
+  </channel>
+</rss>

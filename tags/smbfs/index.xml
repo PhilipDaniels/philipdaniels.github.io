@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>smbfs on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/smbfs/</link>
+    <description>Recent content in smbfs on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 27 Jan 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/smbfs/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>File Sharing Between Linux and Windows</title>
+      <link>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</link>
+      <pubDate>Sun, 27 Jan 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</guid>
+      <description>Creating a Samba Share on Linux Edit /etc/samba/smb.conf adding a stanza at the bottom something like this ([slow] is the name the share will have). Notice the valid users.
+[slow] path = /home/phil/slow available = yes valid users = phil read only = no browsable = yes public = yes writable = yes Then do sudo smbpasswd -a USER and enter a Samba password for the user, then restart Samba sudo service smbd restart.</description>
+    </item>
+    
+  </channel>
+</rss>

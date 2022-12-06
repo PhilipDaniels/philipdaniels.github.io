@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    
+    
+
+
+    <head>
+    <link href="https://gmpg.org/xfn/11" rel="profile">
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="Cache-Control" content="public" />
+<!-- Enable responsiveness on mobile devices -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+<meta name="generator" content="Hugo 0.68.3" />
+
+    
+    
+    
+
+<title>Some simple Rust async-std examples • Phil&#39;s Blog</title>
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Some simple Rust async-std examples"/>
+<meta name="twitter:description" content="Introduction As everyone knows, Rust recently stabilized the async/await feature. My first attempt to convert a little program I had to use it was a dismal failure, (reasons are at the bottom of this post), so I thought I would step back and write some simple - and I do mean very simple - examples of how to use await. The final step in this post shows how to download multiple URLs, in parallel, which was the business problem I was trying to solve in the first place."/>
+
+<meta property="og:title" content="Some simple Rust async-std examples" />
+<meta property="og:description" content="Introduction As everyone knows, Rust recently stabilized the async/await feature. My first attempt to convert a little program I had to use it was a dismal failure, (reasons are at the bottom of this post), so I thought I would step back and write some simple - and I do mean very simple - examples of how to use await. The final step in this post shows how to download multiple URLs, in parallel, which was the business problem I was trying to solve in the first place." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://www.philipdaniels.com/blog/2019/async-std-demo1/" />
+<meta property="article:published_time" content="2019-12-01T00:00:00+00:00" />
+<meta property="article:modified_time" content="2019-12-01T00:00:00+00:00" />
+
+
+    
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/gruvbox-dark.min.css">
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/hyde-hyde.328a08e64c91c64b1af9c913a417dacec4e78f52fc75317d3ca3aececc1e2290.css" integrity="sha256-MooI5kyRxksa&#43;ckTpBfazsTnj1L8dTF9PKOuzsweIpA=">
+
+
+<link rel="stylesheet" href="/scss/print.2744dcbf8a0b2e74f8a50e4b34e5f441be7cf93cc7de27029121c6a09f9e77bc.css" integrity="sha256-J0Tcv4oLLnT4pQ5LNOX0Qb58&#43;TzH3icCkSHGoJ&#43;ed7w=" media="print">
+
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Icons -->
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png" />
+    <meta name="msapplication-square70x70logo" content="/mstile-70x70.png" />
+    <meta name="msapplication-square150x150logo" content="/mstile-150x150.png" />
+    <meta name="msapplication-wide310x150logo" content="/mstile-310x150.png" />
+    <meta name="msapplication-square310x310logo" content="/mstile-310x310.png" />
+
+    
+
+    
+        
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QK1BLJ71TN');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QK1BLJ71TN"></script>
+    
+</head>
+
+
+    <body class=" ">
+    
+<div class="sidebar">
+  <div class="container ">
+    <div class="sidebar-about">
+      <span class="site__title">
+        <a href="https://www.philipdaniels.com/">Phil&#39;s Blog</a>
+      </span>
+      
+      
+        <div class="author-image">
+          <img src="https://www.gravatar.com/avatar/5f3e5fe7d6a4062ad188336e06f1cb78?s=240&d=mp" class="img--circle img--headshot element--center" alt="gravatar">
+        </div>
+      
+      <p class="site__description">
+        
+      </p>
+    </div>
+    <div class="collapsible-menu">
+      <input type="checkbox" id="menuToggle">
+      <label for="menuToggle">Phil&#39;s Blog</label>
+      <div class="menu-content">
+        <div>
+	<ul class="sidebar-nav">
+		 
+		 
+			 
+				<li>
+					<a href="/blog">
+						<span>Posts</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/gitcheatsheet">
+						<span>My Git CheatSheet</span>
+					</a>
+				</li>
+			 
+		 
+			 
+				<li>
+					<a href="/about">
+						<span>About</span>
+					</a>
+				</li>
+			 
+		
+		</li>
+	</ul>
+</div>
+
+        <section class="social">
+	
+	
+	
+	<a href="https://github.com/PhilipDaniels" rel="me"><i class="fab fa-github fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	<a href="https://stackoverflow.com/users/1313057/philip-daniels" rel="me"><i class="fab fa-stack-overflow fa-lg" aria-hidden="true"></i></a>
+	
+	
+	
+	
+	
+	
+	
+	<a href="mailto:philip.daniels1971@gmail.com" rel="me"><i class="fas fa-at fa-lg" aria-hidden="true"></i></a>
+	
+</section>
+
+      </div>
+    </div>
+    
+<div class="copyright">
+  &copy; 2022 Philip Daniels
+  
+</div>
+
+
+
+  </div>
+</div>
+
+        <div class="content container">
+            
+    <article>
+  <header>
+    <h1>Some simple Rust async-std examples</h1>
+    
+    
+<div class="post__meta">
+    
+    
+      <i class="fas fa-calendar-alt"></i> Dec 1, 2019
+    
+    
+    
+    
+    
+      
+      
+          <br/>
+           <i class="fas fa-tags"></i>
+          
+          <a class="badge badge-tag" href="/tags/rust">rust</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/async">async</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/await">await</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/async-std">async-std</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/surf">surf</a>
+           
+      
+          <a class="badge badge-tag" href="/tags/http">http</a>
+          
+      
+    
+    
+    <br/>
+    <i class="fas fa-clock"></i> 14 min read
+</div>
+
+
+  </header>
+  
+  
+  <div class="post">
+    <h1 id="introduction">Introduction</h1>
+<p>As everyone knows, Rust recently stabilized the <code>async/await</code> feature. My first attempt to
+convert a little program I had to use it was a dismal failure, (reasons are at the bottom
+of this post), so I thought I would step back and write some simple - and I do mean very simple -
+examples of how to use await. The final step in this post shows how to download multiple URLs,
+in parallel, which was the business problem I was trying to solve in the first place.</p>
+<p>I am definitely a learner when it comes to this material, so there may well be better ways to
+accomplish some of this - if so, please write a comment and I&rsquo;ll update the post.</p>
+<p>The first thing to note is that there are (at least) two competing async eco-systems at the
+moment, <a href="https://github.com/tokio-rs/tokio">Tokio</a>
+and <a href="https://github.com/async-rs/async-std">async-std</a>. It appears that you can&rsquo;t mix-and-match
+things from one eco-system to the other. I chose to get started with <code>async-std</code>
+for no other reason that <a href="https://www.youtube.com/watch?v=L7X0vpAU-sU">this video</a>
+helped clear up some of the misconceptions I had.</p>
+<p>I&rsquo;ll be including full source code for each example, including <code>Cargo.toml</code> and <code>use</code>
+declarations, and the full source code <a href="https://github.com/PhilipDaniels/async-std-demo">is in this git repo</a>.</p>
+<h1 id="step-1">Step 1</h1>
+<p>The git repo I linked above has a set of tags for each step in this post. You can check out
+each tag and run it. In the first step, I add all the dependencies I need for this entire
+blog post to <code>Cargo.toml</code>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ini" data-lang="ini"><span style="color:#66d9ef">[dependencies]</span>
+<span style="color:#a6e22e">futures</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.3.1&#34;</span>
+<span style="color:#a6e22e">rand</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;0.7&#34;</span>
+<span style="color:#a6e22e">async-std</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">{ version = &#34;1.2&#34;, features = [&#34;attributes&#34;] }</span>
+<span style="color:#a6e22e">surf</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;1.0&#34;</span>
+</code></pre></div><p>Some people refer to the futures library as <code>futures-rs</code> - I don&rsquo;t know why, but when you
+hear them do so, it&rsquo;s <a href="https://crates.io/crates/futures">futures</a>
+that you want. We&rsquo;ll use
+<a href="https://crates.io/crates/rand">rand</a> to generate some random
+sleep times, and <a href="https://crates.io/crates/surf">surf</a> to download some web content.</p>
+<p>In <code>main.rs</code> let&rsquo;s add all the <code>use</code> statements we will need (for now and later)
+and let&rsquo;s adjust the <code>main</code> function to print out how long the program ran for. This
+will be a useful sanity-check later on.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">use</span> async_std::task;
+<span style="color:#66d9ef">use</span> futures::join;
+<span style="color:#66d9ef">use</span> futures::stream::{FuturesUnordered, StreamExt};
+<span style="color:#66d9ef">use</span> std::time::{Duration, Instant};
+<span style="color:#66d9ef">use</span> std::thread;
+<span style="color:#66d9ef">use</span> rand::distributions::{Distribution, Uniform};
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> start_time <span style="color:#f92672">=</span> Instant::now();
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Program finished in {} ms&#34;</span>, start_time.elapsed().as_millis());
+}
+</code></pre></div><p>That&rsquo;s it, now we&rsquo;re all set to start doing something useful.</p>
+<h1 id="step-2">Step 2</h1>
+<p>Let&rsquo;s start by creating two futures and waiting for them to complete. This is just about
+the simplest thing we can do. It&rsquo;s important that we explicitly wait - unlike languages
+such as C# which have a background runtime to progress tassks, Rust futures are lazy and
+do nothing unless polled by a runtime.</p>
+<p>In order to exclude unnecessary complications we are going to use the simplest
+possible &lsquo;work&rsquo; for our future to do - just sleep for a bit. Because it&rsquo;s so simple
+and doesn&rsquo;t perform any sort of IO we also don&rsquo;t have to worry about errors yet.</p>
+<p>First the code:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">main</span>() {
+    <span style="color:#66d9ef">let</span> start_time <span style="color:#f92672">=</span> Instant::now();
+
+    demo_waiting_for_two_async_fns();
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Program finished in {} ms&#34;</span>, start_time.elapsed().as_millis());
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">demo_waiting_for_two_async_fns</span>() {
+    <span style="color:#75715e">// block_on takes a future and waits for it to complete.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// Notice that this fn is not `async`, and we are not using
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// an async block either (because we are not calling `await`).
+</span><span style="color:#75715e"></span>    task::block_on(call_both_sleepers());
+}
+
+async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">call_both_sleepers</span>() {
+    join<span style="color:#f92672">!</span>(first_sleeper(), second_sleeper());
+}
+
+async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">first_sleeper</span>() {
+    sleep_and_print(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1000</span>).await;
+}
+
+async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">second_sleeper</span>() {
+    sleep_and_print(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1500</span>).await;
+}
+
+<span style="color:#e6db74">/// This utility function simply goes to sleep for a specified time
+</span><span style="color:#e6db74">/// and then prints a message when it is done.
+</span><span style="color:#e6db74"></span>async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sleep_and_print</span>(future_number: <span style="color:#66d9ef">u32</span>, sleep_millis: <span style="color:#66d9ef">u64</span>) {
+    <span style="color:#66d9ef">let</span> sleep_duration <span style="color:#f92672">=</span> Duration::from_millis(sleep_millis);
+    <span style="color:#75715e">// Note we are using async-std&#39;s `task::sleep` here, not
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// thread::sleep. We must not block the thread!
+</span><span style="color:#75715e"></span>    task::sleep(sleep_duration).await;
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Future {} slept for {} ms on {:?}&#34;</span>, future_number, sleep_millis, thread::current().id());
+}
+</code></pre></div><p>If you run this code you should see</p>
+<pre><code>Future 1 slept for 1000 ms on ThreadId(1)
+Future 2 slept for 1500 ms on ThreadId(1)
+Program finished in 1500 ms
+</code></pre><p>Let&rsquo;s disect it. The function <code>sleep_and_print</code> is the lowest-level one here,
+and it&rsquo;s the one that does the actual sleeping for us. When it&rsquo;s done it simply
+prints a message saying so. The <code>future_number</code> is just so that we can discriminate
+between the invocations. Note the use of
+<a href="https://docs.rs/async-std/1.2.0/async_std/task/fn.sleep.html">task::sleep</a>
+from <code>async-std</code>.
+It&rsquo;s this that means that the thread is not blocked while the function is sleeping,
+and hence that the entire program completes in 1500 ms, which is what we want.
+If you change to the blocking
+<a href="https://doc.rust-lang.org/std/thread/fn.sleep.html">thread::sleep</a>
+you will get something like this:</p>
+<pre><code>Future 1 slept for 1000 ms on ThreadId(1)
+Future 2 slept for 1500 ms on ThreadId(1)
+Program finished in 2500 ms
+</code></pre><p>The program now takes 2500 ms because the second future was blocked by the first
+one calling <code>thread::sleep</code>. In the original program, the second future was able to start
+executing &lsquo;in parallel&rsquo; because it was not blocked. This brings out an important point -
+<strong>don&rsquo;t call blocking APIs from inside async functions!</strong> If you do you will block the
+tasks on the thread from making progress.</p>
+<p>The functions <code>first_sleeper</code>, <code>second_sleeper</code> create futures that wait for different
+times. Then in <code>call_both_sleepers</code> we use the <code>join!</code> macro from the <code>futures</code> crate
+to join them together. Finally we pass <code>call_both_sleepers</code> - which is a future - into
+<code>task::block_on</code>, which runs the tasks to completion.</p>
+<p>Frankly I was surprised how much boilerplate was required to get this to work, there&rsquo;s
+probably an easier way. But I did get done what I wanted to do - I ran 2 futures
+in parallel: the time to complete was the time of the longest duration future, not
+the sum of their individual times.</p>
+<h1 id="step-3">Step 3</h1>
+<p>In step 3 we generalize from step 2: instead of trying to run 2 futures in parallel, we
+want to run <code>N</code>. The easiest way to do this seems to be to use the
+<a href="https://docs.rs/futures/0.3.1/futures/stream/futures_unordered/struct.FuturesUnordered.html">FuturesUnordered</a>
+collection type from the <code>futures</code> crate.</p>
+<blockquote>
+<p>Update 14 Dec 2019: Actually, an easier way is to spawn individual
+tasks, a technique that also means we benefit from running on all
+available cores. See Step 7 of this post.</p>
+</blockquote>
+<p>Let&rsquo;s add a new function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">demo_waiting_for_multiple_random_sleeps</span>() {
+    <span style="color:#75715e">// Initialise the random number generator we will use to
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// generate the random sleep times.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> between <span style="color:#f92672">=</span> Uniform::from(<span style="color:#ae81ff">500</span>..<span style="color:#ae81ff">10_000</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> rng <span style="color:#f92672">=</span> rand::thread_rng();
+
+    <span style="color:#75715e">// This special collection from the `futures` crate is what we use to
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// hold all the futures; it is designed to efficiently poll the futures
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// until they all complete, (in any order) which we do with a simple
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// loop (see below).
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> futures <span style="color:#f92672">=</span> FuturesUnordered::new();
+
+    <span style="color:#75715e">// Create 10 futures, each of which should sleep for a random
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// number of milliseconds. None of the futures are doing anything
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// yet, because we are only storing them; we haven&#39;t started polling
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// them yet.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">for</span> future_number <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">10</span> {
+        <span style="color:#66d9ef">let</span> sleep_millis <span style="color:#f92672">=</span> between.sample(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> rng);
+        futures.push(sleep_and_print(future_number, sleep_millis));
+    }
+
+    <span style="color:#75715e">// This loop is how to wait for all the elements in a `FuturesUnordered&lt;T&gt;`
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// to complete. `value_returned_from_the_future` is just the
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// unit tuple, `()`, because we did not return anything from `sleep_and_print`.
+</span><span style="color:#75715e"></span>    task::block_on(async {
+        <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(_value_returned_from_the_future) <span style="color:#f92672">=</span> futures.next().await {
+        }
+    });
+}
+</code></pre></div><p>If we call this from <code>main</code>, we get something like this (results will vary due
+to the use of the random number generator):</p>
+<pre><code>Future 6 slept for 726 ms on ThreadId(1)
+Future 9 slept for 1233 ms on ThreadId(1)
+Future 4 slept for 2013 ms on ThreadId(1)
+Future 0 slept for 2056 ms on ThreadId(1)
+Future 3 slept for 3072 ms on ThreadId(1)
+Future 7 slept for 5316 ms on ThreadId(1)
+Future 2 slept for 6328 ms on ThreadId(1)
+Future 8 slept for 6374 ms on ThreadId(1)
+Future 5 slept for 6725 ms on ThreadId(1)
+Future 1 slept for 7936 ms on ThreadId(1)
+Program finished in 7936 ms
+</code></pre><p>This is exactly the behaviour I was looking for - it looks like we have multiple
+futures executing, and the overall time is equal to the longest sleep time. This also
+shows that the overhead of using <code>async/await</code> is very small (less than 1 ms).</p>
+<h1 id="step-4">Step 4</h1>
+<p>So far our futures have not returned any values. In this step, we build on the code
+introduced in step 3 by making one simple change - we introduce a new version of
+<code>sleep_and_print</code> which returns a value to the caller.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs">async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sleep_and_print_and_return_value</span>(future_number: <span style="color:#66d9ef">u32</span>, sleep_millis: <span style="color:#66d9ef">u64</span>) -&gt; <span style="color:#66d9ef">u32</span> {
+    <span style="color:#66d9ef">let</span> sleep_duration <span style="color:#f92672">=</span> Duration::from_millis(sleep_millis);
+    task::sleep(sleep_duration).await;
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Future {} slept for {} ms on thread {:?}&#34;</span>, future_number, sleep_millis, thread::current().id());
+
+    future_number <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">demo_waiting_for_multiple_random_sleeps_with_return_values</span>() {
+    <span style="color:#66d9ef">let</span> between <span style="color:#f92672">=</span> Uniform::from(<span style="color:#ae81ff">500</span>..<span style="color:#ae81ff">10_000</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> rng <span style="color:#f92672">=</span> rand::thread_rng();
+
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> cf <span style="color:#f92672">=</span> FuturesUnordered::new();
+
+    <span style="color:#66d9ef">for</span> future_number <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">10</span> {
+        <span style="color:#66d9ef">let</span> random_millis <span style="color:#f92672">=</span> between.sample(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> rng);
+        cf.push(sleep_and_print_and_return_value(future_number, random_millis));
+    }
+
+    <span style="color:#75715e">// The async block borrows a mutable reference to `sum`, allowing us to
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// add up all the values returned from the future.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    task::block_on(async {
+        <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(value_returned_from_the_future) <span style="color:#f92672">=</span> cf.next().await {
+            sum <span style="color:#f92672">+=</span> value_returned_from_the_future;
+        }
+    });
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Sum of all values returned = {}&#34;</span>, sum);
+}
+</code></pre></div><p>When we run this we get this output:</p>
+<pre><code>Future 9 slept for 1095 ms on thread ThreadId(1)
+Future 1 slept for 1378 ms on thread ThreadId(1)
+Future 6 slept for 3577 ms on thread ThreadId(1)
+Future 3 slept for 3874 ms on thread ThreadId(1)
+Future 8 slept for 4946 ms on thread ThreadId(1)
+Future 5 slept for 7034 ms on thread ThreadId(1)
+Future 0 slept for 7172 ms on thread ThreadId(1)
+Future 7 slept for 7511 ms on thread ThreadId(1)
+Future 4 slept for 8079 ms on thread ThreadId(1)
+Future 2 slept for 9114 ms on thread ThreadId(1)
+Sum of all values returned = 450
+Program finished in 9114 ms
+</code></pre><h1 id="step-5">Step 5</h1>
+<p>Step 5 is a simple extension of step 4 - instead of returning a <code>u32</code> we return
+a <code>Result&lt;T,E&gt;</code> - many futures will do this, so we need to know how to handle them.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs">async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">sleep_and_print_and_return_error</span>(future_number: <span style="color:#66d9ef">u32</span>, sleep_millis: <span style="color:#66d9ef">u64</span>) -&gt; Result<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">u32</span>, String<span style="color:#f92672">&gt;</span> {
+    <span style="color:#66d9ef">let</span> sleep_duration <span style="color:#f92672">=</span> Duration::from_millis(sleep_millis);
+    task::sleep(sleep_duration).await;
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Future {} slept for {} ms on thread {:?}&#34;</span>, future_number, sleep_millis, thread::current().id());
+
+    <span style="color:#66d9ef">if</span> future_number <span style="color:#f92672">%</span> <span style="color:#ae81ff">2</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+        Ok(future_number <span style="color:#f92672">*</span> <span style="color:#ae81ff">10</span>)
+    } <span style="color:#66d9ef">else</span> {
+        Err(format<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;It didn&#39;t work for future {}&#34;</span>, future_number))
+    }
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">demo_waiting_for_multiple_random_sleeps_with_errors</span>() {
+    <span style="color:#66d9ef">let</span> between <span style="color:#f92672">=</span> Uniform::from(<span style="color:#ae81ff">500</span>..<span style="color:#ae81ff">10_000</span>);
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> rng <span style="color:#f92672">=</span> rand::thread_rng();
+
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> futures <span style="color:#f92672">=</span> FuturesUnordered::new();
+
+    <span style="color:#66d9ef">for</span> future_number <span style="color:#66d9ef">in</span> <span style="color:#ae81ff">0</span>..<span style="color:#ae81ff">10</span> {
+        <span style="color:#66d9ef">let</span> random_millis <span style="color:#f92672">=</span> between.sample(<span style="color:#f92672">&amp;</span><span style="color:#66d9ef">mut</span> rng);
+        futures.push(sleep_and_print_and_return_error(future_number, random_millis));
+    }
+
+    <span style="color:#75715e">// Now, `value_returned_from_the_future` is a `Result&lt;u32, String&gt;` so
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// we must take care to pattern match on it.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> sum <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+    task::block_on(async {
+        <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(value_returned_from_the_future) <span style="color:#f92672">=</span> futures.next().await {
+            <span style="color:#66d9ef">match</span> value_returned_from_the_future {
+                Ok(value) <span style="color:#f92672">=&gt;</span> sum <span style="color:#f92672">+=</span> value,
+                Err(e) <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;    Got error back: {}&#34;</span>, e),
+            }
+        }
+    });
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Sum of all values returned = {}&#34;</span>, sum);
+}
+</code></pre></div><p>When we run this we get this output:</p>
+<pre><code>Future 7 slept for 1445 ms on thread ThreadId(1)
+    Got error back: It didn't work for future 7
+Future 4 slept for 1561 ms on thread ThreadId(1)
+Future 3 slept for 1583 ms on thread ThreadId(1)
+    Got error back: It didn't work for future 3
+Future 1 slept for 2048 ms on thread ThreadId(1)
+    Got error back: It didn't work for future 1
+Future 6 slept for 4138 ms on thread ThreadId(1)
+Future 0 slept for 4886 ms on thread ThreadId(1)
+Future 9 slept for 5718 ms on thread ThreadId(1)
+    Got error back: It didn't work for future 9
+Future 2 slept for 6562 ms on thread ThreadId(1)
+Future 8 slept for 7209 ms on thread ThreadId(1)
+Future 5 slept for 9591 ms on thread ThreadId(1)
+    Got error back: It didn't work for future 5
+Sum of all values returned = 200
+Program finished in 9591 ms
+</code></pre><h1 id="step-6">Step 6</h1>
+<p>Step 6 is the final step. In the previous steps I demonstrated how to run multiple
+futures and await all their results, handling errors when required. Now we can use
+those techniques to do some useful work. Let&rsquo;s try and download a bunch of URLs
+in parallel.</p>
+<p>The code is surprisingly simple. We bring in the
+<a href="https://github.com/http-rs/surf">surf</a>
+library to handle the HTTP GETs, and there is one other innovation, we
+use <code>collect</code> to build our set of futures but we could just as easily have
+iterated over the urls collection and pushed them one by one into the
+<code>futures</code> collection.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs">async <span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">download_url</span>(url: <span style="color:#66d9ef">&amp;</span><span style="color:#66d9ef">str</span>) -&gt; Result<span style="color:#f92672">&lt;</span>String, surf::Exception<span style="color:#f92672">&gt;</span> {
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;Downloading {} on thread {:?}&#34;</span>, url, thread::current().id());
+
+    <span style="color:#75715e">// Code taken directly from the example for `surf`.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> result <span style="color:#f92672">=</span> surf::get(url).await<span style="color:#f92672">?</span>;
+    <span style="color:#66d9ef">let</span> body <span style="color:#f92672">=</span> result.body_string().await<span style="color:#f92672">?</span>;
+
+    println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;    Downloaded {}, returning body of length {} &#34;</span>, url, body.len());
+    Ok(body)
+}
+
+<span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">demo_downloading_urls</span>() {
+    <span style="color:#66d9ef">let</span> urls <span style="color:#f92672">=</span> vec<span style="color:#f92672">!</span>[
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Anglo_American&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Associated_British_Foods&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Admiral_Group&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Aberdeen_Asset_Management&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Aggreko&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Ashtead_Group&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Antofagasta&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Aviva&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/AstraZeneca&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/BAE_Systems&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Babcock_International_Group&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/British_American_Tobacco&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Balfour_Beatty&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Barratt_Developments&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/BG_Group&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/British_Land_Company&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/BHP_Group&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Bunzl&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/BP&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/Burberry_Group&#34;</span>,
+        <span style="color:#e6db74">&#34;https://www.sharecast.com/equity/BT_Group&#34;</span>,
+    ];
+
+    <span style="color:#75715e">// This time let&#39;s make our FuturesUnordered value by collecting
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// a set of futures.
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> cf <span style="color:#f92672">=</span> urls.iter()
+        .map(<span style="color:#f92672">|</span>url<span style="color:#f92672">|</span> download_url(url))
+        .collect::<span style="color:#f92672">&lt;</span>FuturesUnordered<span style="color:#f92672">&lt;</span>_<span style="color:#f92672">&gt;&gt;</span>();
+
+    task::block_on(async {
+        <span style="color:#66d9ef">while</span> <span style="color:#66d9ef">let</span> Some(return_val) <span style="color:#f92672">=</span> cf.next().await {
+            <span style="color:#66d9ef">match</span> return_val {
+                Ok(body) <span style="color:#f92672">=&gt;</span> {
+                    <span style="color:#75715e">// Possibly do something useful with the body of the request here.
+</span><span style="color:#75715e"></span>                },
+                Err(e) <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;    Got error {:?}&#34;</span>, e),
+            }
+        }
+    });
+}
+</code></pre></div><p>When we run this program, we get something like this:</p>
+<pre><code>Downloading https://www.sharecast.com/equity/Anglo_American on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Associated_British_Foods on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Admiral_Group on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Aberdeen_Asset_Management on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Aggreko on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Ashtead_Group on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Antofagasta on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Aviva on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/AstraZeneca on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/BAE_Systems on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Babcock_International_Group on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/British_American_Tobacco on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Balfour_Beatty on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Barratt_Developments on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/BG_Group on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/British_Land_Company on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/BHP_Group on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Bunzl on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/BP on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/Burberry_Group on thread ThreadId(1)
+Downloading https://www.sharecast.com/equity/BT_Group on thread ThreadId(1)
+    Downloaded https://www.sharecast.com/equity/BT_Group, returning body of length 83555
+    Downloaded https://www.sharecast.com/equity/BP, returning body of length 82642
+    Downloaded https://www.sharecast.com/equity/Aviva, returning body of length 82924
+    Downloaded https://www.sharecast.com/equity/Anglo_American, returning body of length 83110
+    Downloaded https://www.sharecast.com/equity/Antofagasta, returning body of length 82406
+    Downloaded https://www.sharecast.com/equity/Bunzl, returning body of length 81577
+    Downloaded https://www.sharecast.com/equity/BHP_Group, returning body of length 82203
+    Downloaded https://www.sharecast.com/equity/Admiral_Group, returning body of length 82780
+    Downloaded https://www.sharecast.com/equity/BAE_Systems, returning body of length 83328
+    Downloaded https://www.sharecast.com/equity/Barratt_Developments, returning body of length 83751
+    Downloaded https://www.sharecast.com/equity/Balfour_Beatty, returning body of length 83645
+    Downloaded https://www.sharecast.com/equity/Ashtead_Group, returning body of length 83060
+    Downloaded https://www.sharecast.com/equity/Burberry_Group, returning body of length 83147
+    Downloaded https://www.sharecast.com/equity/Aggreko, returning body of length 81857
+    Downloaded https://www.sharecast.com/equity/British_American_Tobacco, returning body of length 84589
+    Downloaded https://www.sharecast.com/equity/British_Land_Company, returning body of length 83755
+    Downloaded https://www.sharecast.com/equity/AstraZeneca, returning body of length 83023
+    Downloaded https://www.sharecast.com/equity/Aberdeen_Asset_Management, returning body of length 28780
+    Downloaded https://www.sharecast.com/equity/Associated_British_Foods, returning body of length 85075
+    Downloaded https://www.sharecast.com/equity/Babcock_International_Group, returning body of length 87022
+    Downloaded https://www.sharecast.com/equity/BG_Group, returning body of length 73655
+Program finished in 6622 ms
+</code></pre><p>The program finishes a lot faster compared to making the requests in series.</p>
+<p>And that&rsquo;s it! I hope this proves useful to others; comments and improvements
+are welcome.</p>
+<h1 id="step-7">Step 7</h1>
+<p>A couple of weeks after writing the first version of this post I figured out a way
+to run multiple futures on multiple cores. We don&rsquo;t need <code>FuturesUnordered</code>, we can
+just spawn as many tasks as we need then wait for them all to complete. <code>async-std's</code>
+executor will distribute the tasks across all available cores. Here is a simple
+example, based on downloading URLs again:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-rs" data-lang="rs"><span style="color:#66d9ef">fn</span> <span style="color:#a6e22e">demo_downloading_urls_on_multiple_threads</span>() {
+    <span style="color:#66d9ef">let</span> <span style="color:#66d9ef">mut</span> tasks <span style="color:#f92672">=</span> Vec::with_capacity(URLS.len());
+
+    <span style="color:#66d9ef">for</span> url <span style="color:#66d9ef">in</span> URLS.iter() {
+        <span style="color:#66d9ef">let</span> url <span style="color:#f92672">=</span> url.to_string();
+        tasks.push(task::spawn(async <span style="color:#66d9ef">move</span> {
+            <span style="color:#66d9ef">match</span> download_url(<span style="color:#f92672">&amp;</span>url).await {
+                Ok(body) <span style="color:#f92672">=&gt;</span> { <span style="color:#75715e">// Possibly do something useful with the body of the request here.
+</span><span style="color:#75715e"></span>                },
+                Err(e) <span style="color:#f92672">=&gt;</span> println<span style="color:#f92672">!</span>(<span style="color:#e6db74">&#34;    Got error {:?}&#34;</span>, e),
+            }
+        }))
+    }
+
+    task::block_on(async {
+        <span style="color:#66d9ef">for</span> t <span style="color:#66d9ef">in</span> tasks {
+            t.await;
+        }
+    });
+}
+</code></pre></div><p>When we run this program we get something like this (note the different ThreadIds):</p>
+<pre><code>Downloading https://www.sharecast.com/equity/Anglo_American on thread ThreadId(9)
+Downloading https://www.sharecast.com/equity/Associated_British_Foods on thread ThreadId(4)
+Downloading https://www.sharecast.com/equity/Admiral_Group on thread ThreadId(7)
+Downloading https://www.sharecast.com/equity/Ashtead_Group on thread ThreadId(5)
+Downloading https://www.sharecast.com/equity/Aviva on thread ThreadId(6)
+Downloading https://www.sharecast.com/equity/BAE_Systems on thread ThreadId(2)
+Downloading https://www.sharecast.com/equity/Barratt_Developments on thread ThreadId(3)
+Downloading https://www.sharecast.com/equity/Aggreko on thread ThreadId(8)
+Downloading https://www.sharecast.com/equity/Babcock_International_Group on thread ThreadId(2)
+Downloading https://www.sharecast.com/equity/BP on thread ThreadId(4)
+...
+</code></pre><p>The total execution time is similar to the single-threaded version, but that&rsquo;s only
+because we don&rsquo;t have a lot of work to do. In a heavily loaded server this technique
+is obviously preferable.</p>
+<h3 id="gotchas">Gotchas</h3>
+<p>I could not fix the program I was originally trying to asyncify (it&rsquo;s not listed here).
+The problem was that it was using
+<a href="https://docs.rs/reqwest/0.10.0-alpha.2/reqwest/">reqwest</a>
+rather than
+<a href="https://github.com/http-rs/surf">surf</a>. When I tried to use <code>reqwest::get</code> I got
+an error <code>Error(Connect, Custom { kind: Other, error: &quot;no current reactor&quot; })</code>.</p>
+<p>The author notes that <code>reqwest</code> is undergoing development which will mean
+breaking changes, but I don&rsquo;t know if that means this error will go away.</p>
+<p>It would be unfortunate (to say the least) if Rust libraries only work on certain
+async runtimes - not to mention hugely confusing for people trying to learn
+the ropes. But things are still very new, I think it is going to take several
+months for things to begin to settle down, documentation to be updated etc.</p>
+
+  </div>
+  
+
+<div class="navigation navigation-single">
+    
+    <a href="/blog/2019/rust-file-io/" class="navigation-prev">
+      <i aria-hidden="true" class="fa fa-chevron-left"></i>
+      <span class="navigation-tittle">Rust File IO</span>
+    </a>
+    
+    
+    <a href="/blog/2020/self-cloning-for-multiple-threads-in-rust/" class="navigation-next">
+      <span class="navigation-tittle">Cloning yourself - a refactoring for thread-spawning Rust types</span>
+      <i aria-hidden="true" class="fa fa-chevron-right"></i>
+    </a>
+    
+</div>
+
+
+  
+
+  
+    
+        <div id="disqus_thread"></div>
+<script type="text/javascript">
+    
+
+    (function () {
+    if (location.hostname === "localhost" ||
+      location.hostname === "127.0.0.1" ||
+      location.hostname === "") {
+      return;
+    }
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    var disqus_shortname = 'philipdanielscomblog';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || 
+      document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+<noscript>
+  Please enable JavaScript to view the
+  <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+</noscript>
+<a href="http://disqus.com/" class="dsq-brlink">comments powered by
+  <span class="logo-disqus">Disqus</span>
+</a>
+
+    
+
+
+</article>
+
+
+        </div>
+        
+    
+  
+  
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-QK1BLJ71TN');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-QK1BLJ71TN"></script>
+
+<script defer src="https://use.fontawesome.com/releases/v5.5.0/js/all.js" integrity="sha384-GqVMZRt5Gn7tB9D9q7ONtcp4gtHIUEW/yG7h98J7IpE3kpi+srfFyyB/04OV6pG0" crossorigin="anonymous"></script>
+
+
+    
+    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+        
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/rust.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/cs.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/bash.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/python.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/css.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/http.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/ini.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/javascript.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/json.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/markdown.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/sql.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/html.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/xml.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/dockerfile.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/scss.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/r.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/typescript.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/go.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/cpp.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/dos.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/plaintext.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/powershell.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/diff.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/makefile.min.js"></script>
+            
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/lisp.min.js"></script>
+            
+        
+    
+    <script type="text/javascript">
+        
+        hljs.configure({languages: ["rust, cs, bash, python, css, http, ini, javascript, json, markdown, sql, html, xml, dockerfile, scss, r, typescript, go, cpp, dos, plaintext, powershell, diff, makefile, lisp"]});
+        
+        hljs.initHighlightingOnLoad();
+    </script>
+    
+
+
+
+
+    
+
+
+
+    </body>
+</html>

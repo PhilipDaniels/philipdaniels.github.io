@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>identity on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/identity/</link>
+    <description>Recent content in identity on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 13 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/identity/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hand-Implementing PartialEq, Eq, Hash, PartialOrd and Ord in Rust</title>
+      <link>https://www.philipdaniels.com/blog/2019/rust-equality-and-ordering/</link>
+      <pubDate>Sat, 13 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2019/rust-equality-and-ordering/</guid>
+      <description>Introduction This article is a short how-to guide for writing your own implementations of the equality, hashing and ordering traits in Rust. Often you can just auto-derive these:
+#[derive(PartialEq, Eq, Hash, PartialOrd, Ord)] pub MyStruct { ... } But sometimes you want to roll your-own, perhaps because you can do it more efficiently than the automatic versions, or you simply want to be more explicit about what it means for two things to be &amp;lsquo;equal&amp;rsquo; or perhaps you want to express relationships between instances of MyStruct and SomeOtherStruct, which the automatic versions can&amp;rsquo;t do.</description>
+    </item>
+    
+  </channel>
+</rss>

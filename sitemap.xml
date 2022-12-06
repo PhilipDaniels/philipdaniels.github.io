@@ -1,0 +1,644 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/oracle/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2022/oracle-mind-map/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/sql/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/</loc>
+    <lastmod>2022-07-20T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2022/oracle-udt-class-generator/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/c#/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/dsl/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/generator/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/parsing/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/roslyn/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/sprache/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/udt/</loc>
+    <lastmod>2022-01-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/bassutils.oracle/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2021/oracle-from-csharp/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/odp.net/</loc>
+    <lastmod>2021-12-29T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/api/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/closure/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/closures/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/fn/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/functions/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/rust/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2021/rust-fn-traits/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/traits/</loc>
+    <lastmod>2021-10-31T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2021/havings/</loc>
+    <lastmod>2021-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/having/</loc>
+    <lastmod>2021-10-30T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/arc/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/clone/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2020/self-cloning-for-multiple-threads-in-rust/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/mutex/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/pattern/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/refactor/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/self/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/struct/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/thread/</loc>
+    <lastmod>2020-07-07T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/async/</loc>
+    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/async-std/</loc>
+    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/await/</loc>
+    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/http/</loc>
+    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/async-std-demo1/</loc>
+    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/surf/</loc>
+    <lastmod>2019-12-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/file/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/io/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-file-io/</loc>
+    <lastmod>2019-05-23T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/ripgrep/</loc>
+    <lastmod>2019-04-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/ripgrep-cheatsheet/</loc>
+    <lastmod>2019-04-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-release-mode-builds/</loc>
+    <lastmod>2019-04-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/unix/</loc>
+    <lastmod>2019-04-14T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/dev/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/eq/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/equality/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-equality-and-ordering/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/hash/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/identity/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/ord/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/partialeq/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/partialord/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/vscode-extensions/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/vscode/</loc>
+    <lastmod>2019-04-13T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-configuration-example/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/clap/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/configuration/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-api-design2/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/iterators/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/lazy_static/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/options/</loc>
+    <lastmod>2019-04-12T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/cow/</loc>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/rust-api-design/</loc>
+    <lastmod>2019-04-06T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/defining-rust-error-types/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/errors/</loc>
+    <lastmod>2019-02-18T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/archive/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/bash/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/command-line/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/common-unicode-characters/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/terminal-file-management/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/linux-windows-file-sharing/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/libreofffice-with-python-scripting/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/installing-wine-and-quicken-on-mint/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/libreoffice/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/linux/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/linux-user-management/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/office/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/process-management-in-the-terminal/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/python/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/quicken/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/samba/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/share/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/smbfs/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/tar/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/terminal/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/tar-and-archives/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/tmux-and-vim-in-truecolor/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/truecolor/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/unicode/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2019/unix-redirections/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/users/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/vim/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/windows/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/wine/</loc>
+    <lastmod>2019-01-27T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/parallelism/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2017/tour-of-task/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/task/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/tpl/</loc>
+    <lastmod>2017-11-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/emacs/</loc>
+    <lastmod>2017-02-07T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/spacemacs/</loc>
+    <lastmod>2017-02-07T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2017/spacemacs-solarized/</loc>
+    <lastmod>2017-02-07T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2017/spacemacs-first-steps/</loc>
+    <lastmod>2017-02-06T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/cygwin/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/debian/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/hyper-v/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2016/vm-networking-overview/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/networking/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2016/debian-vm-setup/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2016/setup-of-ssh/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/ssh/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/virtual-box/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/vm/</loc>
+    <lastmod>2016-12-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2016/windows-vm-setup/</loc>
+    <lastmod>2016-12-27T20:14:13+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2016/persistent-dictionary-vs-sqlite/</loc>
+    <lastmod>2016-06-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/sqlite/</loc>
+    <lastmod>2016-06-27T20:19:45+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/hugo/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/blog/2016/hugo-blogging-cheatsheet/</loc>
+    <lastmod>2016-03-01T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/configzilla/license/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/configzilla/readme/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/gitcheatsheet/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/categories/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/configzilla/</loc>
+  </url>
+  
+  <url>
+    <loc>https://www.philipdaniels.com/tags/pl/sql/</loc>
+  </url>
+  
+</urlset>
