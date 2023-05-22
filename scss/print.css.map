@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "print.css",
-	"sourceRoot": "/home/phil/repos/my-website",
+	"sourceRoot": "/home/phil/repos/personal/my-website",
 	"sources": [
 		"themes/hyde-hyde-pd/assets/scss/print.scss",
 		"themes/hyde-hyde-pd/assets/scss/hyde-hyde/_variables.scss",

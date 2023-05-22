@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>pics on Phil&#39;s Blog</title>
+    <link>https://www.philipdaniels.com/tags/pics/</link>
+    <description>Recent content in pics on Phil&#39;s Blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sun, 21 May 2023 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.philipdaniels.com/tags/pics/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>2023 Pics for Sharing</title>
+      <link>https://www.philipdaniels.com/blog/2023/2023-pics/</link>
+      <pubDate>Sun, 21 May 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.philipdaniels.com/blog/2023/2023-pics/</guid>
+      <description>Ride to Workswirth Grinderswell Lane Going down from Handley Ogston Reservoir Crossing the Derwent at Whatstandwell Looking towards wirksworth </description>
+    </item>
+    
+  </channel>
+</rss>
