@@ -215,7 +215,7 @@
     
     
     <br/>
-    <i class="fas fa-clock"></i> 31 min read
+    <i class="fas fa-clock"></i> 32 min read
 </div>
 
 
@@ -518,8 +518,16 @@ indicating the number of 24 hour periods they are apart.</p>
     vInterval :<span style="color:#f92672">=</span> vInterval <span style="color:#f92672">*</span> <span style="color:#ae81ff">3</span>;
 <span style="color:#66d9ef">END</span>;
 </code></pre></div><h4 id="misc-date-tricks">Misc Date Tricks</h4>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#75715e">-- Truncate to minute resolution.
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span> TRUNC(SYSDATE, <span style="color:#e6db74">&#39;MI&#39;</span>) <span style="color:#66d9ef">FROM</span> DUAL;
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sql" data-lang="sql"><span style="color:#66d9ef">SELECT</span>
+    SYSDATE,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;MI&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_minute,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;HH&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_hour,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;DD&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_day,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;IW&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_week,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;MM&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_month,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;Q&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_quarter,
+    TRUNC(SYSDATE, <span style="color:#e6db74">&#39;Y&#39;</span>) <span style="color:#66d9ef">AS</span> beginning_of_current_year
+<span style="color:#66d9ef">FROM</span> DUAL;
 
 <span style="color:#75715e">-- Generate dates by the minute.
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">SELECT</span>
