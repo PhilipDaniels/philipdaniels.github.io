@@ -1,7 +1,7 @@
 {
 	"version": 3,
 	"file": "hyde-hyde.css",
-	"sourceRoot": "/home/phil/repos/personal/my-website",
+	"sourceRoot": "/home/phil/repos/mine/my-website",
 	"sources": [
 		"themes/hyde-hyde-pd/assets/scss/hyde-hyde.scss",
 		"themes/hyde-hyde-pd/assets/scss/hyde-hyde/_variables.scss",
